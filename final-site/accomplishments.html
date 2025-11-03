@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accomplishments - Tech Internship</title>
+  <meta name="description" content="Discover our impact through projects, grants, and partnerships">
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <style>
+    /* ============================================
+       COLOR VARIABLES
+       ============================================ */
+    :root {
+      --background: #ffffff;
+      --foreground: #3e3e3e;
+      --card: #ffffff;
+      --card-foreground: #3e3e3e;
+      --primary: #3b82f6;
+      --primary-foreground: #ffffff;
+      --secondary: #ffffff;
+      --secondary-foreground: #3e3e3e;
+      --muted: #ffffff;
+      --muted-foreground: #6b7280;
+      --accent: #ffffff;
+      --accent-foreground: #3e3e3e;
+      --border: #e5e7eb;
+      --input: #e5e7eb;
+    }
+
+    .dark {
+      --background: #1a1a1a;
+      --foreground: #f5f5f5;
+      --card: #1a1a1a;
+      --card-foreground: #f5f5f5;
+      --primary: #f5f5f5;
+      --primary-foreground: #3e3e3e;
+      --secondary: #2a2a2a;
+      --secondary-foreground: #f5f5f5;
+      --muted: #2a2a2a;
+      --muted-foreground: #9ca3af;
+      --accent: #2a2a2a;
+      --accent-foreground: #f5f5f5;
+      --border: #2a2a2a;
+      --input: #2a2a2a;
+    }
+
+    /* ============================================
+       BASE STYLES
+       ============================================ */
+    body {
+      background-color: var(--background);
+      color: var(--foreground);
+    }
+
+    /* ============================================
+       UTILITY CLASSES
+       ============================================ */
+    .bg-background { background-color: var(--background); }
+    .bg-card { background-color: var(--card); }
+    .bg-muted { background-color: var(--muted); }
+    .bg-primary { background-color: var(--primary); }
+    .bg-accent { background-color: var(--accent); }
+
+    .text-foreground { color: var(--foreground); }
+    .text-muted-foreground { color: var(--muted-foreground); }
+    .text-primary { color: var(--primary); }
+    .text-accent { color: var(--accent-foreground); }
+
+    .border-border { border-color: var(--border); }
+
+    .focus\:ring-primary:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(255, 197, 2, 0.5);
+    }
+
+    /* ============================================
+       BUTTON STYLES
+       ============================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      white-space: nowrap;
+      border-radius: 0.5rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .btn-lg {
+      height: 2.5rem;
+      padding: 0 2rem;
+      font-size: 1rem;
+    }
+
+    .btn-default {
+      background-color: #ffc502;
+      color: #000000;
+    }
+
+    .btn-default:hover {
+      background-color: #E6C200;
+      color: #000000;
+    }
+
+    .btn-outline {
+      border: 1px solid var(--border);
+      background-color: transparent;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--accent);
+      color: var(--accent-foreground);
+    }
+
+    /* ============================================
+       DROPDOWN MENU STYLES
+       ============================================ */
+    details {
+      position: relative;
+    }
+
+    summary {
+      list-style: none;
+      cursor: pointer;
+      outline: none;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    /* Hide dropdown menu by default */
+    details:not([open]) .nav-dropdown-menu {
+      display: none;
+    }
+
+    /* Show dropdown on hover */
+    details:hover .nav-dropdown-menu,
+    details[open] .nav-dropdown-menu {
+      display: block;
+    }
+
+    .nav-dropdown-menu {
+      position: absolute;
+      top: calc(100% + 0.25rem);
+      left: 0;
+      background-color: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      min-width: 200px;
+      z-index: 50;
+      padding: 0.5rem 0;
+      pointer-events: auto;
+    }
+
+    /* Bridge to keep dropdown visible when moving mouse to menu */
+    summary::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      height: 0.5rem;
+      pointer-events: none;
+    }
+
+    .dropdown-item {
+      width: 100%;
+      display: block;
+      padding: 0.75rem 1rem;
+      text-decoration: none;
+      color: var(--muted-foreground);
+      font-size: 0.875rem;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    .dropdown-item:hover,
+    .dropdown-item:focus {
+      background-color: var(--accent);
+      color: var(--accent-foreground);
+      outline: none;
+    }
+  </style>
+</head>
+<body class="font-sans antialiased">
+  <div class="min-h-screen bg-background">
+    <!-- Header -->
+    <header class="border-b border-border bg-background/95 backdrop-blur">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex h-16 items-center justify-between">
+          <div class="flex items-center gap-3">
+            <a href="index.html" class="flex items-center gap-3">
+              <img src="Basic (1).png" alt="MVHS Tech Internship Logo" class="h-12 object-contain">
+              <span class="text-xl font-bold text-foreground hidden sm:inline">MVHS Tech Internship</span>
+            </a>
+          </div>
+
+          <nav class="hidden md:flex items-center gap-6">
+            <a href="about.html" class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">About</a>
+            <a href="interns.html" class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Interns</a>
+            <details class="relative">
+              <summary class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Media</summary>
+              <div class="nav-dropdown-menu">
+                <a href="blog.html" class="dropdown-item">Blog Posts</a>
+                <a href="accomplishments.html" class="dropdown-item">Achievements</a>
+                <a href="features.html" class="dropdown-item">Features</a>
+              </div>
+            </details>
+            <a href="support.html" class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Support</a>
+            <a href="contact.html" class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Contact</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32 overflow-hidden">
+      <div class="absolute inset-0 -z-10">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-primary opacity-5 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-accent opacity-5 rounded-full blur-3xl"></div>
+      </div>
+
+      <div class="mx-auto max-w-4xl text-center">
+        <h1 class="mb-6 text-5xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl">
+          Our Accomplishments
+        </h1>
+        <p class="mb-8 text-lg text-muted-foreground sm:text-xl leading-relaxed max-w-2xl mx-auto">
+          Discover how we're making a difference through tech support, education, and innovative solutions.
+        </p>
+      </div>
+    </section>
+
+    <!-- What We've Done Section -->
+    <section class="container mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-32 bg-muted">
+      <div class="mx-auto max-w-5xl">
+        <h2 class="mb-6 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl text-center" style="color: #3e3d3d;">
+          What We've Done
+        </h2>
+
+        <p class="mb-12 text-base sm:text-lg leading-relaxed text-center max-w-3xl mx-auto" style="color: #374151;">
+          We ship tools and host learning events that make technology easier for our community. Here are a few
+          highlights.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <!-- Tech Support System -->
+          <div class="rounded-2xl bg-card border border-border p-6 hover:shadow-md transition-shadow">
+            <h3 class="mb-2 text-lg font-semibold" style="color: #3e3d3d;">Tech Support System</h3>
+            <p class="text-sm" style="color: #374151;">1,500+ requests resolved.</p>
+          </div>
+
+          <!-- Innovation Day -->
+          <div class="rounded-2xl bg-card border border-border p-6 hover:shadow-md transition-shadow">
+            <h3 class="mb-2 text-lg font-semibold" style="color: #3e3d3d;">Innovation Day</h3>
+            <p class="text-sm" style="color: #374151;">Student apps for district leaders.</p>
+          </div>
+
+          <!-- Google Innovator Grant -->
+          <div class="rounded-2xl bg-card border border-border p-6 hover:shadow-md transition-shadow">
+            <h3 class="mb-2 text-lg font-semibold" style="color: #3e3d3d;">Google Innovator Grant</h3>
+            <p class="text-sm" style="color: #374151;">$1,000 for AI policy tools.</p>
+          </div>
+
+          <!-- Community Partnerships -->
+          <div class="rounded-2xl bg-card border border-border p-6 hover:shadow-md transition-shadow">
+            <h3 class="mb-2 text-lg font-semibold" style="color: #3e3d3d;">Community Partnerships</h3>
+            <p class="text-sm" style="color: #374151;">Co-building digital literacy.</p>
+          </div>
+        </div>
+
+        <!-- Read Stories Link - Bottom Right -->
+        <div class="flex justify-end">
+          <a href="blog.html" class="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors">
+            Read Stories → Blog
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Upcoming Events Section -->
+    <section class="container mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-32">
+      <div class="mx-auto max-w-4xl">
+        <h2 class="mb-12 text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl text-center">
+          Upcoming Events
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <!-- Winter Showcase -->
+          <div class="rounded-2xl bg-card border border-border p-6 hover:shadow-md transition-shadow">
+            <h3 class="mb-3 text-lg font-semibold text-foreground">Winter Showcase</h3>
+            <div class="space-y-1 text-sm text-muted-foreground">
+              <p>Dec 15 · MVHS Library</p>
+              <p>Student demos.</p>
+            </div>
+          </div>
+
+          <!-- Design with AI Workshop -->
+          <div class="rounded-2xl bg-card border border-border p-6 hover:shadow-md transition-shadow">
+            <h3 class="mb-3 text-lg font-semibold text-foreground">Design with AI Workshop</h3>
+            <div class="space-y-1 text-sm text-muted-foreground">
+              <p>Jan 20 · CS Lab</p>
+              <p>Responsible AI intro.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- See Recaps Link - Bottom Right -->
+        <div class="flex justify-end">
+          <a href="blog.html" class="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors">
+            See Recaps → Blog
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-100">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
+          <div>
+            <h3 class="text-2xl font-bold mb-4">Tech Internship.</h3>
+            <p class="text-sm text-gray-400 leading-relaxed">
+              Students building real tools for our school community through tech support, education events, and
+              AI-powered solutions.
+            </p>
+          </div>
+
+          <div>
+            <h4 class="text-sm font-semibold uppercase tracking-wider mb-4 text-gray-300">Quick Links</h4>
+            <nav class="flex flex-col gap-3">
+              <a href="index.html" class="text-sm text-gray-400 hover:text-white transition-colors">Home</a>
+              <a href="about.html" class="text-sm text-gray-400 hover:text-white transition-colors">About</a>
+              <a href="interns.html" class="text-sm text-gray-400 hover:text-white transition-colors">Interns</a>
+              <a href="blog.html" class="text-sm text-gray-400 hover:text-white transition-colors">Blog</a>
+              <a href="support.html" class="text-sm text-gray-400 hover:text-white transition-colors">Support</a>
+              <a href="contact.html" class="text-sm text-gray-400 hover:text-white transition-colors">Contact</a>
+            </nav>
+          </div>
+
+          <div>
+            <h4 class="text-sm font-semibold uppercase tracking-wider mb-4 text-gray-300">Connect With Us</h4>
+            <div class="flex gap-4">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="flex h-10 w-10 items-center justify-center rounded-lg bg-gray-800 hover:bg-gray-700 transition-colors" aria-label="Instagram">
+                <svg class="h-5 w-5 text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.281-.073-1.689-.073-4.948 0-3.259.014-3.668.072-4.948.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path>
+                </svg>
+              </a>
+
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="flex h-10 w-10 items-center justify-center rounded-lg bg-gray-800 hover:bg-gray-700 transition-colors" aria-label="LinkedIn">
+                <svg class="h-5 w-5 text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path>
+                </svg>
+              </a>
+
+              <a href="mailto:contact@techinternship.org" class="flex h-10 w-10 items-center justify-center rounded-lg bg-gray-800 hover:bg-gray-700 transition-colors" aria-label="Email">
+                <svg class="h-5 w-5 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-12 pt-8 border-t border-gray-800 text-center">
+          <p class="text-sm text-gray-400">© <span id="year"></span> Tech Internship. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+
