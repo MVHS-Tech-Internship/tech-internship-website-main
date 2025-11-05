@@ -1,0 +1,375 @@
+/* ---------- Global Reset ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #ffc600;
+    --secondary-color: #ffd365;
+    --accent-color: #ffc600;
+    --bg-color: #fefdf8;
+    --text-color: #2c3e50;
+    --card-bg: #ffffff;
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --border-color: #e5e5e5;
+    --hover-color: #ffdd33;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Helvetica Neue', 'Arial', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* ---------- Container ---------- */
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+header {
+    background-color: var(--primary-color);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-image {
+    height: 42px;
+    margin-right: 10px;
+}
+
+.logo-text {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+/* ---------- Nav Links ---------- */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--text-color);
+}
+
+/* Mobile nav toggle (hidden by default) */
+.menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        background-color: var(--card-bg);
+        width: 100%;
+        text-align: center;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        border-top: 1px solid var(--border-color);
+    }
+
+    .nav-links.show {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+}
+
+.hero {
+    background-color: var(--bg-color);
+    text-align: center;
+    padding: 6rem 1rem;
+}
+
+.hero h1 {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+    font-weight: 700;
+}
+
+.hero p {
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+    color: var(--text-color);
+    font-size: 1.1rem;
+}
+
+.btn-primary,
+.btn-secondary,
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-primary,
+.btn {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+}
+
+.btn-primary:hover,
+.btn:hover {
+    background-color: var(--hover-color);
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    border: 2px solid var(--primary-color);
+    color: var(--text-color);
+    background-color: transparent;
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+}
+
+main {
+    padding: 3rem 0;
+    min-height: calc(100vh - 200px);
+}
+
+h1, h2, h3 {
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+section {
+    margin-bottom: 3rem;
+}
+
+section h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-color);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.highlights, .mission-preview, .articles {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+}
+
+.articles article {
+    margin-bottom: 2rem;
+}
+
+.articles h2 {
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+.read-more {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.read-more:hover {
+    text-decoration: underline;
+}
+
+/* ---------- Features Grid ---------- */
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.feature-card {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.feature-card h3 {
+    color: var(--text-color);
+    font-size: 1.3rem;
+    margin-bottom: 0.6rem;
+    font-weight: 700;
+}
+
+.feature-card p {
+    color: var(--text-color);
+    line-height: 1.6;
+    margin-bottom: 0.8rem;
+    font-size: 0.95rem;
+}
+
+/* ---------- Icon Styling ---------- */
+.icon-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.8rem;
+}
+
+.card-icon {
+    width: 28px;
+    height: 28px;
+    color: var(--primary-color);
+    flex-shrink: 0;
+}
+
+.icon-header h3 {
+    margin-bottom: 0;
+}
+
+/* ---------- Page Header ---------- */
+.page-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.page-header h1 {
+    color: var(--text-color);
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.page-header p {
+    color: var(--text-color);
+    font-size: 1.05rem;
+}
+
+/* ---------- Contact Form ---------- */
+.contact-form {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    max-width: 600px;
+}
+
+.contact-form label {
+    display: block;
+    font-weight: 600;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-family: inherit;
+    color: var(--text-color);
+    background-color: var(--card-bg);
+}
+
+.contact-form button {
+    margin-top: 1.5rem;
+}
+
+/* ---------- Footer ---------- */
+footer {
+    background-color: var(--text-color);
+    color: var(--card-bg);
+    padding: 2rem 0;
+    margin-top: 3rem;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+}
+
+.footer-right a {
+    color: var(--card-bg);
+    margin: 0 0.5rem;
+    transition: color 0.2s ease;
+}
+
+.footer-right a:hover {
+    color: var(--primary-color);
+}
+
+/* ---------- Utility Classes ---------- */
+.text-center {
+    text-align: center;
+}
+
+.mb-1 {
+    margin-bottom: 1rem;
+}
+
+.mb-2 {
+    margin-bottom: 2rem;
+}
+
+.mt-2 {
+    margin-top: 2rem;
+}
+
+/* ---------- Section Dividers ---------- */
+section + section {
+    border-top: 2px solid rgba(0, 0, 0, 0.05);
+    padding-top: 3rem;
+}

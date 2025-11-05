@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Support Us - MVHS Tech Internship{% endblock %}
+
+{% block content %}
+<h1>Support Us</h1>
+<p>Your support helps us attend conferences, expand our programs, and provide students with the tools to make an impact.</p>
+
+<section class="donations">
+    <h2>Donations</h2>
+    <p>All contributions go directly toward educational events and community initiatives.</p>
+    <img src="{{ url_for('static', filename='images/donation-meter.png') }}" alt="Donation goal progress">
+</section>
+
+<section class="merch">
+    <h2>Merch</h2>
+    <p>Show your support by purchasing our AI Ethics Game Cards or MVHS Tech gear.</p>
+</section>
+
+<section class="collaboration">
+    <h2>Collaborate With Us</h2>
+    <p>We welcome educators and partners interested in integrating AI and technology into learning. Fill out the form below to connect.</p>
+    <iframe src=""
+        width="100%" height="800" frameborder="0">Loading…</iframe>
+</section>
+{% endblock %}
