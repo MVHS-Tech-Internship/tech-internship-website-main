@@ -52,7 +52,7 @@ header {
     border-bottom: 1px solid rgba(0, 0, 0, 0.08);
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 3000;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
 }
 
@@ -61,6 +61,8 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 0;
+    position: relative;
+    z-index: 3000;
 }
 
 .logo {
@@ -104,6 +106,59 @@ nav {
 
 .nav-links a.active {
     font-weight: 600;
+}
+
+.nav-links a i {
+    font-size: 0.7rem;
+    margin-left: 0.3rem;
+}
+
+/* ---------- Dropdown Menu ---------- */
+.dropdown {
+    position: relative;
+}
+
+.dropdown > a {
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--card-bg);
+    list-style: none;
+    padding: 0.5rem 0;
+    margin: 0;
+    border-radius: var(--border-radius-sm);
+    box-shadow: var(--shadow-soft);
+    min-width: 160px;
+    z-index: 2000;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu li {
+    margin: 0;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 0.6rem 1.25rem;
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: background-color 0.2s ease;
+}
+
+.dropdown-menu a:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+    opacity: 1;
 }
 
 /* Mobile nav toggle (hidden by default) */
@@ -159,8 +214,8 @@ nav {
     right: 50%;
     margin-left: -50vw;
     margin-right: -50vw;
-    padding: 140px 0 120px 0;
-    margin-bottom: 4rem;
+    padding: 115px 0 100px 0;
+    margin-bottom: 3.2rem;
     background: linear-gradient(135deg, #ffffff 0%, #fefdf8 50%, #faf8f0 100%);
     border-bottom: 1px solid rgba(0, 0, 0, 0.04);
 }
@@ -196,6 +251,14 @@ nav {
     font-weight: 400;
 }
 
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    line-height: 1.6;
+    margin-top: 0.5rem;
+    font-weight: 400;
+}
+
 .hero-image {
     display: flex;
     justify-content: center;
@@ -211,7 +274,7 @@ nav {
 
 @media (max-width: 968px) {
     .hero {
-        padding: 100px 0 80px 0;
+        padding: 85px 0 70px 0;
     }
 
     .hero-grid {
@@ -492,7 +555,7 @@ p {
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-soft);
     max-width: 650px;
-    margin: 0 auto;
+    margin: 28px auto 0 auto;
 }
 
 .contact-form label {
@@ -565,6 +628,268 @@ footer {
     transform: translateY(-2px);
 }
 
+/* ---------- Team Page Styles ---------- */
+.team-section {
+    margin-bottom: 4rem;
+}
+
+.team-section h2 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 2rem;
+    text-align: left;
+}
+
+.team-grid {
+    display: grid;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.e-board-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.interns-grid {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.advisors-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.team-card {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-soft);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+}
+
+.e-board-card {
+    padding: 2.5rem;
+}
+
+.intern-card {
+    padding: 1.5rem;
+}
+
+.advisor-card {
+    padding: 2.5rem;
+}
+
+.team-headshot {
+    width: 140px;
+    height: 140px;
+    margin: 0 auto 1.25rem;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: var(--border-color);
+}
+
+.team-headshot.small {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 1rem;
+}
+
+.team-headshot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.team-card h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+.e-board-card h3 {
+    font-size: 1.4rem;
+}
+
+.team-role {
+    font-size: 1rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+
+.e-board-card .team-role {
+    font-size: 1.05rem;
+}
+
+.team-description {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    line-height: 1.6;
+    margin-top: 0.5rem;
+}
+
+/* ---------- Donations Page Styles ---------- */
+.donations-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.donations-card {
+    padding: 4rem;
+    margin: 60px auto 0 auto;
+}
+
+.donations-section {
+    margin-bottom: 2.25rem;
+}
+
+.donations-section:last-child {
+    margin-bottom: 0;
+}
+
+.donations-section h2 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+    text-align: center;
+}
+
+.donations-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.donations-list li {
+    color: var(--text-light);
+    line-height: 1.85;
+    margin-bottom: 1.25rem;
+    padding-left: 1.75rem;
+    position: relative;
+    font-size: 1.05rem;
+}
+
+.donations-list li:before {
+    content: "•";
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 1.3rem;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.donations-list li:last-child {
+    margin-bottom: 0;
+}
+
+/* Progress Bar */
+.donation-progress {
+    width: 100%;
+    height: 24px;
+    background-color: #f0f0f0;
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 0 auto 1rem;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color) 0%, var(--hover-color) 100%);
+    border-radius: 12px;
+    transition: width 0.3s ease;
+    box-shadow: 0 2px 8px rgba(255, 198, 0, 0.3);
+}
+
+.progress-text {
+    text-align: center;
+    color: var(--text-color);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Donate Now Section */
+.donate-options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.qr-code-container {
+    width: 200px;
+    height: 200px;
+    background-color: var(--card-bg);
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-soft);
+}
+
+.qr-code-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: var(--border-radius-sm);
+}
+
+.donate-button {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    border-radius: var(--border-radius-pill);
+    box-shadow: 0 4px 12px rgba(255, 198, 0, 0.3);
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.donate-button:hover {
+    background-color: var(--hover-color);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(255, 198, 0, 0.4);
+}
+
+@media (max-width: 768px) {
+    .donations-card {
+        padding: 2.5rem 2rem;
+    }
+
+    .donations-section {
+        margin-bottom: 2.5rem;
+    }
+
+    .donations-section h2 {
+        font-size: 1.75rem;
+    }
+
+    .donate-options {
+        gap: 1.5rem;
+    }
+
+    .qr-code-container {
+        width: 180px;
+        height: 180px;
+    }
+}
+
 /* ---------- Utility Classes ---------- */
 .text-center {
     text-align: center;
@@ -630,5 +955,36 @@ footer {
 
     h2 {
         font-size: 1.875rem;
+    }
+
+    .dropdown-menu {
+        position: static;
+        display: block;
+        box-shadow: none;
+        margin-top: 0.5rem;
+        padding: 0;
+    }
+
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+
+    .team-section h2 {
+        font-size: 1.875rem;
+    }
+
+    .e-board-grid,
+    .advisors-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .interns-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 480px) {
+        .interns-grid {
+            grid-template-columns: 1fr;
+        }
     }
 }

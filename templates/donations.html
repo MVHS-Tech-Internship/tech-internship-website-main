@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Donations - MVHS Tech Internship{% endblock %}
+
+{% block content %}
+<h1>Donations</h1>
+<p>Your support helps us attend conferences, expand our programs, and provide students with the tools to make an impact.</p>
+
+<div class="donations-wrapper">
+    <section class="section-card donations-card">
+        <div class="donations-section">
+            <h2>Our Progress</h2>
+            <div class="donation-progress">
+                <div class="progress-bar" style="width: 35%;"></div>
+            </div>
+            <p class="progress-text">$3,500 raised of $10,000 goal</p>
+        </div>
+        
+        <div class="donations-section">
+            <h2>Donate Now</h2>
+            <div class="donate-options">
+                <div class="qr-code-container">
+                    <img src="{{ url_for('static', filename='images/donation-qr.png') }}" alt="Donation QR Code" class="qr-code-image">
+                </div>
+                <a href="https://mvhs-sports-boosters.square.site/product/tech-intern-donation/403" target="_blank" class="donate-button">Donate Online</a>
+            </div>
+        </div>
+        
+        <div class="donations-section">
+            <h2>Where Your Support Goes</h2>
+            <ul class="donations-list">
+                <li>Supporting student leaders to attend conferences and share our work on AI in education, plus building and maintaining community tools and platforms.</li>
+                <li>Creating educational materials like AI Ethics Game Cards and covering essential technology costs to keep our programs running sustainably.</li>
+            </ul>
+        </div>
+    </section>
+</div>
+{% endblock %}
+
