@@ -1,28 +1,32 @@
 {% extends "base.html" %}
 {% block title %}Home - MVHS Tech Internship{% endblock %}
 
-{% block hero %}
+{% block content %}
 <section class="hero">
-    <div class="container">
-        <h1>Welcome to the MVHS Tech Internship</h1>
-        <p>Empowering students through innovation, technology, and impact-driven projects.</p>
-        <a href="/about" class="btn-primary">Learn More</a>
+    <div class="hero-container">
+        <div class="hero-grid">
+            <div class="hero-text">
+                <h1>MVHS Tech Internship</h1>
+                <p class="hero-subtitle">Student-led technology support, AI innovation, and digital learning at Mountain View High School.</p>
+            </div>
+            <div class="hero-image">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="MVHS Logo" class="hero-logo">
+            </div>
+        </div>
     </div>
 </section>
-{% endblock %}
 
-{% block content %}
-<section class="highlights">
+<section class="section-card">
     <h2>Upcoming Events</h2>
-    <p>Stay tuned for workshops, conferences, and tech initiatives happening soon!</p>
+    <p>Stay tuned for workshops, conferences, and tech initiatives happening soon! We'll be announcing exciting events and opportunities for students to get involved and expand their technical skills.</p>
 </section>
 
-<section class="mission-preview">
+<section class="section-card">
     <h2>Our Mission</h2>
-    <p>By delivering peer-driven technology support, spearheading educational initiatives, and developing practical AI-powered applications, we strive to make a lasting impact in our school and community.</p>
+    <p>By delivering peer-driven technology support, spearheading relevant educational initiatives, and developing practical AI-powered applications, we strive to make a positive impact in our school, inspire the local and national education technology community, and set a standard for student-led change.</p>
 </section>
 
 <section class="call-to-action">
-    <a href="/support" class="btn-secondary">Support Our Work</a>
+    <a href="/support" class="btn-primary">Support Our Work</a>
 </section>
 {% endblock %}

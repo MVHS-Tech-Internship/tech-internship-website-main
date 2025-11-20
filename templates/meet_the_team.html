@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% block title %}Meet the Team - MVHS Tech Internship{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Meet the Team</h1>
+    <p>Our interns, e-board members, and advisors work together to support technology, AI innovation, and digital learning at MVHS.</p>
+</div>
+
+<section class="team-section">
+    <h2>E-Board</h2>
+    <div class="team-grid e-board-grid">
+        <div class="team-card e-board-card">
+            <div class="team-headshot">
+                <img src="{{ url_for('static', filename='images/placeholder-headshot.jpg') }}" alt="Team Member">
+            </div>
+            <h3>Member Name</h3>
+            <p class="team-role">Program Lead</p>
+            <p class="team-description">Leading initiatives and coordinating team efforts to drive technology innovation at MVHS.</p>
+        </div>
+        <div class="team-card e-board-card">
+            <div class="team-headshot">
+                <img src="{{ url_for('static', filename='images/placeholder-headshot.jpg') }}" alt="Team Member">
+            </div>
+            <h3>Member Name</h3>
+            <p class="team-role">Technical Lead</p>
+            <p class="team-description">Overseeing technical projects and providing guidance on AI and software development.</p>
+        </div>
+        <div class="team-card e-board-card">
+            <div class="team-headshot">
+                <img src="{{ url_for('static', filename='images/placeholder-headshot.jpg') }}" alt="Team Member">
+            </div>
+            <h3>Member Name</h3>
+            <p class="team-role">Communications Lead</p>
+            <p class="team-description">Managing outreach and ensuring effective communication across all program initiatives.</p>
+        </div>
+    </div>
+</section>
+
+<section class="team-section">
+    <h2>Interns</h2>
+    <div class="team-grid interns-grid">
+        <div class="team-card intern-card">
+            <div class="team-headshot small">
+                <img src="{{ url_for('static', filename='images/placeholder-headshot.jpg') }}" alt="Intern">
+            </div>
+            <h3>Intern Name</h3>
+            <p class="team-role">Tech Support Intern</p>
+        </div>
+        <div class="team-card intern-card">
+            <div class="team-headshot small">
+                <img src="{{ url_for('static', filename='images/placeholder-headshot.jpg') }}" alt="Intern">
+            </div>
+            <h3>Intern Name</h3>
+            <p class="team-role">AI Projects Intern</p>
+        </div>
+        <div class="team-card intern-card">
+            <div class="team-headshot small">
+                <img src="{{ url_for('static', filename='images/placeholder-headshot.jpg') }}" alt="Intern">
+            </div>
+            <h3>Intern Name</h3>
+            <p class="team-role">Tech Support Intern</p>
+        </div>
+        <div class="team-card intern-card">
+            <div class="team-headshot small">
+                <img src="{{ url_for('static', filename='images/placeholder-headshot.jpg') }}" alt="Intern">
+            </div>
+            <h3>Intern Name</h3>
+            <p class="team-role">AI Projects Intern</p>
+        </div>
+        <div class="team-card intern-card">
+            <div class="team-headshot small">
+                <img src="{{ url_for('static', filename='images/placeholder-headshot.jpg') }}" alt="Intern">
+            </div>
+            <h3>Intern Name</h3>
+            <p class="team-role">Tech Support Intern</p>
+        </div>
+        <div class="team-card intern-card">
+            <div class="team-headshot small">
+                <img src="{{ url_for('static', filename='images/placeholder-headshot.jpg') }}" alt="Intern">
+            </div>
+            <h3>Intern Name</h3>
+            <p class="team-role">AI Projects Intern</p>
+        </div>
+    </div>
+</section>
+
+<section class="team-section">
+    <h2>Advisors</h2>
+    <div class="team-grid advisors-grid">
+        <div class="team-card advisor-card">
+            <div class="team-headshot">
+                <img src="{{ url_for('static', filename='images/placeholder-headshot.jpg') }}" alt="Advisor">
+            </div>
+            <h3>Advisor Name</h3>
+            <p class="team-role">Principal</p>
+        </div>
+        <div class="team-card advisor-card">
+            <div class="team-headshot">
+                <img src="{{ url_for('static', filename='images/placeholder-headshot.jpg') }}" alt="Advisor">
+            </div>
+            <h3>Advisor Name</h3>
+            <p class="team-role">Program Advisor</p>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
