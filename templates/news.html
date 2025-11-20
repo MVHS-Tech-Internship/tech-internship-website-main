@@ -1,3 +1,4 @@
+<!-- trigger deploy -->
 {% extends "base.html" %}
 {% block title %}News & Media - MVHS Tech Internship{% endblock %}
 
@@ -45,97 +46,5 @@
         </div>
     </section>
 </section>
-
-<style>
-.news-media {
-    text-align: center;
-    padding: 2rem 1rem;
-}
-
-.page-title {
-    font-size: 2.2rem;
-    margin-bottom: 0.5rem;
-}
-
-.intro-text {
-    color: #555;
-    margin-bottom: 2rem;
-}
-
-.articles-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 3rem;
-    align-items: stretch;
-}
-
-.news-card {
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-    overflow: hidden;
-    transition: transform 0.2s ease;
-    display: flex;
-    flex-direction: column;
-}
-
-.news-card:hover {
-    transform: translateY(-4px);
-}
-
-.news-content {
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    flex-grow: 1;
-}
-
-.news-content p {
-    flex-grow: 1;
-}
-
-.news-image {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-}
-
-.read-more {
-    color: #007bff;
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.read-more:hover {
-    text-decoration: underline;
-}
-
-.social-media {
-    margin-top: 2rem;
-}
-
-.social-links {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    margin-top: 1rem;
-    flex-wrap: wrap;
-}
-
-.social-icon {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    text-decoration: none;
-    color: #333;
-    font-weight: 500;
-}
-
-.social-icon img {
-    width: 24px;
-    height: 24px;
-}
-</style>
 {% endblock %}
+
