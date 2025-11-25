@@ -13,12 +13,13 @@
         <div class="menu-toggle"><i class="fas fa-bars"></i></div>
         <div class="container">
             <nav>
-                <div class="logo">
-                    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="MVHS Logo" class="logo-image">
-                    <span class="logo-text">MVHS Tech Internship</span>
-                </div>
+                <a href="/" class="logo-link" style="text-decoration: none; color: inherit;">
+                    <div class="logo">
+                        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="MVHS Logo" class="logo-image">
+                        <span class="logo-text">MVHS Tech Internship</span>
+                    </div>
+                </a>
                 <ul class="nav-links">
-                    <li><a href="/" class="{% if request.path == '/' %}active{% endif %}">Home</a></li>
                     <li><a href="/about" class="{% if request.path == '/' %}active{% endif %}">About Us</a></li>
                     <li><a href="/news" class="{% if request.path == '/' %}active{% endif %}">News & Media</a></li>
                     <li><a href="/resources" class="{% if request.path == '/' %}active{% endif %}">Resources</a></li>

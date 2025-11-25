@@ -66,6 +66,15 @@ nav {
     color: var(--text-color);
 }
 
+.logo-link {
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.logo-link:hover {
+    opacity: 0.8;
+}
+
 /* ---------- Nav Links ---------- */
 .nav-links {
     list-style: none;
