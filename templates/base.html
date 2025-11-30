@@ -13,21 +13,14 @@
         <div class="menu-toggle"><i class="fas fa-bars"></i></div>
         <div class="container">
             <nav>
-                <div class="logo">
-                    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="MVHS Logo" class="logo-image">
-                    <span class="logo-text">MVHS Tech Internship</span>
-                </div>
+                <a href="/" class="logo-link" style="text-decoration: none; color: inherit;">
+                    <div class="logo">
+                        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="MVHS Logo" class="logo-image">
+                        <span class="logo-text">MVHS Tech Internship</span>
+                    </div>
+                </a>
                 <ul class="nav-links">
-                    <li><a href="/" class="{% if request.path == '/' %}active{% endif %}">Home</a></li>
-                    <li class="dropdown">
-                        <a href="/about" class="{% if request.path == '/about' or request.path == '/meet-the-team' or request.path == '/impact' %}active{% endif %}">About Us <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/about">Overview</a></li>
-                            <li><a href="/meet-the-team">Meet the Team</a></li>
-                            <li><a href="/impact">Our Impact</a></li>
-                            <li><a href="https://mvhs-tech.vercel.app/" target="_blank">Resources</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="/about" class="{% if request.path == '/' %}active{% endif %}">About Us</a></li>
                     <li><a href="/news" class="{% if request.path == '/' %}active{% endif %}">News & Media</a></li>
                     <li><a href="/contact" class="{% if request.path == '/' %}active{% endif %}">Contact Us</a></li>
                     <li class="dropdown">
