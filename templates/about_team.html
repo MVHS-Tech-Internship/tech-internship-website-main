@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+{% block title %}Our Team - MVHS Tech Internship{% endblock %}
+
+{% block content %}
+<section class="team-carousel-section">
+    <h2 class="team-carousel-title">Our Team</h2>
+    <p class="team-carousel-subtitle">Meet the students and leaders who drive our program forward.</p>
+
+    <div class="team-carousel-wrapper">
+        <button class="team-arrow team-arrow-left" id="teamPrev" aria-label="Previous">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        
+        <div class="team-fade team-fade-left"></div>
+        
+        <div class="team-cards" id="teamCarousel">
+            <div class="team-card">
+                <img src="{{ url_for('static', filename='images/e_board_placeholder1.jpg') }}" alt="Name Placeholder 1" class="team-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="team-photo-placeholder" style="display: none;"></div>
+                <h3 class="team-name">Name Placeholder 1</h3>
+                <p class="team-role">Executive Board Member</p>
+            </div>
+
+            <div class="team-card">
+                <img src="{{ url_for('static', filename='images/e_board_placeholder2.jpg') }}" alt="Name Placeholder 2" class="team-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="team-photo-placeholder" style="display: none;"></div>
+                <h3 class="team-name">Name Placeholder 2</h3>
+                <p class="team-role">Executive Board Member</p>
+            </div>
+
+            <div class="team-card">
+                <img src="{{ url_for('static', filename='images/e_board_placeholder3.jpg') }}" alt="Name Placeholder 3" class="team-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="team-photo-placeholder" style="display: none;"></div>
+                <h3 class="team-name">Name Placeholder 3</h3>
+                <p class="team-role">Executive Board Member</p>
+            </div>
+
+            <div class="team-card">
+                <img src="{{ url_for('static', filename='images/e_board_placeholder4.jpg') }}" alt="Name Placeholder 4" class="team-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="team-photo-placeholder" style="display: none;"></div>
+                <h3 class="team-name">Name Placeholder 4</h3>
+                <p class="team-role">Executive Board Member</p>
+            </div>
+
+            <div class="team-card">
+                <img src="{{ url_for('static', filename='images/e_board_placeholder5.jpg') }}" alt="Name Placeholder 5" class="team-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="team-photo-placeholder" style="display: none;"></div>
+                <h3 class="team-name">Name Placeholder 5</h3>
+                <p class="team-role">Executive Board Member</p>
+            </div>
+
+            <div class="team-card">
+                <img src="{{ url_for('static', filename='images/e_board_placeholder6.jpg') }}" alt="Name Placeholder 6" class="team-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="team-photo-placeholder" style="display: none;"></div>
+                <h3 class="team-name">Name Placeholder 6</h3>
+                <p class="team-role">Executive Board Member</p>
+            </div>
+
+            <div class="team-card">
+                <img src="{{ url_for('static', filename='images/e_board_placeholder7.jpg') }}" alt="Name Placeholder 7" class="team-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="team-photo-placeholder" style="display: none;"></div>
+                <h3 class="team-name">Name Placeholder 7</h3>
+                <p class="team-role">Executive Board Member</p>
+            </div>
+        </div>
+
+        <div class="team-fade team-fade-right"></div>
+        
+        <button class="team-arrow team-arrow-right" id="teamNext" aria-label="Next">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+</section>
+
+<section class="interns-section">
+    <h2>Interns</h2>
+    <p class="interns-subtitle">We're supported by an incredible team of interns who help power our events, projects, and tech support.</p>
+    
+    <div class="interns-container">
+        <div class="interns-grid">
+            <div class="intern-pill">Intern Name 1</div>
+            <div class="intern-pill">Intern Name 2</div>
+            <div class="intern-pill">Intern Name 3</div>
+            <div class="intern-pill">Intern Name 4</div>
+            <div class="intern-pill">Intern Name 5</div>
+            <div class="intern-pill">Intern Name 6</div>
+            <div class="intern-pill">Intern Name 7</div>
+            <div class="intern-pill">Intern Name 8</div>
+            <div class="intern-pill">Intern Name 9</div>
+            <div class="intern-pill">Intern Name 10</div>
+            <div class="intern-pill">Intern Name 11</div>
+            <div class="intern-pill">Intern Name 12</div>
+            <div class="intern-pill">Intern Name 13</div>
+            <div class="intern-pill">Intern Name 14</div>
+            <div class="intern-pill">Intern Name 15</div>
+            <div class="intern-pill">Intern Name 16</div>
+            <div class="intern-pill">Intern Name 17</div>
+            <div class="intern-pill">Intern Name 18</div>
+            <div class="intern-pill">Intern Name 19</div>
+            <div class="intern-pill">Intern Name 20</div>
+        </div>
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const carousel = document.getElementById('teamCarousel');
+    const prevBtn = document.getElementById('teamPrev');
+    const nextBtn = document.getElementById('teamNext');
+    
+    if (!carousel || !prevBtn || !nextBtn) return;
+    
+    const cards = carousel.querySelectorAll('.team-card');
+    if (cards.length === 0) return;
+    
+    const cardWidth = cards[0].offsetWidth;
+    const gap = 24; // 1.5rem = 24px
+    const scrollAmount = cardWidth + gap;
+    
+    function updateArrows() {
+        const scrollLeft = carousel.scrollLeft;
+        const scrollWidth = carousel.scrollWidth;
+        const clientWidth = carousel.clientWidth;
+        
+        prevBtn.style.opacity = scrollLeft > 0 ? '1' : '0.3';
+        nextBtn.style.opacity = scrollLeft < scrollWidth - clientWidth - 10 ? '1' : '0.3';
+    }
+    
+    prevBtn.addEventListener('click', function() {
+        carousel.scrollBy({
+            left: -scrollAmount,
+            behavior: 'smooth'
+        });
+    });
+    
+    nextBtn.addEventListener('click', function() {
+        carousel.scrollBy({
+            left: scrollAmount,
+            behavior: 'smooth'
+        });
+    });
+    
+    carousel.addEventListener('scroll', updateArrows);
+    updateArrows();
+});
+</script>
+{% endblock %}
+

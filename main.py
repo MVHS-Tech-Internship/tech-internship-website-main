@@ -20,8 +20,26 @@ def index():
 
 @app.route('/about')
 def about():
-    """About Us Page"""
-    return render_template('about.html')
+    """About Us Page - Redirect to overview"""
+    return redirect(url_for('about_overview'))
+
+
+@app.route('/about/overview')
+def about_overview():
+    """Overview & Mission Page"""
+    return render_template('about_overview.html')
+
+
+@app.route('/about/team')
+def about_team():
+    """Our Team Page"""
+    return render_template('about_team.html')
+
+
+@app.route('/about/partnerships')
+def about_partnerships():
+    """Partnerships Page"""
+    return render_template('about_partnerships.html')
 
 
 @app.route('/news')
@@ -123,14 +141,27 @@ def meet_the_team():
     return render_template('meet_the_team.html')
 
 
-@app.route('/impact')
-def impact():
-    """Our Impact Page"""
-    return render_template('impact.html')
-
 @app.route("/blog")
 def blog():
     return render_template("blog.html")
+
+
+@app.route('/focus/technical-projects')
+def focus_technical_projects():
+    """Technical Projects Focus Page"""
+    return render_template('focus_technical_projects.html')
+
+
+@app.route('/focus/community-events')
+def focus_community_events():
+    """Community Events Focus Page"""
+    return render_template('focus_community_events.html')
+
+
+@app.route('/focus/tech-support')
+def focus_tech_support():
+    """Tech Support Focus Page"""
+    return render_template('focus_tech_support.html')
 
 
 if __name__ == '__main__':
