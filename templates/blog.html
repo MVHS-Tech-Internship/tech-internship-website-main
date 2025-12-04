@@ -1,88 +1,102 @@
 {% extends "base.html" %}
-{% block title %}MVHS Blogs{% endblock %}
+{% block title %}MVHS Tech Blog - MVHS Tech Internship{% endblock %}
 
 {% block content %}
-<section class="blogs-page">
-    <h1 class="page-title">MVHS Intern Blogs</h1>
-    <p class="intro-text">A collection of short, student-written tech stories and updates.</p>
-
-    <div class="blog-grid">
-        <article class="blog-card">
-            <h2>How We Built Our First Python Tool</h2>
-            <p>Our interns experimented with Python to automate small tasks around campus. Here's what they learned in the process.</p>
-            <a href="#" class="read-more">Read More →</a>
-        </article>
-
-        <article class="blog-card">
-            <h2>Designing a Website in One Week</h2>
-            <p>A quick look at how our team collaborated to build, test, and launch a working website in just seven days.</p>
-            <a href="#" class="read-more">Read More →</a>
-        </article>
-
-        <article class="blog-card">
-            <h2>What We Learned from Teaching Tech</h2>
-            <p>Interns share their experiences helping students and staff learn new digital tools and problem-solving skills.</p>
-            <a href="#" class="read-more">Read More →</a>
-        </article>
-
-        <article class="blog-card">
-            <h2>How Our Interns Built Their First AI Tool</h2>
-            <p>This project started as a simple idea: could students create a tool that actually helps teachers? The team ended up developing a working prototype in under two weeks.</p>
-            <a href="#" class="read-more">Read More →</a>
-        </article>
-
-        <article class="blog-card">
-            <h2>What We Learned Testing Robots in the Hallways</h2>
-            <p>From ultrasonic sensors to unexpected traffic jams, our interns discovered what it really takes to make autonomous robots navigate a school smoothly.</p>
-            <a href="#" class="read-more">Read More →</a>
-        </article>
-
-        <article class="blog-card">
-            <h2>Breaking Down Our Smart Hall Pass Prototype</h2>
-            <p>A behind-the-scenes look at how a small group of students redesigned the concept of a hall pass using QR codes, timestamps, and real-time tracking.</p>
-            <a href="#" class="read-more">Read More →</a>
-        </article>
+<section class="blog-page">
+    <!-- Page Title + Subtitle -->
+    <div class="blog-header">
+        <h1 class="blog-title">MVHS Tech Blog</h1>
+        <p class="blog-subtitle">Insights, tutorials, and stories from the MVHS Tech Internship program.</p>
     </div>
+
+    <!-- Search Bar + Filter Bar -->
+    <div class="blog-filters">
+        <form class="blog-search-form" action="{{ url_for('blogs') }}" method="get">
+            <div class="blog-search">
+                <i class="fas fa-search"></i>
+                <input 
+                    type="text" 
+                    name="q" 
+                    placeholder="Search articles..." 
+                    value="{{ query or '' }}"
+                    class="search-input"
+                />
+            </div>
+            <button type="submit" class="blog-search-button">Search</button>
+        </form>
+        <button class="blog-filter-button" type="button">Filter by topics ▾</button>
+    </div>
+
+    <!-- Featured Articles Section -->
+    <section class="blog-featured">
+        <h2 class="blog-section-title">Featured Articles</h2>
+        <div class="featured-grid">
+            {% for post in featured_posts %}
+            <article class="featured-card">
+                <div class="article-category">{{ post.categories[0] }}</div>
+                <h3 class="article-title">{{ post.title }}</h3>
+                <p class="article-preview">{{ post.excerpt }}</p>
+                <div class="article-tags">
+                    {% for tag in post.tags %}
+                    <span class="tag">{{ tag }}</span>
+                    {% endfor %}
+                </div>
+                <div class="article-meta">
+                    <span class="meta-item"><i class="fas fa-user"></i> {{ post.author }}</span>
+                    <span class="meta-item"><i class="fas fa-calendar"></i> {{ post.date }}</span>
+                    <span class="meta-item"><i class="fas fa-clock"></i> {{ post.read_time }}</span>
+                </div>
+                <a href="#" class="article-link">Read More →</a>
+            </article>
+            {% else %}
+            <p class="empty-state">No featured posts match your search.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Latest Articles Grid -->
+    <section class="blog-latest">
+        <h2 class="blog-section-title">Latest Articles</h2>
+        <div class="latest-grid">
+            {% for post in latest_posts %}
+            <article class="latest-card">
+                <div class="article-category">{{ post.categories[0] }}</div>
+                <h3 class="article-title-small">{{ post.title }}</h3>
+                <p class="article-preview-small">{{ post.excerpt }}</p>
+                <div class="article-meta-small">
+                    <span><i class="fas fa-user"></i> {{ post.author }}</span>
+                    <span><i class="fas fa-calendar"></i> {{ post.date }}</span>
+                    <span><i class="fas fa-clock"></i> {{ post.read_time }}</span>
+                </div>
+                <a href="#" class="article-link">Read More →</a>
+            </article>
+            {% else %}
+            <p class="empty-state">No articles match your search.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Subscribe Section -->
+    <section class="blog-subscribe">
+        <div class="subscribe-content">
+            <h2 class="subscribe-title">Stay Updated</h2>
+            <p class="subscribe-subtitle">Subscribe to our newsletter to get updates on our projects, events, and new tools.</p>
+            
+            <form class="subscribe-form" action="{{ url_for('subscribe') }}" method="post">
+                <input 
+                    type="email" 
+                    name="email" 
+                    placeholder="Enter your email" 
+                    required
+                    class="subscribe-input"
+                />
+                <button type="submit" class="subscribe-button">Subscribe</button>
+            </form>
+            
+            {% if subscribed_message %}
+            <p class="subscribe-message">{{ subscribed_message }}</p>
+            {% endif %}
+        </div>
+    </section>
 </section>
-
-<style>
-.blogs-page {
-    text-align: center;
-    padding: 2rem 1rem;
-}
-.page-title {
-    font-size: 2.2rem;
-    margin-bottom: 0.5rem;
-}
-.intro-text {
-    color: #555;
-    margin-bottom: 2rem;
-}
-.blog-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-}
-.blog-card {
-    background: #fff;
-    border-radius: 12px;
-    padding: 1.2rem;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-.read-more {
-    margin-top: 1rem;
-    font-weight: 600;
-    color: #007bff;
-    text-decoration: none;
-}
-.read-more:hover {
-    text-decoration: underline;
-}
-</style>
 {% endblock %}
-
-
