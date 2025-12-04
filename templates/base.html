@@ -20,9 +20,16 @@
                     </div>
                 </a>
                 <ul class="nav-links">
-                    <li><a href="/about" class="{% if request.path == '/' %}active{% endif %}">About Us</a></li>
-                    <li><a href="/news" class="{% if request.path == '/' %}active{% endif %}">News & Media</a></li>
-                    <li><a href="/contact" class="{% if request.path == '/' %}active{% endif %}">Contact Us</a></li>
+                    <li class="dropdown">
+                        <a href="/about/overview" class="{% if request.path.startswith('/about') %}active{% endif %}">About Us <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/about/overview">Overview</a></li>
+                            <li><a href="/about/team">Our Team</a></li>
+                            <li><a href="/about/partnerships">Partnerships</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/news" class="{% if request.path == '/news' %}active{% endif %}">News & Media</a></li>
+                    <li><a href="/contact" class="{% if request.path == '/contact' %}active{% endif %}">Contact Us</a></li>
                     <li class="dropdown">
                         <a href="#" class="{% if request.path == '/donations' or request.path == '/merch' %}active{% endif %}">Support Us <i class="fas fa-chevron-down"></i></a>
                         <ul class="dropdown-menu">
@@ -57,3 +64,6 @@
     {% block extra_js %}{% endblock %}
 </body>
 </html>
+
+<!-- <!DOCTYPE html>
+ 

@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+{% block title %}Overview & Mission - MVHS Tech Internship{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="overview-hero reveal-on-scroll">
+    <div class="overview-hero-container">
+        <div class="overview-hero-content">
+            <span class="overview-hero-pill">MVHS Principal's Tech Internship</span>
+            <h1>Overview & Mission</h1>
+            <p class="overview-hero-subheading">Student-led technology, AI innovation, and support for everyone at MVHS.</p>
+            <p class="overview-hero-text">By delivering peer-driven technology support, spearheading relevant educational initiatives, and developing practical AI-powered applications, we strive to make a positive impact in our school, inspire the local and national education technology community, and set a standard for student-led change.</p>
+        </div>
+        <div class="overview-hero-image">
+            <img
+  class="overview-hero-image"
+  src="{{ url_for('static', filename='images/techinternship.png') }}"
+  alt="Students collaborating"
+/>
+        </div>
+    </div>
+</section>
+
+<!-- Metrics Strip -->
+<section class="overview-metrics reveal-on-scroll">
+    <div class="overview-metrics-container">
+        <div class="overview-metric">
+            <div class="overview-metric-number">2000+</div>
+            <div class="overview-metric-label">Students & staff supported</div>
+        </div>
+        <div class="overview-metric">
+            <div class="overview-metric-number">12+</div>
+            <div class="overview-metric-label">Events & conferences</div>
+        </div>
+        <div class="overview-metric">
+            <div class="overview-metric-number">10+</div>
+            <div class="overview-metric-label">AI tools & projects</div>
+        </div>
+    </div>
+</section>
+
+<!-- Three Pillars Section -->
+<section class="overview-pillars reveal-on-scroll">
+    <div class="overview-pillars-container">
+        <h2 class="overview-pillars-heading">Our Three Pillars</h2>
+        <p class="overview-pillars-subtext">We focus our work in three areas that turn our mission into real impact for students, staff, and our community.</p>
+        
+        <div class="overview-pillars-grid">
+            <div class="overview-pillar">
+                <div class="overview-pillar-tag">EDUCATIONAL INITIATIVES</div>
+                <h3>Community Events</h3>
+                <p>For things like AI philosophy workshops, AI parent night, outreach events, etc.</p>
+                <a href="/focus/community-events" class="overview-pillar-link">Explore →</a>
+            </div>
+
+            <div class="overview-pillar">
+                <div class="overview-pillar-tag">AI-POWERED APPLICATIONS</div>
+                <h3>Technical Projects</h3>
+                <p>For tools/apps we've built (AI projects, websites, internal systems, etc.).</p>
+                <a href="/focus/technical-projects" class="overview-pillar-link">Explore →</a>
+            </div>
+
+            <div class="overview-pillar">
+                <div class="overview-pillar-tag">PEER-DRIVEN SUPPORT</div>
+                <h3>On-Campus Tech Support</h3>
+                <p>For peer tech help and systems like the tech support form and internal support processes.</p>
+                <a href="/focus/tech-support" class="overview-pillar-link">Explore →</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How We Bring This to Life Section -->
+<section class="overview-life reveal-on-scroll">
+    <div class="overview-life-container">
+        <div class="overview-life-content">
+            <h2>How We Bring This to Life</h2>
+            <p class="overview-life-intro">Our work is guided by a set of core principles that shape how we build, collaborate, and create impact. These values help us make meaningful, student-led contributions both within our community and beyond.</p>
+            <ul class="overview-life-values">
+                <li>
+                    <strong>Student leadership</strong> — Every project is led and executed by students who take ownership from idea to impact.
+                </li>
+                <li>
+                    <strong>Innovation with purpose</strong> — We build tools, programs, and systems that solve real problems and meet real needs.
+                </li>
+                <li>
+                    <strong>Accessibility</strong> — We make emerging technology understandable and usable for students, educators, and communities.
+                </li>
+                <li>
+                    <strong>Collaboration</strong> — We work with partners and peers to expand our reach and create solutions that matter.
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Contact CTA -->
+<div class="overview-cta reveal-on-scroll">
+    <h2>Interested in working with us?</h2>
+    <a href="/contact" class="btn-primary">Contact Us</a>
+</div>
+
+<script>
+// Scroll reveal animation
+document.addEventListener('DOMContentLoaded', function() {
+    const revealElements = document.querySelectorAll('.reveal-on-scroll');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+    
+    revealElements.forEach(el => observer.observe(el));
+});
+</script>
+{% endblock %}
+

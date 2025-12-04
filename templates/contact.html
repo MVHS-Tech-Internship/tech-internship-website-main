@@ -2,23 +2,25 @@
 {% block title %}Contact Us - MVHS Tech Internship{% endblock %}
 
 {% block content %}
-<h1>Contact Us</h1>
-<p>We'd love to hear from you. Whether you're an educator, student, or potential collaborator, reach out below!</p>
+<div class="contact-page">
+    <div class="contact-header">
+        <h1>Contact Us</h1>
+        <p>We'd love to hear from you. Whether you're an educator, student, or potential collaborator, reach out below!</p>
+    </div>
 
-<form action="{{ url_for('contact') }}" method="POST" class="contact-form">
-    <label for="name">Name</label>
-    <input type="text" id="name" name="name" required>
+    <form action="{{ url_for('contact') }}" method="POST" class="contact-form">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
 
-    <label for="email">MVHS Email</label>
-    <input type="email" id="email" name="email" required>
+        <label for="email">MVHS Email</label>
+        <input type="email" id="email" name="email" required>
 
-    <label for="message">Message</label>
-    <textarea id="message" name="message" rows="5" required></textarea>
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
 
-    <button type="submit" class="btn-primary">Send Message</button>
-</form>
+        <button type="submit" class="btn-primary">Send Message</button>
+    </form>
 
-<p style="margin-top:1.5rem;">Or contact us directly:
-    <a href="mailto:mvhs.tech24@gmail.com">mvhs.tech24@gmail.com</a>
-</p>
+    <p class="contact-email">Or contact us directly: <a href="mailto:mvhs.tech24@gmail.com">mvhs.tech24@gmail.com</a></p>
+</div>
 {% endblock %}
