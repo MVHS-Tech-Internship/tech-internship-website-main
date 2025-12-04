@@ -676,28 +676,8 @@ footer {
 }
 
 .e-board-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3rem;
-    justify-items: center;
-    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
-
-.top-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    justify-items: center;
-    margin-bottom: 2rem;
-}
-
-.bottom-row {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-    justify-items: center;
-}
-
 
 .interns-grid {
     grid-template-columns: repeat(3, 1fr);
@@ -726,17 +706,7 @@ footer {
 }
 
 .intern-card {
-    width: 14rem;
-    height: 10rem;
-    padding: 1rem;
-    border-radius: 0.75rem;
-    font-size: 0.9rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    box-shadow: var(--shadow-soft);
-    margin: 0 auto;
+    padding: 1.5rem;
 }
 
 .advisor-card {
