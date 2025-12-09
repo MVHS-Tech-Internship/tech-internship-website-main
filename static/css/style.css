@@ -291,7 +291,7 @@ nav {
     .hero-grid {
         grid-template-columns: 1fr;
         gap: 3.5rem;
-        text-align: center;
+    text-align: center;
     }
 
     .hero-text h1 {
@@ -1120,6 +1120,10 @@ footer {
     object-fit: cover;
     margin: 0 auto 1rem;
     display: block;
+}
+
+.team-photo-myra {
+    object-position: center 20%;
 }
 
 .team-photo-placeholder {
