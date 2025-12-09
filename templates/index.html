@@ -46,12 +46,14 @@
             </div>
 
             <!-- RIGHT: IMAGE -->
-            <div class="home-card-media">
-                <img
-                    src="{{ url_for('static', filename='images/fetc-placeholder.jpg') }}"
-                    alt="Students presenting at an education technology conference"
-                />
-            </div>
+<div class="home-card-media" style="display: flex; justify-content: center; align-items: center;">
+    <img 
+        src="{{ url_for('static', filename='images/tech_conference.jpeg') }}"
+        alt=""
+        style="width: 300px; border-radius: 20px; object-fit: cover;"
+    />
+</div>
+
         </div>
     </div>
 </section>
@@ -60,9 +62,27 @@
     <div class="home-card home-card-wide">
         <h2 class="home-card-title">What We Do</h2>
         <div class="whatwedo-content">
-            <div class="whatwedo-image">
-                <!-- Placeholder for image -->
-            </div>
+            <div class="whatwedo-image" 
+            style="
+               display: flex; 
+               justify-content: center; 
+               align-items: center; 
+               padding: 1rem;
+            "
+       >
+           <img 
+               src="{{ url_for('static', filename='images/whatwedo.jpeg') }}"
+               alt="Students presenting their tech internship work"
+               style="
+                   width: 100%;
+                   max-width: 450px;
+                   border-radius: 20px;
+                   object-fit: cover;
+                   box-shadow: 0 10px 25px rgba(0,0,0,0.8);
+               "
+           />
+       </div>
+       
             <div class="whatwedo-list">
                 <ul class="whatwedo-bullets">
                     <li>Building real student-led technology and tools</li>
