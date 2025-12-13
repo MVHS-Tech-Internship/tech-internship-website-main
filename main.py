@@ -4,6 +4,7 @@ MVHS Tech Internship Main Website
 
 import os
 import csv
+import json
 import smtplib
 from datetime import datetime
 from email.mime.text import MIMEText
@@ -142,99 +143,22 @@ def meet_the_team():
     """Meet the Team Page"""
     return render_template('meet_the_team.html')
 
+def load_posts():
+    try:
+        with open("blog_data.json", "r") as j:
+            return json.load(j)
+    except FileNotFoundError:
+        print("error: blog_data.json is not found")
+        return []
+    except json.JSONDecodeError:
+        print("ERROR: blog_data.json is invalids")
+        return []
 
-# Blog posts data (in-memory)
-posts = [
-    {
-        "id": 1,
-        "title": "How AI is Transforming Student Learning at MVHS",
-        "excerpt": "We explore how artificial intelligence tools are being integrated into classrooms, the benefits we've observed, and the challenges we're working to address. This article shares real experiences from students and teachers using AI-powered study platforms.",
-        "author": "Sarah Chen",
-        "date": "January 15, 2026",
-        "read_time": "5 min read",
-        "categories": ["Education"],
-        "tags": ["Education", "AI", "Student Life"],
-        "featured": True
-    },
-    {
-        "id": 2,
-        "title": "Building Our First Student-Led Tech Support Platform",
-        "excerpt": "A behind-the-scenes look at how our interns designed and built a peer-to-peer tech support system. Learn about the development process, user testing, and the impact it's had on helping students solve technology challenges independently.",
-        "author": "Alex Rodriguez",
-        "date": "January 10, 2026",
-        "read_time": "7 min read",
-        "categories": ["Technology"],
-        "tags": ["Technology", "Student Life"],
-        "featured": True
-    },
-    {
-        "id": 3,
-        "title": "Understanding AI Ethics in Education",
-        "excerpt": "Exploring the ethical considerations when implementing AI tools in educational settings and how students can engage thoughtfully with these technologies.",
-        "author": "Maria Garcia",
-        "date": "January 8, 2026",
-        "read_time": "4 min read",
-        "categories": ["AI"],
-        "tags": ["AI", "Education"],
-        "featured": False
-    },
-    {
-        "id": 4,
-        "title": "A Day in the Life of a Tech Intern",
-        "excerpt": "Follow along as we document a typical day for our interns, from morning meetings to afternoon coding sessions and evening events.",
-        "author": "James Park",
-        "date": "January 5, 2026",
-        "read_time": "3 min read",
-        "categories": ["Student Life"],
-        "tags": ["Student Life"],
-        "featured": False
-    },
-    {
-        "id": 5,
-        "title": "Workshop Recap: AI Tools for Students",
-        "excerpt": "Highlights from our recent workshop where students learned about practical AI applications for studying, writing, and research.",
-        "author": "Emma Thompson",
-        "date": "January 3, 2026",
-        "read_time": "5 min read",
-        "categories": ["Education"],
-        "tags": ["Education", "AI"],
-        "featured": False
-    },
-    {
-        "id": 6,
-        "title": "Open Source Contributions from MVHS Students",
-        "excerpt": "Celebrating the open source projects our interns have contributed to and the impact they're making in the developer community.",
-        "author": "David Kim",
-        "date": "December 28, 2025",
-        "read_time": "6 min read",
-        "categories": ["Technology"],
-        "tags": ["Technology"],
-        "featured": False
-    },
-    {
-        "id": 7,
-        "title": "Evaluating AI Study Tools: A Student Perspective",
-        "excerpt": "Our interns share their honest reviews of popular AI-powered study platforms, what works, what doesn't, and recommendations for students.",
-        "author": "Lisa Wang",
-        "date": "December 25, 2025",
-        "read_time": "8 min read",
-        "categories": ["AI"],
-        "tags": ["AI", "Education", "Student Life"],
-        "featured": False
-    },
-    {
-        "id": 8,
-        "title": "Building Community Through Tech Events",
-        "excerpt": "How our program uses technology events and workshops to bring students together and create a supportive learning community.",
-        "author": "Ryan Patel",
-        "date": "December 20, 2025",
-        "read_time": "4 min read",
-        "categories": ["Student Life"],
-        "tags": ["Student Life", "Education"],
-        "featured": False
-    }
-]
 
+# --- IMPORTANT NOTE ---
+# The content for all posts except post 2 below is currently AI-generated.
+# To replace, update the "content" key for each corresponding post ID in the 'blog_data.json' file.
+posts = load_posts()
 
 @app.route("/blog")
 def blog():
