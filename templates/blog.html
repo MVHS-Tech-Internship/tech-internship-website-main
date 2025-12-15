@@ -3,13 +3,11 @@
 
 {% block content %}
 <section class="blog-page">
-    <!-- Page Title + Subtitle -->
     <div class="blog-header">
         <h1 class="blog-title">MVHS Tech Blog</h1>
         <p class="blog-subtitle">Insights, tutorials, and stories from the MVHS Tech Internship program.</p>
     </div>
 
-    <!-- Search Bar + Filter Bar -->
     <div class="blog-filters">
         <form class="blog-search-form" action="{{ url_for('blogs') }}" method="get">
             <div class="blog-search">
@@ -27,7 +25,6 @@
         <button class="blog-filter-button" type="button">Filter by topics ▾</button>
     </div>
 
-    <!-- Featured Articles Section -->
     <section class="blog-featured">
         <h2 class="blog-section-title">Featured Articles</h2>
         <div class="featured-grid">
@@ -46,7 +43,16 @@
                     <span class="meta-item"><i class="fas fa-calendar"></i> {{ post.date }}</span>
                     <span class="meta-item"><i class="fas fa-clock"></i> {{ post.read_time }}</span>
                 </div>
-                <a href="#" class="article-link">Read More →</a>
+                <button 
+                    class="article-link read-more-btn"
+                    onclick="showPostModal(this)"
+                    data-title="{{ post.title }}"
+                    data-excerpt="{{ post.excerpt }}"
+                    data-author="{{ post.author }}"
+                    data-date="{{ post.date }}"
+                    data-readtime="{{ post.read_time }}"
+                    data-content="{{ post.content | safe }}"
+                >Read More →</button>
             </article>
             {% else %}
             <p class="empty-state">No featured posts match your search.</p>
@@ -54,7 +60,6 @@
         </div>
     </section>
 
-    <!-- Latest Articles Grid -->
     <section class="blog-latest">
         <h2 class="blog-section-title">Latest Articles</h2>
         <div class="latest-grid">
@@ -68,7 +73,16 @@
                     <span><i class="fas fa-calendar"></i> {{ post.date }}</span>
                     <span><i class="fas fa-clock"></i> {{ post.read_time }}</span>
                 </div>
-                <a href="#" class="article-link">Read More →</a>
+                <button 
+                    class="article-link read-more-btn"
+                    onclick="showPostModal(this)"
+                    data-title="{{ post.title }}"
+                    data-excerpt="{{ post.excerpt }}"
+                    data-author="{{ post.author }}"
+                    data-date="{{ post.date }}"
+                    data-readtime="{{ post.read_time }}"
+                    data-content="{{ post.content | safe }}"
+                >Read More →</button>
             </article>
             {% else %}
             <p class="empty-state">No articles match your search.</p>
@@ -76,7 +90,6 @@
         </div>
     </section>
 
-    <!-- Subscribe Section -->
     <section class="blog-subscribe">
         <div class="subscribe-content">
             <h2 class="subscribe-title">Stay Updated</h2>
@@ -99,4 +112,140 @@
         </div>
     </section>
 </section>
+
+<div id="blog-modal" class="modal">
+    <div class="modal-content modal-content-full"> 
+        <span class="close-button" onclick="closePostModal()">&times;</span>
+        <h2 id="modal-title" class="article-full-title"></h2>
+        <div class="modal-meta">
+            <span id="modal-author"><i class="fas fa-user"></i> </span>
+            <span id="modal-date"><i class="fas fa-calendar"></i> </span>
+            <span id="modal-readtime"><i class="fas fa-clock"></i> </span>
+        </div>
+        <div id="modal-body" class="article-body">
+            </div>
+        </div>
+</div>
+
+<style>
+.read-more-btn {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: opacity 0.2s ease;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.read-more-btn:hover {
+    color: var(--primary-color);
+    opacity: 0.7;
+    text-decoration: underline;
+}
+
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 3067;
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.6); 
+    justify-content: center; 
+    align-items: flex-start;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    padding: 30px;
+    border: 1px solid #888;
+    
+    width: 75%; 
+    max-width: 900px;
+    
+    margin: 2.5vh auto; 
+    max-height: 95vh;
+
+    border-radius: 15px; 
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    overflow-y: auto; 
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: sticky; 
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    background: #fefefe; 
+    padding-left: 10px;
+}
+
+.modal-meta {
+    margin: 15px 0;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+    color: #777;
+    font-size: 0.9em;
+}
+
+.modal-meta span {
+    margin-right: 15px;
+}
+
+.article-body {
+    margin-top: 20px;
+    line-height: 1.6;
+    color: #333;
+    font-size: 1.1em;
+}
+
+.article-body p {
+    margin-bottom: 1.2em;
+}
+</style>
+<script>
+    const modal = document.getElementById("blog-modal");
+    const modalTitle = document.getElementById("modal-title");
+    const modalAuthor = document.getElementById("modal-author");
+    const modalDate = document.getElementById("modal-date");
+    const modalReadTime = document.getElementById("modal-readtime");
+    const modalBody = document.getElementById("modal-body");
+
+    function showPostModal(button) {
+        const title = button.getAttribute('data-title');
+        const author = button.getAttribute('data-author');
+        const date = button.getAttribute('data-date');
+        const readTime = button.getAttribute('data-readtime');
+        
+        const content = button.getAttribute('data-content'); 
+
+        modalTitle.textContent = title;
+        modalAuthor.innerHTML = `<i class="fas fa-user"></i> ${author}`;
+        modalDate.innerHTML = `<i class="fas fa-calendar"></i> ${date}`;
+        modalReadTime.innerHTML = `<i class="fas fa-clock"></i> ${readTime}`;
+        modalBody.innerHTML = content;
+        
+        modal.style.display = "flex";
+        
+        // cool extra add-on, so when they click outside of the modal, it closes the popup
+        modal.onclick = function(event) {
+            if (event.target == modal) {
+                closePostModal();
+            }
+        }
+    }
+
+    function closePostModal() {
+        modal.style.display = "none";
+    }
+</script>
 {% endblock %}
