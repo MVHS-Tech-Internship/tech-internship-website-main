@@ -1,17 +1,60 @@
-"""
-MVHS Tech Internship Main Website
-"""
-
 import os
 import csv
 import smtplib
+
 from datetime import datetime
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-from flask import Flask, render_template, request, redirect, url_for
+
+import time
+from googleapiclient.discovery import build
+from google.oauth2.service_account import Credentials
+import http.client as httplib
+
+from flask import Flask, render_template, request, redirect, url_for, jsonify 
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', 'dev-secret-key-change-in-production')
+
+# Configuration for Google Sheets API
+SPREADSHEET_ID = '1pHalAmKyjUxqVlwX2rSWQupXxUinjB4wUB2BroKZgB8' 
+SERVICE_ACCOUNT_FILE = 'credentials.json'
+
+# The range where the Goal (A1) and Total Raised (C2) figures are located
+READ_RANGE = 'Sheet1!A1:C2'
+
+# Define the scope for read-only access to Google Sheets
+SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
+
+def get_donation_data():
+    """
+    Fetches the donation goal and total raised from the Google Sheet.
+    Includes exponential backoff for API robustness.
+    """    
+    # Load credentials from the service account file
+    creds = Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPES)
+    
+    # Build the Sheets API service object
+    service = build('sheets', 'v4', credentials=creds)
+
+    sheet = service.spreadsheets()
+
+    # Call the Sheets API to get the values
+    result = sheet.values().get(
+        spreadsheetId=SPREADSHEET_ID, 
+        range=READ_RANGE,
+    ).execute()
+    
+    # The result structure is a list of lists: [[Goal], [Total Raised]]
+    values = result.get('values', [])
+
+    goal = values[0][0]
+    total_raised = values[1][2]
+
+    return {
+        'goal': goal,
+        'total': total_raised
+    }
 
 
 @app.route('/')
@@ -127,8 +170,23 @@ def contact_success():
 
 @app.route('/donations')
 def donations():
-    """Donations Page"""
-    return render_template('donations.html')
+    """
+    Donations Page: Now fetches dynamic data from Google Sheets
+    and passes it to the template.
+    """
+    data = get_donation_data()
+    
+    # Pass data directly to the template
+    return render_template('donations.html', 
+                           goal=data['goal'], 
+                           total=data['total'],
+                           error=data.get('error'))
+
+@app.route('/api/donation_data')
+def donation_api():
+    """API endpoint to return raw JSON data for asynchronous updates (optional)."""
+    data = get_donation_data()
+    return jsonify(data)
 
 
 @app.route('/merch')
