@@ -11,10 +11,22 @@
     <section class="section-card donations-card">
         <div class="donations-section">
             <h2>Our Progress</h2>
+            
+            <!-- Optional: Display a subtle error if the sheet connection fails -->
+            {% if error %}
+            <p style="color: #e74c3c; font-size: 0.9em; margin-bottom: 10px;">
+                <em>Unable to sync live data at this moment.</em>
+            </p>
+            {% endif %}
+
             <div class="donation-progress">
-                <div class="progress-bar" style="width: 35%;"></div>
+                <!-- Added ID 'dynamic-progress-bar' to target with JS -->
+                <!-- Initial width is 0% to allow for a smooth load animation -->
+                <div id="dynamic-progress-bar" class="progress-bar" style="width: 0%;"></div>
             </div>
-            <p class="progress-text">$3,500 raised of $10,000 goal</p>
+            
+            <!-- Added ID 'dynamic-progress-text' to target with JS -->
+            <p id="dynamic-progress-text" class="progress-text">Loading...</p>
         </div>
         
         <div class="donations-section">
@@ -29,12 +41,42 @@
             <h2>Donate Now</h2>
             <div class="donate-options">
                 <div class="qr-code-container">
-                    <img src="{{ url_for('static', filename='images/donation-qr.png') }}" alt="Donation QR Code" class="qr-code-image">
+                    <img src="{{ url_for('static', filename='images/donation-qr-code.png') }}" alt="Donation QR Code" class="qr-code-image">
                 </div>
                 <a href="https://mvhs-sports-boosters.square.site/product/tech-intern-donation/403" target="_blank" class="donate-button">Donate Online</a>
             </div>
         </div>
     </section>
 </div>
-{% endblock %}
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const goal = {{ goal | default(20000) | tojson }};
+        const total = {{ total | default(0) | tojson }};
+
+        console.log("Donation script loaded", goal, total);
+
+        const bar = document.getElementById('dynamic-progress-bar');
+        const text = document.getElementById('dynamic-progress-text');
+
+        let percentage = 0;
+        if (goal > 0) {
+            percentage = (total / goal) * 100;
+        }
+
+        const visualPercentage = percentage > 100 ? 100 : percentage;
+
+        const formatter = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+            maximumFractionDigits: 0
+        });
+
+        setTimeout(() => {
+            bar.style.width = visualPercentage + "%";
+        }, 100);
+
+        text.innerHTML = `<strong>${formatter.format(total)}</strong> raised of <strong>${formatter.format(goal)}</strong> goal`;
+    });
+</script>
+{% endblock %}
