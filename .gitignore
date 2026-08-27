@@ -203,3 +203,5 @@ Thumbs.db
 # Playwright MCP
 .playwright-mcp/
 .vercel
+# Google service-account key — must never be committed
+credentials.json
