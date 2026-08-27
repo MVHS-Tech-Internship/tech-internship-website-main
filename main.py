@@ -58,10 +58,68 @@ def get_donation_data():
     }
 
 
+# ---------------------------------------------------------------------------
+# ROADMAP — drives the scroll-driven road on the home page.
+#
+# Every entry below is drawn from content already on the site. Where a date has
+# not been publicly announced, `tba` is True and the label reads "Date TBA" —
+# do not replace those with invented dates. Fill them in as they're confirmed.
+# Order = left-to-right order along the road.
+# ---------------------------------------------------------------------------
+ROADMAP = [
+    {
+        "date": "Ongoing",
+        "tba": False,
+        "title": "On-Campus Tech Support",
+        "blurb": "Peer-driven help for 2,000+ students and staff, running through "
+                 "our student-built request form and internal support process.",
+        "href": "/focus/tech-support",
+        "cta": "How it works",
+    },
+    {
+        "date": "Ongoing",
+        "tba": False,
+        "title": "Knowt Partnership Review",
+        "blurb": "Interns evaluate the AI study platform with a student-designed "
+                 "rubric and send structured feedback straight back to the team.",
+        "href": "/about/partnerships",
+        "cta": "Our partners",
+    },
+    {
+        "date": "Date TBA",
+        "tba": True,
+        "title": "AI Parent Night",
+        "blurb": "An evening built for families — what AI in the classroom actually "
+                 "looks like, what it changes, and the questions worth asking.",
+        "href": "/focus/community-events",
+        "cta": "Community events",
+    },
+    {
+        "date": "January 2026",
+        "tba": False,
+        "title": "FETC 2026 — Three Sessions",
+        "blurb": "We've been invited to speak at the Future of Education Technology "
+                 "Conference on student-led innovation and real-world AI adoption.",
+        "href": "https://www.fetc.org/",
+        "external": True,
+        "cta": "Visit FETC",
+    },
+    {
+        "date": "Date TBA",
+        "tba": True,
+        "title": "AI Philosophy Workshops",
+        "blurb": "Student-run sessions on the ethics and limits of the tools everyone "
+                 "is already using — built around our AI ethics game cards.",
+        "href": "/resources",
+        "cta": "Resources",
+    },
+]
+
+
 @app.route('/')
 def index():
     """Home Page"""
-    return render_template('index.html')
+    return render_template('index.html', roadmap=ROADMAP)
 
 
 @app.route('/about')
@@ -154,9 +212,22 @@ def contact():
         subject = "New message from MVHS Tech Internship contact form"
         body = f"Name: {name}\nMVHS Email: {email}\n\nMessage:\n{message}"
         
-        # Send the email to mvhs.tech24@gmail.com using SMTP
-        send_email("mvhs.tech24@gmail.com", subject, body)
-        
+        # Send the email to mvhs.tech24@gmail.com using SMTP.
+        # If SMTP is not configured the send fails silently, so the submission is
+        # also written to contact_submissions.csv - the page tells the visitor
+        # their message was sent, and nothing should be lost when it wasn't.
+        sent = send_email("mvhs.tech24@gmail.com", subject, body)
+        if not sent:
+            app.logger.error(
+                "Contact form email NOT sent (check SMTP_USERNAME/SMTP_PASSWORD). "
+                "Submission saved to contact_submissions.csv instead.")
+            try:
+                with open('contact_submissions.csv', 'a', newline='') as fh:
+                    csv.writer(fh).writerow(
+                        [datetime.utcnow().isoformat(), name, email, message])
+            except Exception as exc:
+                app.logger.error("Could not save contact submission: %s", exc)
+
         # Redirect to success page
         return redirect(url_for('contact_success'))
     
@@ -175,19 +246,29 @@ def donations():
     Donations Page: Now fetches dynamic data from Google Sheets
     and passes it to the template.
     """
-    data = get_donation_data()
-    
-    # Pass data directly to the template
-    return render_template('donations.html', 
-                           goal=data['goal'], 
-                           total=data['total'],
-                           error=data.get('error'))
+    # The Sheets call can fail (expired/removed service account, quota, network).
+    # Never let that take the whole page down - fall back to no live figures.
+    try:
+        data = get_donation_data()
+        return render_template('donations.html',
+                               goal=data['goal'],
+                               total=data['total'],
+                               error=None)
+    except Exception as exc:
+        app.logger.warning("Donation figures unavailable: %s", exc)
+        return render_template('donations.html',
+                               goal=None,
+                               total=None,
+                               error="Live totals are temporarily unavailable.")
 
 @app.route('/api/donation_data')
 def donation_api():
     """API endpoint to return raw JSON data for asynchronous updates (optional)."""
-    data = get_donation_data()
-    return jsonify(data)
+    try:
+        return jsonify(get_donation_data())
+    except Exception as exc:
+        app.logger.warning("Donation figures unavailable: %s", exc)
+        return jsonify({"error": "unavailable"}), 503
 
 
 @app.route('/merch')

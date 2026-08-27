@@ -1,27 +1,25 @@
 {% extends "base.html" %}
-{% block title %}Community Events - MVHS Tech Internship{% endblock %}
-
+{% block title %}Community Events — MVHS Tech Internship{% endblock %}
 {% block content %}
-<div class="focus-wrapper">
-    <h1>Community Events</h1>
-    <p class="focus-intro">We organize student-led events for families, teachers, and students around technology and AI. These events bring our community together to explore the potential and responsible use of emerging technologies in education.</p>
-
-    <div class="focus-sections">
-        <section class="focus-section">
-            <h2>AI Philosophy Workshops</h2>
-            <p>Details coming soon...</p>
-        </section>
-
-        <section class="focus-section">
-            <h2>AI Parent Night</h2>
-            <p>Details coming soon...</p>
-        </section>
-
-        <section class="focus-section">
-            <h2>Student Tech Workshops</h2>
-            <p>Details coming soon...</p>
-        </section>
+<section class="page-hero">
+  <div class="shell">
+    <span class="eyebrow">Educational initiatives</span>
+    <h1>Community <em>Events</em></h1>
+    <p>We organize student-led events for families, teachers, and students around technology and AI — bringing our community together to explore the potential and responsible use of emerging technologies in education.</p>
+  </div>
+</section>
+<section class="section">
+  <div class="shell">
+    <div class="grid grid-3 rv-stagger">
+      <div class="card"><span class="card-num">01</span><h3>AI Philosophy Workshops</h3><p>Student-run sessions on the ethics and limits of the tools everyone is already using.</p></div>
+      <div class="card"><span class="card-num">02</span><h3>AI Parent Night</h3><p>An evening for families on what AI in the classroom actually looks like and what it changes.</p></div>
+      <div class="card"><span class="card-num">03</span><h3>Student Tech Workshops</h3><p>Hands-on sessions that make emerging technology usable, not just talked about.</p></div>
     </div>
-</div>
+    <div class="cta-band rv" style="margin-top:clamp(48px,6vw,76px)">
+      <h2>Want us at <em>your event?</em></h2>
+      <p>We run sessions for students, staff, families, and other schools.</p>
+      <div class="btn-row"><a href="/contact" class="btn btn--solid">Get in Touch <span class="arw">→</span></a></div>
+    </div>
+  </div>
+</section>
 {% endblock %}
-

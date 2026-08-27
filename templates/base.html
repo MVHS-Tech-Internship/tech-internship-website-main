@@ -1,69 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}MVHS Tech Internship{% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    {% block extra_css %}{% endblock %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#091E53">
+<title>{% block title %}MVHS Tech Internship{% endblock %}</title>
+<meta name="description" content="{% block description %}Student-led technology support, AI innovation, and digital learning at Mountain View High School.{% endblock %}">
+<link rel="icon" href="{{ url_for('static', filename='images/logo.png') }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+{% block extra_css %}{% endblock %}
 </head>
-<body>
-    <header>
-        <div class="menu-toggle"><i class="fas fa-bars"></i></div>
-        <div class="container">
-            <nav>
-                <a href="/" class="logo-link" style="text-decoration: none; color: inherit;">
-                    <div class="logo">
-                        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="MVHS Logo" class="logo-image">
-                        <span class="logo-text">MVHS Tech Internship</span>
-                    </div>
-                </a>
-                <ul class="nav-links">
-                    <li class="dropdown">
-                        <a href="/about/overview" class="{% if request.path.startswith('/about') %}active{% endif %}">About Us <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/about/overview">Overview</a></li>
-                            <li><a href="/about/team">Our Team</a></li>
-                            <li><a href="/about/partnerships">Partnerships</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="/news" class="{% if request.path == '/news' %}active{% endif %}">News & Media</a></li>
-                    <li><a href="/contact" class="{% if request.path == '/contact' %}active{% endif %}">Contact Us</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="{% if request.path == '/donations' or request.path == '/merch' %}active{% endif %}">Support Us <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/donations">Donations</a></li>
-                            <li><a href="/merch">Merch</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+<body class="{% block body_class %}{% endblock %}">
 
-    <main class="site-main">
-        <div class="container">
-            {% block content %}{% endblock %}
-        </div>
-    </main>
+<header class="site-header" id="siteHeader">
+  <div class="glass-bar">
+    <a href="/" class="brand">
+      <img src="{{ url_for('static', filename='images/logo.png') }}" alt="">
+      <span>MVHS Tech Internship</span>
+    </a>
 
-    <footer>
-        <div class="container footer-content">
-            <div class="footer-left">
-                <p>&copy; 2025 MVHS Tech Internship. All rights reserved.</p>
-                <p>Empowering minds, shaping futures.</p>
-            </div>
-            <div class="footer-right">
-                <a href="https://instagram.com/mvhs.tech" target="_blank"><i class="fa-brands fa-square-instagram"></i></a>
-                <a href="https://www.linkedin.com/company/mvhs-principal-s-tech-internship/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="mailto:mvhs.tech24@gmail.com"><i class="fas fa-envelope"></i></a>
-            </div>
+    <nav class="nav">
+      <div class="nav-item">
+        <a href="/about/overview" class="nav-link {% if request.path.startswith('/about') %}active{% endif %}">
+          About Us
+          <svg class="chev" viewBox="0 0 12 12" fill="none"><path d="M2.5 4.5 6 8l3.5-3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <div class="dropdown">
+          <a href="/about/overview">Overview &amp; Mission</a>
+          <a href="/about/team">Our Team</a>
+          <a href="/about/partnerships">Partnerships</a>
         </div>
-    </footer>
-    {% block extra_js %}{% endblock %}
+      </div>
+      <a href="/news" class="nav-link {% if request.path == '/news' %}active{% endif %}">News</a>
+      <a href="/blogs" class="nav-link {% if request.path.startswith('/blog') %}active{% endif %}">Blog</a>
+      <a href="/contact" class="nav-link {% if request.path.startswith('/contact') %}active{% endif %}">Contact</a>
+      <div class="nav-item">
+        <a href="/donations" class="nav-link {% if request.path in ['/donations','/merch'] %}active{% endif %}">
+          Support
+          <svg class="chev" viewBox="0 0 12 12" fill="none"><path d="M2.5 4.5 6 8l3.5-3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <div class="dropdown">
+          <a href="/donations">Donations</a>
+          <a href="/merch">Merch</a>
+        </div>
+      </div>
+    </nav>
+
+    <a href="/donations" class="btn btn--solid btn--sm" style="margin-left:8px">
+      Support Us <span class="arw">→</span>
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false"><i></i></button>
+  </div>
+</header>
+
+<nav class="mobile-nav" id="mobileNav">
+  <a href="/about/overview">About Us</a>
+  <a href="/about/team">Our Team</a>
+  <a href="/about/partnerships">Partnerships</a>
+  <a href="/news">News</a>
+  <a href="/blogs">Blog</a>
+  <a href="/contact">Contact</a>
+  <a href="/donations">Support Us</a>
+</nav>
+
+<main id="main">
+{% block content %}{% endblock %}
+</main>
+
+<footer class="site-footer">
+  <div class="shell">
+    <div class="foot-top">
+      <div>
+        <div class="foot-brand">
+          <img src="{{ url_for('static', filename='images/logo.png') }}" alt="">
+          <span>MVHS Tech Internship</span>
+        </div>
+        <p class="blurb">Student-led technology support, AI innovation, and digital learning at Mountain View High School.</p>
+      </div>
+      <div class="foot-col">
+        <h4>About</h4>
+        <a href="/about/overview">Overview &amp; Mission</a>
+        <a href="/about/team">Our Team</a>
+        <a href="/about/partnerships">Partnerships</a>
+      </div>
+      <div class="foot-col">
+        <h4>What We Do</h4>
+        <a href="/focus/community-events">Community Events</a>
+        <a href="/focus/technical-projects">Technical Projects</a>
+        <a href="/focus/tech-support">On-Campus Tech Support</a>
+        <a href="/resources">Resources</a>
+      </div>
+      <div class="foot-col">
+        <h4>Connect</h4>
+        <a href="/news">News &amp; Media</a>
+        <a href="/blogs">Blog</a>
+        <a href="/contact">Contact Us</a>
+        <a href="/donations">Donations</a>
+        <a href="/merch">Merch</a>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <p>&copy; {{ 2026 }} MVHS Tech Internship &nbsp;·&nbsp; Empowering minds, shaping futures.</p>
+      <div class="socials">
+        <a href="https://instagram.com/mvhs.tech" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/company/mvhs-principal-s-tech-internship/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="mailto:mvhs.tech24@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="{{ url_for('static', filename='js/site.js') }}" defer></script>
+{% block extra_js %}{% endblock %}
 </body>
 </html>
-
-<!-- <!DOCTYPE html>
- 

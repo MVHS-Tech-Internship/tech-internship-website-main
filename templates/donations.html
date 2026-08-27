@@ -1,82 +1,89 @@
 {% extends "base.html" %}
-{% block title %}Donations - MVHS Tech Internship{% endblock %}
-
+{% block title %}Donations — MVHS Tech Internship{% endblock %}
 {% block content %}
-<div class="page-header">
-    <h1>Donations</h1>
+
+<section class="page-hero">
+  <div class="shell">
+    <span class="eyebrow">Support us</span>
+    <h1><em>Donations</em></h1>
     <p>Your support helps us attend conferences, expand our programs, and provide students with the tools to make an impact.</p>
-</div>
+  </div>
+</section>
 
-<div class="donations-wrapper">
-    <section class="section-card donations-card">
-        <div class="donations-section">
-            <h2>Our Progress</h2>
-            
-            <!-- Optional: Display a subtle error if the sheet connection fails -->
-            {% if error %}
-            <p style="color: #e74c3c; font-size: 0.9em; margin-bottom: 10px;">
-                <em>Unable to sync live data at this moment.</em>
-            </p>
-            {% endif %}
+<section class="section">
+  <div class="shell">
+    <div class="split">
+      <div class="rv">
+        <span class="eyebrow eyebrow--gold">Our progress</span>
+        <h2>Toward this year's <em>goal</em></h2>
 
-            <div class="donation-progress">
-                <!-- Added ID 'dynamic-progress-bar' to target with JS -->
-                <!-- Initial width is 0% to allow for a smooth load animation -->
-                <div id="dynamic-progress-bar" class="progress-bar" style="width: 0%;"></div>
-            </div>
-            
-            <!-- Added ID 'dynamic-progress-text' to target with JS -->
-            <p id="dynamic-progress-text" class="progress-text">Loading...</p>
-        </div>
-        
-        <div class="donations-section">
-            <h2>Where Your Support Goes</h2>
-            <ul class="donations-list">
-                <li>Supporting student leaders to attend conferences and share our work on AI in education, plus building and maintaining community tools and platforms.</li>
-                <li>Creating educational materials like AI Ethics Game Cards and covering essential technology costs to keep our programs running sustainably.</li>
-            </ul>
-        </div>
-        
-        <div class="donations-section">
-            <h2>Donate Now</h2>
-            <div class="donate-options">
-                <div class="qr-code-container">
-                    <img src="{{ url_for('static', filename='images/donation-qr-code.png') }}" alt="Donation QR Code" class="qr-code-image">
-                </div>
-                <a href="https://mvhs-sports-boosters.square.site/product/tech-intern-donation/403" target="_blank" class="donate-button">Donate Online</a>
-            </div>
-        </div>
-    </section>
-</div>
+        {% if error %}
+          <p style="color:var(--ink-52);font-size:15px">{{ error }}</p>
+        {% endif %}
 
+        <div class="donation-meter" style="margin-top:22px">
+          <div class="meter-track"><div class="meter-fill" id="meterFill"></div></div>
+          <p class="meter-text" id="meterText">
+            {% if total is not none and goal is not none %}Loading…{% else %}Totals are updated manually while our live feed is offline.{% endif %}
+          </p>
+        </div>
+
+        <div class="btn-row" style="display:flex;gap:12px;margin-top:30px;flex-wrap:wrap">
+          <a href="https://mvhs-sports-boosters.square.site/product/tech-intern-donation/403" target="_blank" rel="noopener" class="btn btn--solid">Donate Online <span class="arw">→</span></a>
+          <a href="/contact" class="btn btn--dark">Other Ways to Give <span class="arw">→</span></a>
+        </div>
+      </div>
+
+      <div class="rv">
+        <div class="card" style="padding:32px">
+          <span class="card-num">Where your support goes</span>
+          <ul class="ticks" style="margin-top:6px">
+            <li>Sending student leaders to conferences to share our work on AI in education</li>
+            <li>Building and maintaining community tools and platforms</li>
+            <li>Creating educational materials like the AI Ethics Game Cards</li>
+            <li>Covering the technology costs that keep our programs running sustainably</li>
+          </ul>
+          <div style="margin-top:26px;padding-top:22px;border-top:1px solid var(--hairline);text-align:center">
+            <img src="{{ url_for('static', filename='images/donation-qr-code.png') }}" alt="QR code linking to the MVHS Tech Internship donation page" style="width:170px;margin:0 auto 12px;border-radius:14px">
+            <p style="font-size:13.5px;color:var(--ink-38);margin:0">Scan to donate</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+  .meter-track{height:14px;border-radius:999px;background:var(--hairline-2);
+    border:1px solid var(--hairline);overflow:hidden}
+  .meter-fill{height:100%;width:0;border-radius:999px;
+    background:linear-gradient(90deg,var(--yellow-line),var(--yellow));
+    transition:width 1.4s cubic-bezier(.16,1,.3,1)}
+  .meter-text{margin-top:12px;font-family:var(--mono);font-size:13px;color:var(--ink-52)}
+</style>
+{% endblock %}
+
+{% block extra_js %}
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const goal = {{ goal | default(20000) | tojson }};
-        const total = {{ total | default(0) | tojson }};
+(function () {
+  var goal  = {{ goal  | default(None) | tojson }};
+  var total = {{ total | default(None) | tojson }};
+  var fill = document.getElementById('meterFill');
+  var text = document.getElementById('meterText');
+  if (goal === null || total === null) return;          // live feed unavailable
 
-        console.log("Donation script loaded", goal, total);
+  var g = parseFloat(String(goal).replace(/[^0-9.]/g, ''));
+  var t = parseFloat(String(total).replace(/[^0-9.]/g, ''));
+  if (!isFinite(g) || !isFinite(t) || g <= 0) return;
 
-        const bar = document.getElementById('dynamic-progress-bar');
-        const text = document.getElementById('dynamic-progress-text');
-
-        let percentage = 0;
-        if (goal > 0) {
-            percentage = (total / goal) * 100;
-        }
-
-        const visualPercentage = percentage > 100 ? 100 : percentage;
-
-        const formatter = new Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: 'USD',
-            maximumFractionDigits: 0
-        });
-
-        setTimeout(() => {
-            bar.style.width = visualPercentage + "%";
-        }, 100);
-
-        text.innerHTML = `<strong>${formatter.format(total)}</strong> raised of <strong>${formatter.format(goal)}</strong> goal`;
-    });
+  var money = new Intl.NumberFormat('en-US',
+    { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+  text.textContent = money.format(t) + ' raised of ' + money.format(g) + ' goal';
+  setTimeout(function () {
+    fill.style.width = Math.max(0, Math.min(100, (t / g) * 100)) + '%';
+  }, 120);
+})();
 </script>
 {% endblock %}

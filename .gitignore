@@ -205,3 +205,11 @@ Thumbs.db
 .vercel
 # Google service-account key — must never be committed
 credentials.json
+
+# form submissions contain personal data - never commit
+contact_submissions.csv
+subscribers.csv
+
+# local backups taken during the 2026 revamp (originals are in git on main)
+templates_legacy_backup/
+static/css/style.legacy.css.bak

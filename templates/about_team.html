@@ -1,192 +1,70 @@
 {% extends "base.html" %}
-{% block title %}Our Team - MVHS Tech Internship{% endblock %}
-
+{% block title %}Our Team — MVHS Tech Internship{% endblock %}
 {% block content %}
-<section class="team-carousel-section">
-    <h2 class="team-carousel-title">Our Team</h2>
-    <p class="team-carousel-subtitle">Meet the leaders who drive our program forward.</p>
 
-    <div class="team-carousel-wrapper">
-        <button class="team-arrow team-arrow-left" id="teamPrev" aria-label="Previous">
-            <i class="fas fa-chevron-left"></i>
-        </button>
-        
-        <div class="team-fade team-fade-left"></div>
-        
-        <div class="team-cards" id="teamCarousel">
-            <div class="team-card">
-                <img 
-                    src="{{ url_for('static', filename='images/yashmaheshwari-profile (1).png') }}" 
-                    alt="Yash Maheshwari" 
-                    class="team-photo"
-                >
-                <h3>Yash Maheshwari</h3>
-                <p class="team-card-role">Class of 2027</p>
-                <a class="team-card-link" href="https://www.linkedin.com/in/yashmaheshwari2009/" target="_blank">
-                </a>
-            </div>
-            
-            
-            <div class="team-card">
-                <img 
-                    src="{{ url_for('static', filename='images/kipglazer.jpg') }}" 
-                    alt="Kip Glazer Ed.D." 
-                    class="team-photo"
-                >
-                <h3>Kip Glazer Ed.D.</h3>
-                <p class="team-card-role">Principal</p>
-                <a class="team-card-link" href="https://www.linkedin.com/in/kip-glazer-09a26933/" target="_blank">
-                    LinkedIn →
-                </a>
-            </div>
-            
-            
-            <div class="team-card">
-                <!-- Myra photo missing → placeholder -->
-                <img src="{{ url_for('static', filename='images/myrajainprofile.png') }}" 
-                alt="Myra Jain" 
-                class="team-photo team-photo-myra">
-                <h3>Myra Jain</h3>
-                <p class="team-card-role">Class of 2028</p>
-                <a class="team-card-link" href="https://www.linkedin.com/in/myra-jain2010/" target="_blank">LinkedIn →</a>
-            </div>
-            
-            <div class="team-card">
-                <img src="{{ url_for('static', filename='images/claireschwarzhoffprofile.png') }}" 
-                     alt="Claire Schwarzhoff" class="team-photo">
-                <h3>Claire Schwarzhoff</h3>
-                <p class="team-card-role">Class of 2026</p>
-                <a class="team-card-link" href="https://www.linkedin.com/in/claire-schwarzhoff-1625452a1/" target="_blank">LinkedIn →</a>
-            </div>
-            
-            <div class="team-card">
-                <img src="{{ url_for('static', filename='images/dhruvvijaypfp (1).jpg') }}" 
-                     alt="Dhruv Vijay" class="team-photo">
-                <h3>Dhruv Vijay</h3>
-                <p class="team-card-role">Class of 2026</p>
-                <a class="team-card-link" href="https://www.linkedin.com/in/dhruv-vijay/" target="_blank">LinkedIn →</a>
-            </div>
-            
-            <div class="team-card">
-                <img src="{{ url_for('static', filename='images/nikitanarangprofile (1).png') }}" 
-                     alt="Nikita Narang" class="team-photo">
-                <h3>Nikita Narang</h3>
-                <p class="team-card-role">Class of 2026</p>
-                <a class="team-card-link" href="https://www.linkedin.com/in/nikitanarangnn/" target="_blank">LinkedIn →</a>
-            </div>
-            
-            <div class="team-card">
-                <img src="{{ url_for('static', filename='images/sophiazhangprofile (1).png') }}" 
-                     alt="Sophia Zhang" class="team-photo">
-                <h3>Sophia Zhang</h3>
-                <p class="team-card-role">Class of 2026</p>
-                <a class="team-card-link" href="https://www.linkedin.com/in/sophia-zhang-b57b3b27b/" target="_blank">LinkedIn →</a>
-            </div>
-            
-        </div>
-
-        <div class="team-fade team-fade-right"></div>
-        
-        <button class="team-arrow team-arrow-right" id="teamNext" aria-label="Next">
-            <i class="fas fa-chevron-right"></i>
-        </button>
-    </div>
+<section class="page-hero">
+  <div class="shell">
+    <span class="eyebrow">The people behind it</span>
+    <h1>Our <em>Team</em></h1>
+    <p>Meet the leaders who drive our program forward.</p>
+  </div>
 </section>
 
-<section class="interns-section">
-    <h2>Interns</h2>
-    <p class="interns-subtitle">We're supported by an incredible team of interns who help power our events, projects, and tech support.</p>
-    
-    <div class="interns-container">
-        <div class="interns-grid">
-            <div class="intern-pill">Hailey Bilstad</div>
-            <div class="intern-pill">Andre Fong</div>
-            <div class="intern-pill">Ilan Gerber</div>
-            <div class="intern-pill">Oliver Jiang</div>
-            <div class="intern-pill">Rishi Jindal</div>
-            <div class="intern-pill">Sophia Lew</div>
-            <div class="intern-pill">Cinty Lin</div>
-            <div class="intern-pill">Sean Lin</div>
-            <div class="intern-pill">Colby Liu</div>
-            <div class="intern-pill">Jayan Nair</div>
-            <div class="intern-pill">Carlton Nguyen</div>
-            <div class="intern-pill">Keshav Pillutla</div>
-            <div class="intern-pill">Vedika Raman</div>
-            <div class="intern-pill">Arjun Shankar</div>
-            <div class="intern-pill">Alexander Strougo</div>
-            <div class="intern-pill">Emma Teng</div>
-            <div class="intern-pill">Isha Voleti</div>
-            <div class="intern-pill">Caroline Yu</div>
-        </div>
+<section class="section">
+  <div class="shell">
+    <div class="people rv-stagger">
+      <div class="person">
+        <div class="ph"><img src="{{ url_for('static', filename='images/kipglazer.jpg') }}" alt="Kip Glazer, Ed.D."></div>
+        <h3>Kip Glazer, Ed.D.</h3>
+        <div class="role">Principal</div>
+        <a href="https://www.linkedin.com/in/kip-glazer-09a26933/" target="_blank" rel="noopener">LinkedIn →</a>
+              </div>
+      <div class="person">
+        <div class="ph"><img src="{{ url_for('static', filename='images/yashmaheshwari-profile (1).png') }}" alt="Yash Maheshwari"></div>
+        <h3>Yash Maheshwari</h3><div class="role">Class of 2027</div>
+        <a href="https://www.linkedin.com/in/yashmaheshwari2009/" target="_blank" rel="noopener">LinkedIn →</a>
+      </div>
+      <div class="person">
+        <div class="ph"><img src="{{ url_for('static', filename='images/claireschwarzhoffprofile.png') }}" alt="Claire Schwarzhoff"></div>
+        <h3>Claire Schwarzhoff</h3><div class="role">Class of 2026</div>
+        <a href="https://www.linkedin.com/in/claire-schwarzhoff-1625452a1/" target="_blank" rel="noopener">LinkedIn →</a>
+      </div>
+      <div class="person">
+        <div class="ph"><img src="{{ url_for('static', filename='images/dhruvvijaypfp (1).jpg') }}" alt="Dhruv Vijay"></div>
+        <h3>Dhruv Vijay</h3><div class="role">Class of 2026</div>
+        <a href="https://www.linkedin.com/in/dhruv-vijay/" target="_blank" rel="noopener">LinkedIn →</a>
+      </div>
+      <div class="person">
+        <div class="ph"><img src="{{ url_for('static', filename='images/nikitanarangprofile (1).png') }}" alt="Nikita Narang"></div>
+        <h3>Nikita Narang</h3><div class="role">Class of 2026</div>
+        <a href="https://www.linkedin.com/in/nikitanarangnn/" target="_blank" rel="noopener">LinkedIn →</a>
+      </div>
+      <div class="person">
+        <div class="ph"><img src="{{ url_for('static', filename='images/sophiazhangprofile (1).png') }}" alt="Sophia Zhang"></div>
+        <h3>Sophia Zhang</h3><div class="role">Class of 2026</div>
+        <a href="https://www.linkedin.com/in/sophia-zhang-b57b3b27b/" target="_blank" rel="noopener">LinkedIn →</a>
+      </div>
+      <div class="person">
+        <div class="ph"><img src="{{ url_for('static', filename='images/myrajainprofile.png') }}" alt="Myra Jain"></div>
+        <h3>Myra Jain</h3><div class="role">Class of 2028</div>
+        <a href="https://www.linkedin.com/in/myra-jain2010/" target="_blank" rel="noopener">LinkedIn →</a>
+      </div>
     </div>
+  </div>
 </section>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const carousel = document.getElementById('teamCarousel');
-    const prevBtn = document.getElementById('teamPrev');
-    const nextBtn = document.getElementById('teamNext');
-    
-    if (!carousel || !prevBtn || !nextBtn) return;
-    
-    function updateArrows() {
-        const scrollLeft = carousel.scrollLeft;
-        const scrollWidth = carousel.scrollWidth;
-        const clientWidth = carousel.clientWidth;
-        const maxScroll = scrollWidth - clientWidth;
-        
-        // Disable/enable left arrow
-        if (scrollLeft <= 10) {
-            prevBtn.style.opacity = '0.3';
-            prevBtn.style.pointerEvents = 'none';
-            prevBtn.disabled = true;
-        } else {
-            prevBtn.style.opacity = '1';
-            prevBtn.style.pointerEvents = 'auto';
-            prevBtn.disabled = false;
-        }
-        
-        // Disable/enable right arrow
-        if (scrollLeft >= maxScroll - 10) {
-            nextBtn.style.opacity = '0.3';
-            nextBtn.style.pointerEvents = 'none';
-            nextBtn.disabled = true;
-        } else {
-            nextBtn.style.opacity = '1';
-            nextBtn.style.pointerEvents = 'auto';
-            nextBtn.disabled = false;
-        }
-    }
-    
-    prevBtn.addEventListener('click', function() {
-        if (prevBtn.disabled) return;
-        
-        const clientWidth = carousel.clientWidth;
-        carousel.scrollBy({
-            left: -clientWidth,
-            behavior: 'smooth'
-        });
-    });
-    
-    nextBtn.addEventListener('click', function() {
-        if (nextBtn.disabled) return;
-        
-        const clientWidth = carousel.clientWidth;
-        carousel.scrollBy({
-            left: clientWidth,
-            behavior: 'smooth'
-        });
-    });
-    
-    // Update arrows on scroll
-    carousel.addEventListener('scroll', updateArrows);
-    
-    // Update on window resize
-    window.addEventListener('resize', updateArrows);
-    
-    // Initial update
-    updateArrows();
-});
-</script>
+<section class="section section--paper">
+  <div class="shell">
+    <div class="section-head rv">
+      <span class="eyebrow eyebrow--gold">Interns</span>
+      <h2>The team that <em>powers</em> the work</h2>
+      <p>We're supported by an incredible team of interns who help power our events, projects, and tech support.</p>
+    </div>
+    <div class="name-cloud rv">
+      {% for n in ["Hailey Bilstad","Andre Fong","Ilan Gerber","Oliver Jiang","Rishi Jindal","Sophia Lew","Cinty Lin","Sean Lin","Colby Liu","Jayan Nair","Carlton Nguyen","Keshav Pillutla","Vedika Raman","Arjun Shankar","Alexander Strougo","Emma Teng","Isha Voleti","Caroline Yu"] %}
+      <span>{{ n }}</span>
+      {% endfor %}
+    </div>
+  </div>
+</section>
 {% endblock %}
-

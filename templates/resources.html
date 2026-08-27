@@ -1,11 +1,32 @@
 {% extends "base.html" %}
-{% block title %}Resources - MVHS Tech Internship{% endblock %}
-
+{% block title %}Resources — MVHS Tech Internship{% endblock %}
 {% block content %}
-<h1>Resources</h1>
-<ul>
-    <li><a href="https://mvhs-tech.vercel.app/">Tech Support Website</a></li>
-    <li><a href="#">AI Ethics Game Cards</a></li>
-    <li><a href="#">Educational Tools & Tutorials</a></li>
-</ul>
+<section class="page-hero">
+  <div class="shell">
+    <span class="eyebrow">For students, staff &amp; educators</span>
+    <h1><em>Resources</em></h1>
+    <p>The tools, materials, and guides our program builds and maintains.</p>
+  </div>
+</section>
+<section class="section">
+  <div class="shell">
+    <div class="grid grid-3 rv-stagger">
+      <a class="card card-link" href="/focus/tech-support">
+        <span class="card-num">01</span><h3>Tech Support Website</h3>
+        <p>Our student-built request system for peer tech help across campus.</p>
+        <span class="go">Learn more <span class="arw">→</span></span>
+      </a>
+      <a class="card card-link" href="/merch">
+        <span class="card-num">02</span><h3>AI Ethics Game Cards</h3>
+        <p>A discussion deck we designed for workshops on the ethics and limits of AI.</p>
+        <span class="go">Coming January 2026 <span class="arw">→</span></span>
+      </a>
+      <a class="card card-link" href="/focus/community-events">
+        <span class="card-num">03</span><h3>Educational Tools &amp; Tutorials</h3>
+        <p>Materials from our workshops and community events, built for real classrooms.</p>
+        <span class="go">Explore <span class="arw">→</span></span>
+      </a>
+    </div>
+  </div>
+</section>
 {% endblock %}

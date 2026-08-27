@@ -1,15 +1,17 @@
 {% extends "base.html" %}
-{% block title %}Message Sent - MVHS Tech Internship{% endblock %}
-
+{% block title %}Message Sent — MVHS Tech Internship{% endblock %}
 {% block content %}
-<div class="page-header">
-    <h1>Message Sent!</h1>
+<section class="page-hero">
+  <div class="shell">
+    <span class="eyebrow">Thank you</span>
+    <h1>Message <em>sent</em></h1>
     <p>Thank you for contacting us. We'll get back to you soon.</p>
-</div>
-
-<div class="text-center" style="margin-top: 2rem;">
-    <a href="{{ url_for('contact') }}" class="btn-primary">Send Another Message</a>
-    <a href="{{ url_for('index') }}" class="btn-secondary" style="margin-left: 1rem;">Return to Home</a>
-</div>
+  </div>
+</section>
+<section class="section">
+  <div class="shell" style="display:flex;gap:12px;flex-wrap:wrap">
+    <a href="/contact" class="btn btn--dark">Send Another Message <span class="arw">→</span></a>
+    <a href="/" class="btn btn--solid">Return Home <span class="arw">→</span></a>
+  </div>
+</section>
 {% endblock %}
-

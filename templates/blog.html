@@ -1,251 +1,116 @@
 {% extends "base.html" %}
-{% block title %}MVHS Tech Blog - MVHS Tech Internship{% endblock %}
-
+{% block title %}Blog — MVHS Tech Internship{% endblock %}
 {% block content %}
-<section class="blog-page">
-    <div class="blog-header">
-        <h1 class="blog-title">MVHS Tech Blog</h1>
-        <p class="blog-subtitle">Insights, tutorials, and stories from the MVHS Tech Internship program.</p>
-    </div>
 
-    <div class="blog-filters">
-        <form class="blog-search-form" action="{{ url_for('blogs') }}" method="get">
-            <div class="blog-search">
-                <i class="fas fa-search"></i>
-                <input 
-                    type="text" 
-                    name="q" 
-                    placeholder="Search articles..." 
-                    value="{{ query or '' }}"
-                    class="search-input"
-                />
-            </div>
-            <button type="submit" class="blog-search-button">Search</button>
-        </form>
-        <button class="blog-filter-button" type="button">Filter by topics ▾</button>
-    </div>
-
-    <section class="blog-featured">
-        <h2 class="blog-section-title">Featured Articles</h2>
-        <div class="featured-grid">
-            {% for post in featured_posts %}
-            <article class="featured-card">
-                <div class="article-category">{{ post.categories[0] }}</div>
-                <h3 class="article-title">{{ post.title }}</h3>
-                <p class="article-preview">{{ post.excerpt }}</p>
-                <div class="article-tags">
-                    {% for tag in post.tags %}
-                    <span class="tag">{{ tag }}</span>
-                    {% endfor %}
-                </div>
-                <div class="article-meta">
-                    <span class="meta-item"><i class="fas fa-user"></i> {{ post.author }}</span>
-                    <span class="meta-item"><i class="fas fa-calendar"></i> {{ post.date }}</span>
-                    <span class="meta-item"><i class="fas fa-clock"></i> {{ post.read_time }}</span>
-                </div>
-                <button 
-                    class="article-link read-more-btn"
-                    onclick="showPostModal(this)"
-                    data-title="{{ post.title }}"
-                    data-excerpt="{{ post.excerpt }}"
-                    data-author="{{ post.author }}"
-                    data-date="{{ post.date }}"
-                    data-readtime="{{ post.read_time }}"
-                    data-content="{{ post.content | safe }}"
-                >Read More →</button>
-            </article>
-            {% else %}
-            <p class="empty-state">No featured posts match your search.</p>
-            {% endfor %}
-        </div>
-    </section>
-
-    <section class="blog-latest">
-        <h2 class="blog-section-title">Latest Articles</h2>
-        <div class="latest-grid">
-            {% for post in latest_posts %}
-            <article class="latest-card">
-                <div class="article-category">{{ post.categories[0] }}</div>
-                <h3 class="article-title-small">{{ post.title }}</h3>
-                <p class="article-preview-small">{{ post.excerpt }}</p>
-                <div class="article-meta-small">
-                    <span><i class="fas fa-user"></i> {{ post.author }}</span>
-                    <span><i class="fas fa-calendar"></i> {{ post.date }}</span>
-                    <span><i class="fas fa-clock"></i> {{ post.read_time }}</span>
-                </div>
-                <button 
-                    class="article-link read-more-btn"
-                    onclick="showPostModal(this)"
-                    data-title="{{ post.title }}"
-                    data-excerpt="{{ post.excerpt }}"
-                    data-author="{{ post.author }}"
-                    data-date="{{ post.date }}"
-                    data-readtime="{{ post.read_time }}"
-                    data-content="{{ post.content | safe }}"
-                >Read More →</button>
-            </article>
-            {% else %}
-            <p class="empty-state">No articles match your search.</p>
-            {% endfor %}
-        </div>
-    </section>
-
-    <section class="blog-subscribe">
-        <div class="subscribe-content">
-            <h2 class="subscribe-title">Stay Updated</h2>
-            <p class="subscribe-subtitle">Subscribe to our newsletter to get updates on our projects, events, and new tools.</p>
-            
-            <form class="subscribe-form" action="{{ url_for('subscribe') }}" method="post">
-                <input 
-                    type="email" 
-                    name="email" 
-                    placeholder="Enter your email" 
-                    required
-                    class="subscribe-input"
-                />
-                <button type="submit" class="subscribe-button">Subscribe</button>
-            </form>
-            
-            {% if subscribed_message %}
-            <p class="subscribe-message">{{ subscribed_message }}</p>
-            {% endif %}
-        </div>
-    </section>
+<section class="page-hero">
+  <div class="shell">
+    <span class="eyebrow">Written by our interns</span>
+    <h1>MVHS Tech <em>Blog</em></h1>
+    <p>Stories and updates from the team — what we're building, learning, and arguing about.</p>
+  </div>
 </section>
 
-<div id="blog-modal" class="modal">
-    <div class="modal-content modal-content-full"> 
-        <span class="close-button" onclick="closePostModal()">&times;</span>
-        <h2 id="modal-title" class="article-full-title"></h2>
-        <div class="modal-meta">
-            <span id="modal-author"><i class="fas fa-user"></i> </span>
-            <span id="modal-date"><i class="fas fa-calendar"></i> </span>
-            <span id="modal-readtime"><i class="fas fa-clock"></i> </span>
-        </div>
-        <div id="modal-body" class="article-body">
+<section class="section">
+  <div class="shell">
+
+    <form method="GET" action="/blogs" class="blog-search rv">
+      <input type="search" name="q" value="{{ query or '' }}" placeholder="Search posts, topics, or tags…" aria-label="Search posts">
+      <button type="submit" class="btn btn--solid btn--sm">Search <span class="arw">→</span></button>
+      {% if query %}<a href="/blogs" class="btn btn--sm" style="--btn-fg:var(--ink)">Clear</a>{% endif %}
+    </form>
+
+    {% if subscribed_message %}
+      <p class="notice rv">{{ subscribed_message }}</p>
+    {% endif %}
+
+    {% if query %}
+      <p class="eyebrow" style="margin-bottom:26px">
+        {{ (featured_posts|length) + (latest_posts|length) }} result(s) for “{{ query }}”
+      </p>
+    {% endif %}
+
+    {% if featured_posts %}
+      <div class="section-head rv" style="margin-bottom:26px">
+        <span class="eyebrow eyebrow--gold">Featured</span>
+      </div>
+      <div class="grid grid-2 rv-stagger" style="margin-bottom:clamp(38px,5vw,60px)">
+        {% for p in featured_posts %}
+        <article class="card">
+          <div class="post">
+            <div class="meta">
+              {% for c in p.categories %}<span class="tag">{{ c }}</span>{% endfor %}
+              <span class="when">{{ p.date }} · {{ p.read_time }}</span>
             </div>
-        </div>
-</div>
+            <h3>{{ p.title }}</h3>
+            <p>{{ p.excerpt }}</p>
+            <span class="when" style="margin-top:14px;display:block">By {{ p.author }}</span>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    {% endif %}
 
+    {% if latest_posts %}
+      <div class="section-head rv" style="margin-bottom:26px">
+        <span class="eyebrow eyebrow--gold">Latest</span>
+      </div>
+      <div class="grid grid-3 rv-stagger">
+        {% for p in latest_posts %}
+        <article class="card">
+          <div class="post">
+            <div class="meta">
+              {% for c in p.categories %}<span class="tag">{{ c }}</span>{% endfor %}
+              <span class="when">{{ p.date }} · {{ p.read_time }}</span>
+            </div>
+            <h3>{{ p.title }}</h3>
+            <p>{{ p.excerpt }}</p>
+            <span class="when" style="margin-top:14px;display:block">By {{ p.author }}</span>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% if not featured_posts and not latest_posts %}
+      <div class="card rv" style="text-align:center;padding:56px 28px">
+        <h3>No posts found</h3>
+        <p style="margin-bottom:18px">Nothing matched “{{ query }}”. Try a different word.</p>
+        <a href="/blogs" class="btn btn--solid btn--sm">See all posts <span class="arw">→</span></a>
+      </div>
+    {% endif %}
+
+    <div class="cta-band rv" style="margin-top:clamp(48px,6vw,76px)">
+      <h2>Get new posts <em>as they land</em></h2>
+      <p>We send an email when interns publish something new. No spam.</p>
+      <form method="POST" action="/subscribe" class="subscribe">
+        <input type="email" name="email" required placeholder="you@example.com" aria-label="Email address">
+        <button type="submit" class="btn btn--solid">Subscribe <span class="arw">→</span></button>
+      </form>
+    </div>
+
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
 <style>
-.read-more-btn {
-    color: var(--primary-color);
-    text-decoration: none;
-    font-weight: 600;
-    transition: opacity 0.2s ease;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-}
-
-.read-more-btn:hover {
-    color: var(--primary-color);
-    opacity: 0.7;
-    text-decoration: underline;
-}
-
-.modal {
-    display: none; 
-    position: fixed; 
-    z-index: 3067;
-    left: 0;
-    top: 0;
-    width: 100%; 
-    height: 100%; 
-    overflow: auto; 
-    background-color: rgba(0,0,0,0.6); 
-    justify-content: center; 
-    align-items: flex-start;
-}
-
-.modal-content {
-    background-color: #fefefe;
-    padding: 30px;
-    border: 1px solid #888;
-    
-    width: 75%; 
-    max-width: 900px;
-    
-    margin: 2.5vh auto; 
-    max-height: 95vh;
-
-    border-radius: 15px; 
-    position: relative;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    overflow-y: auto; 
-}
-
-.close-button {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    position: sticky; 
-    top: 0;
-    right: 0;
-    cursor: pointer;
-    background: #fefefe; 
-    padding-left: 10px;
-}
-
-.modal-meta {
-    margin: 15px 0;
-    padding-top: 10px;
-    border-top: 1px solid #eee;
-    color: #777;
-    font-size: 0.9em;
-}
-
-.modal-meta span {
-    margin-right: 15px;
-}
-
-.article-body {
-    margin-top: 20px;
-    line-height: 1.6;
-    color: #333;
-    font-size: 1.1em;
-}
-
-.article-body p {
-    margin-bottom: 1.2em;
-}
+  .blog-search{display:flex;gap:10px;margin-bottom:clamp(30px,4vw,48px);flex-wrap:wrap}
+  .blog-search input{
+    flex:1;min-width:240px;padding:13px 18px;border-radius:999px;
+    border:1px solid var(--hairline);background:var(--white);
+    font-family:var(--sans);font-size:15.5px;color:var(--ink);
+    transition:border-color .3s,box-shadow .3s}
+  .blog-search input:focus{outline:0;border-color:var(--yellow);
+    box-shadow:0 0 0 4px rgba(255,198,41,.18)}
+  .notice{
+    padding:13px 18px;border-radius:14px;background:var(--yellow-wash);
+    border:1px solid var(--yellow);font-size:15px;margin-bottom:26px}
+  .subscribe{display:flex;gap:10px;justify-content:center;margin-top:26px;flex-wrap:wrap}
+  .subscribe input{
+    min-width:260px;padding:13px 18px;border-radius:999px;
+    border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);
+    color:#fff;font-family:var(--sans);font-size:15.5px}
+  .subscribe input::placeholder{color:rgba(255,255,255,.42)}
+  .subscribe input:focus{outline:0;border-color:var(--yellow)}
 </style>
-<script>
-    const modal = document.getElementById("blog-modal");
-    const modalTitle = document.getElementById("modal-title");
-    const modalAuthor = document.getElementById("modal-author");
-    const modalDate = document.getElementById("modal-date");
-    const modalReadTime = document.getElementById("modal-readtime");
-    const modalBody = document.getElementById("modal-body");
-
-    function showPostModal(button) {
-        const title = button.getAttribute('data-title');
-        const author = button.getAttribute('data-author');
-        const date = button.getAttribute('data-date');
-        const readTime = button.getAttribute('data-readtime');
-        
-        const content = button.getAttribute('data-content'); 
-
-        modalTitle.textContent = title;
-        modalAuthor.innerHTML = `<i class="fas fa-user"></i> ${author}`;
-        modalDate.innerHTML = `<i class="fas fa-calendar"></i> ${date}`;
-        modalReadTime.innerHTML = `<i class="fas fa-clock"></i> ${readTime}`;
-        modalBody.innerHTML = content;
-        
-        modal.style.display = "flex";
-        
-        // cool extra add-on, so when they click outside of the modal, it closes the popup
-        modal.onclick = function(event) {
-            if (event.target == modal) {
-                closePostModal();
-            }
-        }
-    }
-
-    function closePostModal() {
-        modal.style.display = "none";
-    }
-</script>
 {% endblock %}

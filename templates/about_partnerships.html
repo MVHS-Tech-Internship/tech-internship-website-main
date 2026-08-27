@@ -1,31 +1,47 @@
 {% extends "base.html" %}
-{% block title %}Partnerships - MVHS Tech Internship{% endblock %}
-
+{% block title %}Partnerships — MVHS Tech Internship{% endblock %}
 {% block content %}
-<div class="about-wrapper">
-    <div class="partnerships-header">
-        <h1>Partnerships</h1>
-        <p>We collaborate with innovative organizations to bring cutting-edge tools and resources to students, educators, and our broader community.</p>
+
+<section class="page-hero">
+  <div class="shell">
+    <span class="eyebrow">Who we work with</span>
+    <h1><em>Partnerships</em></h1>
+    <p>We collaborate with innovative organizations to bring cutting-edge tools and resources to students, educators, and our broader community.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="shell">
+    <div class="split">
+      <div class="rv">
+        <span class="eyebrow eyebrow--gold">Featured partner</span>
+        <h2><em>Knowt</em></h2>
+        <p class="lede">Knowt is an AI-powered study platform that helps students learn more effectively through intelligent note-taking, practice questions, and personalized study tools. Through our collaboration, students in our program receive free access to both Knowt's standard features and its premium version, allowing them to explore the platform in real academic settings.</p>
+        <p>As part of this partnership, our interns use a student-designed evaluation rubric to assess the platform from a genuine learner's perspective. They document their experiences, analyze how the tool aligns with real study needs, and share structured feedback directly with Knowt.</p>
+        <p>This collaboration gives Knowt meaningful insight into the student experience while giving our interns hands-on practice evaluating emerging AI tools in education.</p>
+        <div class="btn-row">
+          <a href="https://knowt.com" target="_blank" rel="noopener" class="btn btn--dark">Learn More About Knowt <span class="arw">→</span></a>
+        </div>
+      </div>
+      <div class="rv">
+        <div class="card" style="padding:34px">
+          <span class="card-num">What the partnership involves</span>
+          <ul class="ticks" style="margin-top:6px">
+            <li>Free standard and premium access for students in the program</li>
+            <li>A student-designed rubric for evaluating the platform</li>
+            <li>Documented experiences from real academic use</li>
+            <li>Structured feedback delivered directly to the Knowt team</li>
+            <li>Hands-on practice evaluating emerging AI tools in education</li>
+          </ul>
+        </div>
+      </div>
     </div>
 
-    <section class="section-card partnership-card">
-        <h2>Featured Partner: Knowt</h2>
-        <p>Knowt is an AI-powered study platform that helps students learn more effectively through intelligent note-taking, practice questions, and personalized study tools. Through our collaboration, students in our program receive free access to both Knowt’s standard features and its premium version, allowing them to explore the platform in real academic settings.</p>
-        <p>As part of this partnership, our interns use a student-designed evaluation rubric to assess the platform from a genuine learner’s perspective. They document their experiences, analyze how the tool aligns with real study needs, and share structured feedback directly with Knowt.</p>
-        <p>This collaboration gives Knowt meaningful insight into the student experience while giving our interns hands-on practice evaluating emerging AI tools in education.</p>
-        <!-- TODO: Add Knowt logo image here -->
-        <div class="partnership-logo">
-            <!-- <img src="{{ url_for('static', filename='images/knowt-logo.png') }}" alt="Knowt Logo" style="max-width: 200px; height: auto;"> -->
-        </div>
-        
-        <div class="partnership-link">
-            <a href="https://knowt.com" target="_blank" class="btn-primary">Learn More About Knowt</a>
-        </div>
-    </section>
-    
-    <p class="partnerships-note">
-        We're actively building additional partnerships with organizations that share our mission of student-led, responsible innovation.
-    </p>
-</div>
+    <div class="cta-band rv" style="margin-top:clamp(48px,6vw,76px)">
+      <h2>Building <em>more of these</em></h2>
+      <p>We're actively building additional partnerships with organizations that share our mission of student-led, responsible innovation.</p>
+      <div class="btn-row"><a href="/contact" class="btn btn--solid">Partner With Us <span class="arw">→</span></a></div>
+    </div>
+  </div>
+</section>
 {% endblock %}
-

@@ -1,41 +1,40 @@
 {% extends "base.html" %}
-{% block title %}News & Media - MVHS Tech Internship{% endblock %}
-
+{% block title %}News &amp; Media — MVHS Tech Internship{% endblock %}
 {% block content %}
-<div class="news-main-container">
-    <h1>News & Media</h1>
+
+<section class="page-hero">
+  <div class="shell">
+    <span class="eyebrow">News &amp; media</span>
+    <h1>Our work, <em>out in the world</em></h1>
     <p>See how our interns are making an impact in the community through innovation and leadership.</p>
+  </div>
+</section>
 
-    <div class="articles-grid">
-        <article class="section-card news-card">
-            <h2>MVHS Blogs</h2>
-            <p>A collection of stories and updates written by our interns, sharing what they're building, learning, and exploring in technology.</p>
-            <a href="/blog" class="read-more">Read More →</a>
-        </article>
-
-        <article class="section-card news-card">
-            <h2>MVHS Mentioned in The Washington Post</h2>
-            <p>The Washington Post highlighted our school in an article about how teens use AI for homework.</p>
-            <a href="https://www.washingtonpost.com/technology/2025/10/05/school-ai-homework-teens/" target="_blank" class="read-more">Read Article →</a>
-        </article>
+<section class="section">
+  <div class="shell">
+    <div class="grid grid-2 rv-stagger">
+      <a class="card card-link" href="/blogs">
+        <span class="card-num">Written by our interns</span>
+        <h3>MVHS Blogs</h3>
+        <p>A collection of stories and updates written by our interns, sharing what they're building, learning, and exploring in technology.</p>
+        <span class="go">Read more <span class="arw">→</span></span>
+      </a>
+      <a class="card card-link" href="https://www.washingtonpost.com/technology/2025/10/05/school-ai-homework-teens/" target="_blank" rel="noopener">
+        <span class="card-num">Press</span>
+        <h3>MVHS mentioned in The Washington Post</h3>
+        <p>The Washington Post highlighted our school in an article about how teens use AI for homework.</p>
+        <span class="go">Read the article <span class="arw">→</span></span>
+      </a>
     </div>
-</div>
 
-<div class="news-wrapper">
-    <section class="social-media">
-        <h2>Follow Us</h2>
-        <p>Stay connected and see our latest updates:</p>
-        <div class="social-links">
-            <a href="https://www.instagram.com/mvhs.tech" target="_blank" class="social-icon">
-                <img src="{{ url_for('static', filename='images/ig.png') }}" alt="Instagram">
-            </a>
-            <a href="https://www.linkedin.com/company/mvhs-principal-s-tech-internship" target="_blank" class="social-icon">
-                <img src="{{ url_for('static', filename='images/lin.png') }}" alt="LinkedIn">
-            </a>
-            <a href="mailto:mvhs.tech24@gmail.com" class="social-icon">
-                <i class="fas fa-envelope"></i>
-            </a>
-        </div>
-    </section>
-</div>
+    <div class="cta-band rv" style="margin-top:clamp(48px,6vw,76px)">
+      <h2>Follow <em>along</em></h2>
+      <p>Stay connected and see our latest updates.</p>
+      <div class="btn-row">
+        <a href="https://instagram.com/mvhs.tech" target="_blank" rel="noopener" class="btn btn--solid">Instagram <span class="arw">→</span></a>
+        <a href="https://www.linkedin.com/company/mvhs-principal-s-tech-internship/" target="_blank" rel="noopener" class="btn">LinkedIn <span class="arw">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock %}
