@@ -28,34 +28,45 @@ SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 
 def get_donation_data():
     """
-    Fetches the donation goal and total raised from the Google Sheet.
-    Includes exponential backoff for API robustness.
-    """    
-    # Load credentials from the service account file
-    creds = Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPES)
-    
-    # Build the Sheets API service object
-    service = build('sheets', 'v4', credentials=creds)
+    Fetches the donation goal and total raised from Google Sheets safely.
+    Falls back gracefully if credentials or API calls fail.
+    """
+    credentials_path = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS', 'credentials.json')
 
-    sheet = service.spreadsheets()
+    # Check if the credentials file exists before attempting to read it
+    if not os.path.exists(credentials_path):
+        print(f"Warning: Credentials file '{credentials_path}' not found.")
+        return {'goal': 20000, 'total': 0, 'error': True}
 
-    # Call the Sheets API to get the values
-    result = sheet.values().get(
-        spreadsheetId=SPREADSHEET_ID, 
-        range=READ_RANGE,
-    ).execute()
-    
-    # The result structure is a list of lists: [[Goal], [Total Raised]]
-    values = result.get('values', [])
+    try:
+        creds = service_account.Credentials.from_service_account_file(
+            credentials_path, scopes=SCOPES
+        )
+        service = build('sheets', 'v4', credentials=creds)
 
-    goal = values[0][0]
-    total_raised = values[1][2]
+        result = service.spreadsheets().values().get(
+            spreadsheetId=SPREADSHEET_ID, 
+            range=READ_RANGE
+        ).execute()
+        
+        values = result.get('values', [])
 
-    return {
-        'goal': goal,
-        'total': total_raised
-    }
+        # Parse values safely with defaults
+        goal = values[0][0] if len(values) > 0 and len(values[0]) > 0 else 20000
+        total_raised = values[1][2] if len(values) > 1 and len(values[1]) > 2 else 0
 
+        return {
+            'goal': goal,
+            'total': total_raised,
+            'error': False
+        }
+
+    except HttpError as err:
+        print(f"Google Sheets API Error: {err}")
+        return {'goal': 20000, 'total': 0, 'error': True}
+    except Exception as e:
+        print(f"Unexpected error fetching donation data: {e}")
+        return {'goal': 20000, 'total': 0, 'error': True}
 
 @app.route('/')
 def index():

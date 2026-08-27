@@ -12,7 +12,6 @@
         <div class="donations-section">
             <h2>Our Progress</h2>
             
-            <!-- Optional: Display a subtle error if the sheet connection fails -->
             {% if error %}
             <p style="color: #e74c3c; font-size: 0.9em; margin-bottom: 10px;">
                 <em>Unable to sync live data at this moment.</em>
@@ -20,12 +19,9 @@
             {% endif %}
 
             <div class="donation-progress">
-                <!-- Added ID 'dynamic-progress-bar' to target with JS -->
-                <!-- Initial width is 0% to allow for a smooth load animation -->
                 <div id="dynamic-progress-bar" class="progress-bar" style="width: 0%;"></div>
             </div>
             
-            <!-- Added ID 'dynamic-progress-text' to target with JS -->
             <p id="dynamic-progress-text" class="progress-text">Loading...</p>
         </div>
         
@@ -54,8 +50,6 @@
         const goal = {{ goal | default(20000) | tojson }};
         const total = {{ total | default(0) | tojson }};
 
-        console.log("Donation script loaded", goal, total);
-
         const bar = document.getElementById('dynamic-progress-bar');
         const text = document.getElementById('dynamic-progress-text');
 
@@ -73,10 +67,12 @@
         });
 
         setTimeout(() => {
-            bar.style.width = visualPercentage + "%";
+            if (bar) bar.style.width = visualPercentage + "%";
         }, 100);
 
-        text.innerHTML = `<strong>${formatter.format(total)}</strong> raised of <strong>${formatter.format(goal)}</strong> goal`;
+        if (text) {
+            text.innerHTML = `<strong>${formatter.format(total)}</strong> raised of <strong>${formatter.format(goal)}</strong> goal`;
+        }
     });
 </script>
 {% endblock %}
