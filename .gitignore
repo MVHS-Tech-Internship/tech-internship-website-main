@@ -203,3 +203,6 @@ Thumbs.db
 # Playwright MCP
 .playwright-mcp/
 .vercel
+credentials.json
+.env
+.env.*
