@@ -1,5 +1,5 @@
 /* ==========================================================================
-   MVHS Tech Internship — site behaviour
+   MVHS Tech Internship - site behaviour
    ========================================================================== */
 (function () {
   'use strict';
@@ -29,13 +29,42 @@
     if (Math.abs(y - lastY) > 4) lastY = y;
   }
 
-  /* -------------------------------------------------- reveal on scroll ---- */
+  /* -------------------------------------------------- reveal on scroll ----
+     IntersectionObserver is the primary path, but it is not the only one: if
+     a notification is ever delayed or dropped, a section would stay at
+     opacity 0 forever, which on this page means whole blocks of the site
+     silently vanish. A cheap geometry sweep on scroll guarantees anything
+     actually on screen gets revealed.                                      */
+  var pending = [].slice.call(document.querySelectorAll('.rv, .rv-stagger'));
+
+  function show(el) { el.classList.add('in'); }
+
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (en) {
-      if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+      if (!en.isIntersecting) return;
+      show(en.target);
+      io.unobserve(en.target);
+      var i = pending.indexOf(en.target);
+      if (i > -1) pending.splice(i, 1);
     });
   }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-  document.querySelectorAll('.rv, .rv-stagger').forEach(function (el) { io.observe(el); });
+  pending.forEach(function (el) { io.observe(el); });
+
+  function sweepReveals() {
+    if (!pending.length) return;
+    var h = innerHeight;
+    for (var i = pending.length - 1; i >= 0; i--) {
+      var r = pending[i].getBoundingClientRect();
+      if (r.top < h * 0.92 && r.bottom > 0) {
+        show(pending[i]);
+        io.unobserve(pending[i]);
+        pending.splice(i, 1);
+      }
+    }
+  }
+  addEventListener('scroll', sweepReveals, { passive: true });
+  addEventListener('resize', sweepReveals);
+  sweepReveals();
 
   /* --------------------------------------------- cursor glow on cards ----- */
   document.querySelectorAll('.card').forEach(function (c) {
@@ -46,22 +75,66 @@
     });
   });
 
-  /* -------------------------------------------------- count-up on stats -- */
-  document.querySelectorAll('[data-count]').forEach(function (el) {
-    var target = parseFloat(el.dataset.count), suffix = el.dataset.suffix || '';
-    var seen = new IntersectionObserver(function (ents) {
-      if (!ents[0].isIntersecting) return;
+  /* ------------------------------------------- odometer digits on stats -- */
+  document.querySelectorAll('[data-odo]').forEach(function (el) {
+    var target = String(parseInt(el.dataset.odo, 10) || 0);
+    var suffix = el.dataset.suffix || '';
+
+    // build a column of 0-9 per digit; the column slides to its final digit
+    var wrap = document.createElement('span');
+    wrap.className = 'odo';
+    var cols = target.split('').map(function (d) {
+      var cell = document.createElement('span');
+      cell.className = 'odo-d';
+      var col = document.createElement('span');
+      col.className = 'odo-col';
+      for (var i = 0; i <= 9; i++) {
+        var n = document.createElement('i');
+        n.textContent = String(i);
+        col.appendChild(n);
+      }
+      cell.appendChild(col);
+      wrap.appendChild(cell);
+      return { col: col, digit: parseInt(d, 10) };
+    });
+    if (suffix) {
+      var sfx = document.createElement('span');
+      sfx.className = 'odo-suffix';
+      sfx.textContent = suffix;
+      wrap.appendChild(sfx);
+    }
+    el.textContent = '';
+    el.appendChild(wrap);
+
+    // start every column at 0 so the roll always travels upward
+    cols.forEach(function (c) { c.col.style.transform = 'translateY(0)'; });
+
+    var started = false;
+    var run = function () {
+      if (started) return;
+      started = true;
       seen.disconnect();
-      if (reduceMotion) { el.textContent = target + suffix; return; }
-      var t0 = performance.now(), dur = 1400;
-      (function step(now) {
-        var p = Math.min(1, (now - t0) / dur);
-        var e = 1 - Math.pow(1 - p, 3);
-        el.textContent = Math.round(target * e) + (p === 1 ? suffix : '');
-        if (p < 1) requestAnimationFrame(step);
-      })(t0);
+      removeEventListener('scroll', maybe);
+      cols.forEach(function (c, i) {
+        var settle = function () {
+          c.col.style.transform = 'translateY(' + (-c.digit) + 'em)';
+        };
+        if (reduceMotion) { c.col.style.transition = 'none'; settle(); return; }
+        // left-to-right stagger, so the number reads as it lands
+        c.col.style.transitionDelay = (i * 90) + 'ms';
+        requestAnimationFrame(settle);
+      });
+    };
+    var seen = new IntersectionObserver(function (ents) {
+      if (ents[0].isIntersecting) run();
     }, { threshold: 0.5 });
     seen.observe(el);
+    var maybe = function () {
+      var r = el.getBoundingClientRect();
+      if (r.top < innerHeight * 0.85 && r.bottom > 0) run();
+    };
+    addEventListener('scroll', maybe, { passive: true });
+    maybe();
   });
 
   /* ======================================================================
@@ -107,6 +180,7 @@
   var extL    = world.querySelector('.road-ext.left');
   var lanes   = world.querySelector('.road-lanes');
   var hud     = document.querySelector('.roadmap-hud');
+  var note    = document.querySelector('.curve-note');
   var prog    = document.querySelector('.road-progress');
   var progFill= prog ? prog.querySelector('.fill') : null;
   var progNum = prog ? prog.querySelector('.num') : null;
@@ -132,7 +206,7 @@
     kRoad  = (0.42 * vh) / BAND_H;                 // road band = 42% of viewport height
     heroCY = vh / (2 * kHero);                     // top-aligned: no gap above the sky
     roadCY = BAND_TOP - (0.10 * vh) / kRoad;       // curb line at 60%; band runs off the bottom
-    pinY   = BAND_TOP + (0.07 * vh) / kRoad;       // pins land on the asphalt
+    pinY   = BAND_TOP + (0.14 * vh) / kRoad;       // cars sit in the near lane
 
     // milestone spacing & camera range for the horizontal leg
     // The roadmap needs a genuinely white canvas, so the travel leg starts
@@ -209,7 +283,7 @@
     stops.forEach(function (el) {
       el.style.left = parseFloat(el.dataset.wx) * k + 'px';
       el.style.top  = pinY * k + 'px';
-      el.style.setProperty('--stem', (0.075 * vh) + 'px');
+      el.style.setProperty('--stem', (0.17 * vh) + 'px');
     });
   }
 
@@ -347,6 +421,7 @@
     body.classList.toggle('nav-light', p > 0.30);
 
     // roadmap chrome
+    if (note) note.classList.toggle('on', p > DESCEND_END + 0.04 && p < OPEN_END);
     if (hud)  hud.classList.toggle('on', p > TRAVEL_START - 0.03);
     if (prog) prog.classList.toggle('on', p > TRAVEL_START - 0.03);
 

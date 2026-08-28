@@ -1,5 +1,14 @@
 {% extends "base.html" %}
-{% block title %}MVHS Tech Internship — Student-led technology at Mountain View High School{% endblock %}
+{% block title %}MVHS Tech Internship{% endblock %}
+
+{% macro car(color) -%}
+<svg class="m-car" viewBox="0 0 64 26" aria-hidden="true" focusable="false">
+  <path d="M4 19h56a2 2 0 0 0 2-2v-4a5 5 0 0 0-4-4.9L47 5.6A14 14 0 0 0 43.6 4H23a11 11 0 0 0-6.6 2.2L10 11l-5 .9A4 4 0 0 0 2 15.8V17a2 2 0 0 0 2 2Z" fill="{{ color }}"/>
+  <path d="M24 6.6h8.4v4.6H18.6L22 8.1a4 4 0 0 1 2-1.5Zm11.4 0h7.4a10 10 0 0 1 2.4 1.1l4.3 3.5H35.4Z" fill="#F4F6FA" opacity=".92"/>
+  <circle cx="18" cy="19" r="4.4" fill="#151A22"/><circle cx="18" cy="19" r="1.7" fill="#C9CFDA"/>
+  <circle cx="47" cy="19" r="4.4" fill="#151A22"/><circle cx="47" cy="19" r="1.7" fill="#C9CFDA"/>
+</svg>
+{%- endmacro %}
 
 {% block content %}
 
@@ -15,13 +24,13 @@
 
       {% for m in roadmap %}
       <div class="milestone">
-        <div class="m-pin"></div>
-        <div class="m-stem"></div>
+        {{ car(m.color) }}
+        <div class="m-stem" style="--c:{{ m.color }}"></div>
         <div class="m-card">
-          <div class="date {{ 'tba' if m.tba }}"><span class="dot"></span>{{ m.date }}</div>
+          <div class="date {{ 'tba' if m.tba }}"><span class="dot" style="background:{{ m.color }}"></span>{{ m.date }}</div>
           <h3>{{ m.title }}</h3>
           <p>{{ m.blurb }}</p>
-          {% if m.href %}<a class="go" href="{{ m.href }}"{% if m.external %} target="_blank" rel="noopener"{% endif %}>{{ m.cta }} <span class="arw">→</span></a>{% endif %}
+          {% if m.href %}<a class="go" href="{{ m.href }}"{% if m.external %} target="_blank" rel="noopener"{% endif %}>{{ m.cta }} <span class="arw">&rarr;</span></a>{% endif %}
         </div>
       </div>
       {% endfor %}
@@ -34,17 +43,25 @@
           <span class="ln"><span class="wd">Mountain</span><span class="wd">View</span></span>
           <span class="ln"><span class="wd">Tech</span><span class="wd"><em>Interns</em></span></span>
         </h1>
-        <p class="hero-sub">Student-led technology support, AI innovation, and digital learning — built by the people who actually use it.</p>
+        <p class="hero-sub">Student-led technology support, AI innovation, and digital learning at Mountain View High School.</p>
         <div class="hero-cta">
-          <a href="/about/overview" class="btn">Our Mission <span class="arw">→</span></a>
-          <a href="/donations" class="btn btn--solid">Support Us <span class="arw">→</span></a>
+          <a href="/about/overview" class="btn">Our Mission <span class="arw">&rarr;</span></a>
+          <a href="/donations" class="btn btn--solid">Support Us <span class="arw">&rarr;</span></a>
         </div>
       </div>
 
+      <!-- fills the white that opens up as the road turns -->
+      <div class="curve-note">
+        <span class="eyebrow eyebrow--gold">Our mission</span>
+        <p>By delivering peer-driven technology support, spearheading relevant
+           educational initiatives, and developing practical AI-powered
+           applications, we strive to make a positive impact in our school,
+           inspire the local and national education technology community, and
+           set a standard for student-led change.</p>
+      </div>
+
       <div class="roadmap-hud">
-        <span class="eyebrow eyebrow--gold">Follow the road</span>
-        <h2>The <em>road ahead</em></h2>
-        <p>Where we're headed this year — events, launches, and the work in between.</p>
+        <h2>Our brief upcoming roadmap</h2>
       </div>
 
       <div class="road-progress">
@@ -67,28 +84,24 @@
         <span class="ln"><span class="wd">Mountain</span><span class="wd">View</span></span>
         <span class="ln"><span class="wd">Tech</span><span class="wd"><em>Interns</em></span></span>
       </h1>
-      <p class="hero-sub">Student-led technology support, AI innovation, and digital learning — built by the people who actually use it.</p>
+      <p class="hero-sub">Student-led technology support, AI innovation, and digital learning at Mountain View High School.</p>
       <div class="hero-cta">
-        <a href="/about/overview" class="btn">Our Mission <span class="arw">→</span></a>
-        <a href="/donations" class="btn btn--solid">Support Us <span class="arw">→</span></a>
+        <a href="/about/overview" class="btn">Our Mission <span class="arw">&rarr;</span></a>
+        <a href="/donations" class="btn btn--solid">Support Us <span class="arw">&rarr;</span></a>
       </div>
     </div>
   </section>
 
   <section class="section">
     <div class="shell">
-      <div class="section-head">
-        <span class="eyebrow eyebrow--gold">Follow the road</span>
-        <h2>The <em>road ahead</em></h2>
-        <p>Where we're headed this year — events, launches, and the work in between.</p>
-      </div>
+      <div class="section-head"><h2>Our brief upcoming roadmap</h2></div>
       <ul class="timeline">
         {% for m in roadmap %}
-        <li>
-          <div class="date {{ 'tba' if m.tba }}" style="font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:{{ 'var(--ink-38)' if m.tba else 'var(--yellow-deep)' }};margin-bottom:7px">{{ m.date }}</div>
-          <h3 style="font-size:21px;letter-spacing:-.028em;margin-bottom:7px">{{ m.title }}</h3>
-          <p style="color:var(--ink-52);font-size:15px">{{ m.blurb }}</p>
-          {% if m.href %}<a class="go" style="display:inline-flex;gap:6px;margin-top:10px;font-size:14px;font-weight:600;text-decoration:none" href="{{ m.href }}"{% if m.external %} target="_blank" rel="noopener"{% endif %}>{{ m.cta }} <span class="arw">→</span></a>{% endif %}
+        <li style="--c:{{ m.color }}">
+          <div class="tl-date {{ 'tba' if m.tba }}">{{ m.date }}</div>
+          <h3>{{ m.title }}</h3>
+          <p>{{ m.blurb }}</p>
+          {% if m.href %}<a class="go" href="{{ m.href }}"{% if m.external %} target="_blank" rel="noopener"{% endif %}>{{ m.cta }} <span class="arw">&rarr;</span></a>{% endif %}
         </li>
         {% endfor %}
       </ul>
@@ -100,36 +113,34 @@
 <section class="section">
   <div class="shell">
     <div class="section-head rv">
-      <span class="eyebrow eyebrow--gold">What we do</span>
-      <h2>Three pillars, one <em>student-led</em> program</h2>
-      <p>We focus our work in three areas that turn our mission into real impact for students, staff, and our community.</p>
+      <h2>What We Do</h2>
     </div>
 
     <div class="grid grid-3 rv-stagger">
       <a class="card card-link" href="/focus/community-events">
-        <span class="card-num">01 — Educational Initiatives</span>
+        <span class="card-num">Educational Initiatives</span>
         <h3>Community Events</h3>
-        <p>AI philosophy workshops, AI parent nights, and outreach that brings emerging technology to the whole community — not just the people already fluent in it.</p>
-        <span class="go">Explore <span class="arw">→</span></span>
+        <p>For things like AI philosophy workshops, AI parent night, outreach events, etc.</p>
+        <span class="go">Explore <span class="arw">&rarr;</span></span>
       </a>
       <a class="card card-link" href="/focus/technical-projects">
-        <span class="card-num">02 — AI-Powered Applications</span>
+        <span class="card-num">AI-Powered Applications</span>
         <h3>Technical Projects</h3>
-        <p>Tools and apps we've actually shipped — AI projects, websites, and internal systems built by students for the school that uses them.</p>
-        <span class="go">Explore <span class="arw">→</span></span>
+        <p>For tools and apps we've built (AI projects, websites, internal systems, etc.).</p>
+        <span class="go">Explore <span class="arw">&rarr;</span></span>
       </a>
       <a class="card card-link" href="/focus/tech-support">
-        <span class="card-num">03 — Peer-Driven Support</span>
+        <span class="card-num">Peer-Driven Support</span>
         <h3>On-Campus Tech Support</h3>
-        <p>Peer tech help, the tech support request form, and the internal processes that keep 2,000+ students and staff running day to day.</p>
-        <span class="go">Explore <span class="arw">→</span></span>
+        <p>For peer tech help and systems like the tech support form and internal support processes.</p>
+        <span class="go">Explore <span class="arw">&rarr;</span></span>
       </a>
     </div>
 
     <div class="stats rv" style="margin-top:clamp(44px,6vw,72px)">
-      <div class="stat"><div class="n"><span data-count="2000" data-suffix="+">0</span></div><div class="l">Students &amp; staff supported</div></div>
-      <div class="stat"><div class="n"><span data-count="12" data-suffix="+">0</span></div><div class="l">Events &amp; conferences</div></div>
-      <div class="stat"><div class="n"><span data-count="10" data-suffix="+">0</span></div><div class="l">AI tools &amp; projects built</div></div>
+      <div class="stat"><div class="n" data-odo="2000" data-suffix="+">0</div><div class="l">Students &amp; staff supported</div></div>
+      <div class="stat"><div class="n" data-odo="12" data-suffix="+">0</div><div class="l">Events &amp; conferences</div></div>
+      <div class="stat"><div class="n" data-odo="10" data-suffix="+">0</div><div class="l">AI tools &amp; projects</div></div>
     </div>
   </div>
 </section>
@@ -137,19 +148,19 @@
 <!-- ============================================================= FETC ==== -->
 <section class="section section--paper">
   <div class="shell">
+    <div class="section-head rv"><h2>Upcoming Events</h2></div>
     <div class="split">
       <div class="rv">
-        <span class="eyebrow eyebrow--gold">Featured · January 2026</span>
-        <h2>Speaking at <em>FETC 2026</em></h2>
-        <p class="lede">The MVHS Tech Internship has been invited to speak at the Future of Education Technology Conference. Our team will deliver three sessions on student-led innovation, real-world AI implementation, and practical frameworks for supporting technology adoption in schools and districts.</p>
-        <p>FETC is one of the nation's largest and most influential ed-tech conferences, bringing together educators, industry leaders, and innovators from around the world. We're honored to represent student leadership on a national stage.</p>
+        <span class="eyebrow eyebrow--gold">FETC 2026</span>
+        <p class="lede">The MVHS Tech Internship has been invited to speak at the Future of Education Technology Conference (FETC) in January 2026. Our team will deliver three sessions, sharing insights on student-led innovation, real-world implementation of AI tools, and practical frameworks for supporting technology adoption in schools and districts.</p>
+        <p>FETC is one of the nation's largest and most influential ed-tech conferences, bringing together educators, industry leaders, and innovators from around the world. We're honored to represent student leadership on a national stage and contribute to shaping the future of educational technology.</p>
         <div class="btn-row">
-          <a href="/donations" class="btn btn--dark">Help Send Us <span class="arw">→</span></a>
-          <a href="https://www.fetc.org/" target="_blank" rel="noopener" class="btn btn--solid">Visit FETC <span class="arw">→</span></a>
+          <a href="/donations" class="btn btn--dark">Support Us <span class="arw">&rarr;</span></a>
+          <a href="https://www.fetc.org/" target="_blank" rel="noopener" class="btn btn--solid">Visit FETC <span class="arw">&rarr;</span></a>
         </div>
       </div>
       <div class="split-media rv">
-        <img src="{{ url_for('static', filename='images/tech_conference.jpeg') }}" alt="MVHS Tech Internship team at a technology conference">
+        <img src="{{ url_for('static', filename='images/tech_conference.jpeg') }}" alt="MVHS Tech Internship at a technology conference">
       </div>
     </div>
   </div>
@@ -163,16 +174,13 @@
         <img src="{{ url_for('static', filename='images/whatwedo.jpeg') }}" alt="Students presenting their tech internship work">
       </div>
       <div class="rv">
-        <span class="eyebrow eyebrow--gold">How we bring this to life</span>
-        <h2>Built by students, <em>for</em> the school</h2>
-        <p style="margin-bottom:26px">Our work is guided by principles that shape how we build, collaborate, and create impact — inside our community and beyond it.</p>
+        <h2 style="font-size:clamp(26px,3.6vw,44px);letter-spacing:-.038em;line-height:1.04;margin-bottom:24px">How We Bring This to Life</h2>
+        <p style="margin-bottom:26px;color:var(--ink-52)">Our work is guided by a set of core principles that shape how we build, collaborate, and create impact. These values help us make meaningful, student-led contributions both within our community and beyond.</p>
         <ul class="ticks">
-          <li>Building real student-led technology and tools</li>
-          <li>Running hands-on community and campus events</li>
-          <li>Contributing to national discussions on AI in education</li>
-          <li>Researching and testing emerging technologies</li>
-          <li>Partnering with organizations to expand innovation</li>
-          <li>Improving how students experience modern learning</li>
+          <li><strong>Student leadership.</strong> Every project is led and executed by students who take ownership from idea to impact.</li>
+          <li><strong>Innovation with purpose.</strong> We build tools, programs, and systems that solve real problems and meet real needs.</li>
+          <li><strong>Accessibility.</strong> We make emerging technology understandable and usable for students, educators, and communities.</li>
+          <li><strong>Collaboration.</strong> We work with partners and peers to expand our reach and create solutions that matter.</li>
         </ul>
       </div>
     </div>
@@ -182,34 +190,19 @@
 <!-- =============================================================== NEWS == -->
 <section class="section section--paper">
   <div class="shell">
-    <div class="section-head rv">
-      <span class="eyebrow eyebrow--gold">News &amp; media</span>
-      <h2>What we've been <em>up to</em></h2>
-    </div>
-    <div class="grid grid-3 rv-stagger">
+    <div class="section-head rv"><h2>News &amp; Media</h2></div>
+    <div class="grid grid-2 rv-stagger">
       <a class="card card-link" href="/blogs">
-        <div class="post">
-          <div class="meta"><span class="tag">Blog</span></div>
-          <h3>MVHS Blogs</h3>
-          <p>Stories and updates written by our interns — what they're building, learning, and exploring in technology.</p>
-          <span class="go">Read the blog <span class="arw">→</span></span>
-        </div>
+        <span class="card-num">Written by our interns</span>
+        <h3>MVHS Blogs</h3>
+        <p>A collection of stories and updates written by our interns, sharing what they're building, learning, and exploring in technology.</p>
+        <span class="go">Read More <span class="arw">&rarr;</span></span>
       </a>
-      <a class="card card-link" href="/news">
-        <div class="post">
-          <div class="meta"><span class="tag">Press</span></div>
-          <h3>Mentioned in The Washington Post</h3>
-          <p>The Washington Post highlighted our school in an article about how teens use AI for homework.</p>
-          <span class="go">See coverage <span class="arw">→</span></span>
-        </div>
-      </a>
-      <a class="card card-link" href="/about/partnerships">
-        <div class="post">
-          <div class="meta"><span class="tag">Partnership</span></div>
-          <h3>Evaluating Knowt with students</h3>
-          <p>Our interns assess the AI study platform with a student-designed rubric and send structured feedback straight to the team.</p>
-          <span class="go">Our partners <span class="arw">→</span></span>
-        </div>
+      <a class="card card-link" href="https://www.washingtonpost.com/technology/2025/10/05/school-ai-homework-teens/" target="_blank" rel="noopener">
+        <span class="card-num">Press</span>
+        <h3>MVHS Mentioned in The Washington Post</h3>
+        <p>The Washington Post highlighted our school in an article about how teens use AI for homework.</p>
+        <span class="go">Read Article <span class="arw">&rarr;</span></span>
       </a>
     </div>
   </div>
@@ -219,11 +212,15 @@
 <section class="section">
   <div class="shell">
     <div class="cta-band rv">
-      <h2>Help us keep <em>building</em></h2>
-      <p>Every event we run, every tool we ship, and every conference we speak at is powered by our community. Support goes directly into student-led work.</p>
-      <div class="btn-row">
-        <a href="/donations" class="btn btn--solid">Donate <span class="arw">→</span></a>
-        <a href="/contact" class="btn">Work With Us <span class="arw">→</span></a>
+      <div class="cta-aurora" aria-hidden="true"></div>
+      <div class="cta-grain" aria-hidden="true"></div>
+      <div class="cta-inner">
+        <h2>Support Our Work</h2>
+        <p>Your support helps us attend conferences, expand our programs, and provide students with the tools to make an impact.</p>
+        <div class="btn-row">
+          <a href="/donations" class="btn btn--solid">Donate <span class="arw">&rarr;</span></a>
+          <a href="/contact" class="btn">Contact Us <span class="arw">&rarr;</span></a>
+        </div>
       </div>
     </div>
   </div>

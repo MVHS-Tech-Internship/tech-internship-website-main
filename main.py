@@ -59,10 +59,10 @@ def get_donation_data():
 
 
 # ---------------------------------------------------------------------------
-# ROADMAP — drives the scroll-driven road on the home page.
+# ROADMAP - drives the scroll-driven road on the home page.
 #
 # Every entry below is drawn from content already on the site. Where a date has
-# not been publicly announced, `tba` is True and the label reads "Date TBA" —
+# not been publicly announced, `tba` is True and the label reads "Date TBA" -
 # do not replace those with invented dates. Fill them in as they're confirmed.
 # Order = left-to-right order along the road.
 # ---------------------------------------------------------------------------
@@ -70,36 +70,39 @@ ROADMAP = [
     {
         "date": "Ongoing",
         "tba": False,
+        "color": "#3B7DD8",
         "title": "On-Campus Tech Support",
-        "blurb": "Peer-driven help for 2,000+ students and staff, running through "
-                 "our student-built request form and internal support process.",
+        "blurb": "Peer tech help and systems like the tech support form and "
+                 "internal support processes.",
         "href": "/focus/tech-support",
         "cta": "How it works",
     },
     {
         "date": "Ongoing",
         "tba": False,
-        "title": "Knowt Partnership Review",
-        "blurb": "Interns evaluate the AI study platform with a student-designed "
-                 "rubric and send structured feedback straight back to the team.",
+        "color": "#2E9E75",
+        "title": "Knowt Partnership",
+        "blurb": "Interns evaluate the platform with a student-designed rubric "
+                 "and share structured feedback directly with Knowt.",
         "href": "/about/partnerships",
         "cta": "Our partners",
     },
     {
         "date": "Date TBA",
         "tba": True,
+        "color": "#E8543F",
         "title": "AI Parent Night",
-        "blurb": "An evening built for families — what AI in the classroom actually "
-                 "looks like, what it changes, and the questions worth asking.",
+        "blurb": "Details coming soon.",
         "href": "/focus/community-events",
         "cta": "Community events",
     },
     {
         "date": "January 2026",
         "tba": False,
-        "title": "FETC 2026 — Three Sessions",
-        "blurb": "We've been invited to speak at the Future of Education Technology "
-                 "Conference on student-led innovation and real-world AI adoption.",
+        "color": "#F2A93B",
+        "title": "FETC 2026",
+        "blurb": "Three sessions at the Future of Education Technology "
+                 "Conference on student-led innovation and AI in schools.",
         "href": "https://www.fetc.org/",
         "external": True,
         "cta": "Visit FETC",
@@ -107,13 +110,14 @@ ROADMAP = [
     {
         "date": "Date TBA",
         "tba": True,
+        "color": "#8B5CF6",
         "title": "AI Philosophy Workshops",
-        "blurb": "Student-run sessions on the ethics and limits of the tools everyone "
-                 "is already using — built around our AI ethics game cards.",
-        "href": "/resources",
-        "cta": "Resources",
+        "blurb": "Details coming soon.",
+        "href": "/focus/community-events",
+        "cta": "Community events",
     },
 ]
+
 
 
 @app.route('/')

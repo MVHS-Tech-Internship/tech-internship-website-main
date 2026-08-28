@@ -1,12 +1,12 @@
 {% extends "base.html" %}
-{% block title %}Blog — MVHS Tech Internship{% endblock %}
+{% block title %}Blog | MVHS Tech Internship{% endblock %}
 {% block content %}
 
 <section class="page-hero">
   <div class="shell">
     <span class="eyebrow">Written by our interns</span>
     <h1>MVHS Tech <em>Blog</em></h1>
-    <p>Stories and updates from the team — what we're building, learning, and arguing about.</p>
+    <p>A collection of stories and updates written by our interns, sharing what they're building, learning, and exploring in technology.</p>
   </div>
 </section>
 
@@ -35,7 +35,15 @@
       </div>
       <div class="grid grid-2 rv-stagger" style="margin-bottom:clamp(38px,5vw,60px)">
         {% for p in featured_posts %}
-        <article class="card">
+        <article class="card post-card">
+          <div class="post-figure">
+            {% if p.image %}
+              <img src="{{ url_for('static', filename='images/' ~ p.image) }}"
+                   alt="{{ p.image_alt|default(p.title) }}" loading="lazy">
+            {% else %}
+              <div class="photo-slot"><span>Photo</span></div>
+            {% endif %}
+          </div>
           <div class="post">
             <div class="meta">
               {% for c in p.categories %}<span class="tag">{{ c }}</span>{% endfor %}
@@ -56,7 +64,15 @@
       </div>
       <div class="grid grid-3 rv-stagger">
         {% for p in latest_posts %}
-        <article class="card">
+        <article class="card post-card">
+          <div class="post-figure">
+            {% if p.image %}
+              <img src="{{ url_for('static', filename='images/' ~ p.image) }}"
+                   alt="{{ p.image_alt|default(p.title) }}" loading="lazy">
+            {% else %}
+              <div class="photo-slot"><span>Photo</span></div>
+            {% endif %}
+          </div>
           <div class="post">
             <div class="meta">
               {% for c in p.categories %}<span class="tag">{{ c }}</span>{% endfor %}

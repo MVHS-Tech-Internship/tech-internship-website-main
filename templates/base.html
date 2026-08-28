@@ -37,19 +37,9 @@
       <a href="/news" class="nav-link {% if request.path == '/news' %}active{% endif %}">News</a>
       <a href="/blogs" class="nav-link {% if request.path.startswith('/blog') %}active{% endif %}">Blog</a>
       <a href="/contact" class="nav-link {% if request.path.startswith('/contact') %}active{% endif %}">Contact</a>
-      <div class="nav-item">
-        <a href="/donations" class="nav-link {% if request.path in ['/donations','/merch'] %}active{% endif %}">
-          Support
-          <svg class="chev" viewBox="0 0 12 12" fill="none"><path d="M2.5 4.5 6 8l3.5-3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-        <div class="dropdown">
-          <a href="/donations">Donations</a>
-          <a href="/merch">Merch</a>
-        </div>
-      </div>
     </nav>
 
-    <a href="/donations" class="btn btn--solid btn--sm" style="margin-left:8px">
+    <a href="/donations" class="btn btn--solid btn--sm {% if request.path in ['/donations','/merch'] %}is-here{% endif %}" style="margin-left:8px">
       Support Us <span class="arw">→</span>
     </a>
 
