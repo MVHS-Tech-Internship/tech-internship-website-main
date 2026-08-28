@@ -94,7 +94,9 @@
 
   /* ---- tuning ---- */
   var STOP_GAP   = 0.60;  // milestone spacing, in viewport widths
-  var SCROLL_RATE= 2.15;  // world travel per unit of scroll (higher = snappier)
+  var SCROLL_RATE= 2.80;  // world travel per unit of scroll (higher = snappier)
+  var DWELL      = 0.075; // share of the travel leg spent paused at each stop
+  var CARD_MID   = 134;   // px from a pin to its card's centre (-42 + 352/2)
   var HOLD_END   = 0.10, DESCEND_END = 0.32, CURVE_MID = 0.46,
       CURVE_END  = 0.57, OPEN_END = 0.68, TRAVEL_START = 0.76;
 
@@ -143,6 +145,8 @@
     });
     endX = startX + 0.46 * vw / kRoad + (stops.length - 1) * gap + 0.40 * vw / kRoad;
 
+    buildStations();
+
     // Camera keyframes. `x:'left'` means "hug the artwork's left edge" and is
     // resolved against that keyframe's own scale, so the framing holds at any
     // viewport instead of drifting off the image.
@@ -158,9 +162,13 @@
     ];
     kf.forEach(function (f) { if (f.x === 'left') f.x = vw / (2 * f.k); });
 
-    // scroller length derives from how far the camera actually travels
+    // Scroller length derives from how far the camera actually travels. The
+    // dwells consume scroll without moving the camera, so the travel leg is
+    // lengthened by exactly that budget - otherwise adding pauses would
+    // silently speed up the driving between them.
     var travelCss = (endX - startX) * kRoad;
-    var total = Math.round((travelCss / SCROLL_RATE) / (1 - TRAVEL_START));
+    var total = Math.round(
+      (travelCss / SCROLL_RATE) / (1 - TRAVEL_START) / travelBudget);
     scroller.style.height = (vh + total) + 'px';
 
     lastK = -1;   // force a re-place at the new viewport
@@ -203,6 +211,61 @@
       el.style.top  = pinY * k + 'px';
       el.style.setProperty('--stem', (0.075 * vh) + 'px');
     });
+  }
+
+  /* ------------------------------------------------------------------ dwell
+     The camera pauses at each milestone. Rather than hijacking the scroll,
+     progress through the travel leg is remapped: stretches where the output
+     is flat read as a pause, and each moving stretch is smoothstepped so the
+     camera eases to a halt and then pulls away. Native scrolling, momentum
+     and scrollbar position are all left alone.                            */
+  var stationKeys = null, travelBudget = 1;
+
+  function buildStations() {
+    var span = endX - startX;
+    if (!stops.length || span <= 0) { stationKeys = null; travelBudget = 1; return; }
+
+    // camera-x that centres each card, as a 0..1 position along the travel leg
+    var outs = stops.map(function (el) {
+      var target = parseFloat(el.dataset.wx) + CARD_MID / kRoad;
+      return Math.max(0, Math.min(1, (target - startX) / span));
+    }).sort(function (a, b) { return a - b; });
+
+    var n = outs.length;
+    var dwell = Math.min(DWELL, 0.7 / n);         // always leave room to travel
+    travelBudget = 1 - n * dwell;
+
+    var keys = [{ i: 0, o: 0 }], inPos = 0, prevOut = 0;
+    outs.forEach(function (o) {
+      inPos += (o - prevOut) * travelBudget;
+      keys.push({ i: inPos, o: o });              // arrive at the stop
+      inPos += dwell;
+      keys.push({ i: inPos, o: o });              // hold
+      prevOut = o;
+    });
+    inPos += (1 - prevOut) * travelBudget;
+    keys.push({ i: inPos, o: 1 });
+    keys.forEach(function (k) { k.i /= inPos; }); // normalise input to 0..1
+    stationKeys = keys;
+  }
+
+  function stationMap(u) {
+    var keys = stationKeys;
+    if (!keys) return u;
+    var i = 0;
+    while (i < keys.length - 2 && u > keys[i + 1].i) i++;
+    var a = keys[i], b = keys[i + 1];
+    if (a.o === b.o) return a.o;                  // <- the pause
+    var h = (b.i - a.i) || 1e-6;
+    var t = Math.max(0, Math.min(1, (u - a.i) / h));
+    return a.o + (b.o - a.o) * (t * t * (3 - 2 * t));
+  }
+
+  /* Remap only the travel leg; everything before it is untouched. */
+  function withDwell(p) {
+    if (p <= TRAVEL_START || !stationKeys) return p;
+    var u = (p - TRAVEL_START) / (1 - TRAVEL_START);
+    return TRAVEL_START + stationMap(u) * (1 - TRAVEL_START);
   }
 
   /* Monotone cubic Hermite across the whole keyframe path.
@@ -261,7 +324,7 @@
     var len = scroller.offsetHeight - vh;
     var p   = Math.max(0, Math.min(1, (scrollY - top) / len));
 
-    var c = camera(p);
+    var c = camera(withDwell(p));
     place();
     // exposed for tuning: read window.__road in the console while scrolling
     window.__road = { p: p, k: c.k, camX: c.x, camY: c.y, top: top, len: len };
@@ -287,14 +350,21 @@
     if (hud)  hud.classList.toggle('on', p > TRAVEL_START - 0.03);
     if (prog) prog.classList.toggle('on', p > TRAVEL_START - 0.03);
 
-    // milestones reveal as they enter frame
-    var shown = 0;
+    // milestones reveal as they enter frame; the one the camera is parked
+    // at is marked active so the stop reads as a deliberate halt
+    var shown = 0, best = -1, bestD = Infinity;
+    var tx = vw / 2 - c.x * c.k;
     stops.forEach(function (el, i) {
-      var sx = parseFloat(el.dataset.wx) * c.k + (vw / 2 - c.x * c.k);
-      var on = sx > -260 && sx < vw - 90;
-      el.classList.toggle('on', on);
+      var sx = parseFloat(el.dataset.wx) * c.k + tx;
+      el.classList.toggle('on', sx > -260 && sx < vw - 90);
+      var d = Math.abs(sx + CARD_MID - vw / 2);     // card centre vs screen centre
+      if (d < bestD) { bestD = d; best = i; }
       if (sx < vw * 0.62) shown = i + 1;
     });
+    stops.forEach(function (el, i) {
+      el.classList.toggle('active', i === best && bestD < vw * 0.16);
+    });
+    if (best >= 0 && bestD < vw * 0.16) shown = best + 1;
     if (progFill) progFill.style.width =
       Math.max(0, Math.min(100, (p - TRAVEL_START) / (1 - TRAVEL_START) * 100)) + '%';
     if (progNum)  progNum.textContent =
