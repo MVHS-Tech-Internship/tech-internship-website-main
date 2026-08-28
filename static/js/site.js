@@ -284,6 +284,8 @@
       el.style.left = parseFloat(el.dataset.wx) * k + 'px';
       el.style.top  = pinY * k + 'px';
       el.style.setProperty('--stem', (0.17 * vh) + 'px');
+      // ~900 world px of road, so the car reads at true scale against the lane
+      el.style.setProperty('--car', (900 * k) + 'px');
     });
   }
 
