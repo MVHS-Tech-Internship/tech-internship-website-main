@@ -169,7 +169,9 @@
   var STOP_GAP   = 0.60;  // milestone spacing, in viewport widths
   var SCROLL_RATE= 2.80;  // world travel per unit of scroll (higher = snappier)
   var DWELL      = 0.075; // share of the travel leg spent paused at each stop
-  var CARD_MID   = 134;   // px from a pin to its card's centre (-42 + 352/2)
+  var CARD_W     = 360;   // milestone card width, px (JS also sets --cardw)
+  var CARD_OFF   = 52;    // card's left offset from its anchor, px
+  var CARD_MID   = CARD_W / 2 - CARD_OFF;   // anchor -> card centre
   var HOLD_END   = 0.10, DESCEND_END = 0.32, CURVE_MID = 0.46,
       CURVE_END  = 0.57, OPEN_END = 0.68, TRAVEL_START = 0.76;
 
@@ -203,10 +205,12 @@
     if (isStatic) return;
 
     kHero  = Math.max(vw / IMG_W, vh / 2300);      // opening frame covers the viewport
-    kRoad  = (0.42 * vh) / BAND_H;                 // road band = 42% of viewport height
+    // curb sits at 65%, so the band must be >35% for its bottom edge to run
+    // off screen rather than showing a seam above the fold
+    kRoad  = (0.40 * vh) / BAND_H;
     heroCY = vh / (2 * kHero);                     // top-aligned: no gap above the sky
-    roadCY = BAND_TOP - (0.10 * vh) / kRoad;       // curb line at 60%; band runs off the bottom
-    pinY   = BAND_TOP + (0.14 * vh) / kRoad;       // cars sit in the near lane
+    roadCY = BAND_TOP - (0.15 * vh) / kRoad;       // curb line at 65%; band runs off the bottom
+    pinY   = BAND_TOP + (0.09 * vh) / kRoad;       // marker sits in the near lane
 
     // milestone spacing & camera range for the horizontal leg
     // The roadmap needs a genuinely white canvas, so the travel leg starts
@@ -283,9 +287,8 @@
     stops.forEach(function (el) {
       el.style.left = parseFloat(el.dataset.wx) * k + 'px';
       el.style.top  = pinY * k + 'px';
-      el.style.setProperty('--stem', (0.17 * vh) + 'px');
-      // ~900 world px of road, so the car reads at true scale against the lane
-      el.style.setProperty('--car', (900 * k) + 'px');
+      el.style.setProperty('--stem', (0.10 * vh) + 'px');
+      el.style.setProperty('--cardw', CARD_W + 'px');
     });
   }
 

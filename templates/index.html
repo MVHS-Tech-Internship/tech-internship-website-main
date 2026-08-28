@@ -1,15 +1,6 @@
 {% extends "base.html" %}
 {% block title %}MVHS Tech Internship{% endblock %}
 
-{% macro car(color) -%}
-<svg class="m-car" viewBox="0 0 64 26" aria-hidden="true" focusable="false">
-  <path d="M4 19h56a2 2 0 0 0 2-2v-4a5 5 0 0 0-4-4.9L47 5.6A14 14 0 0 0 43.6 4H23a11 11 0 0 0-6.6 2.2L10 11l-5 .9A4 4 0 0 0 2 15.8V17a2 2 0 0 0 2 2Z" fill="{{ color }}"/>
-  <path d="M24 6.6h8.4v4.6H18.6L22 8.1a4 4 0 0 1 2-1.5Zm11.4 0h7.4a10 10 0 0 1 2.4 1.1l4.3 3.5H35.4Z" fill="#F4F6FA" opacity=".92"/>
-  <circle cx="18" cy="19" r="4.4" fill="#151A22"/><circle cx="18" cy="19" r="1.7" fill="#C9CFDA"/>
-  <circle cx="47" cy="19" r="4.4" fill="#151A22"/><circle cx="47" cy="19" r="1.7" fill="#C9CFDA"/>
-</svg>
-{%- endmacro %}
-
 {% block content %}
 
 <!-- ======================================================= THE ROAD ==== -->
@@ -24,13 +15,23 @@
 
       {% for m in roadmap %}
       <div class="milestone">
-        {{ car(m.color) }}
+        <div class="m-dot" style="--c:{{ m.color }}"></div>
         <div class="m-stem" style="--c:{{ m.color }}"></div>
         <div class="m-card">
+          <div class="m-figure">
+            {% if m.image %}
+              <img src="{{ url_for('static', filename='images/' ~ m.image) }}"
+                   alt="{{ m.image_alt|default(m.title) }}" loading="lazy">
+            {% else %}
+              <div class="photo-slot"><span>Photo</span></div>
+            {% endif %}
+          </div>
+          <div class="m-body">
           <div class="date {{ 'tba' if m.tba }}"><span class="dot" style="background:{{ m.color }}"></span>{{ m.date }}</div>
           <h3>{{ m.title }}</h3>
           <p>{{ m.blurb }}</p>
           {% if m.href %}<a class="go" href="{{ m.href }}"{% if m.external %} target="_blank" rel="noopener"{% endif %}>{{ m.cta }} <span class="arw">&rarr;</span></a>{% endif %}
+          </div>
         </div>
       </div>
       {% endfor %}
