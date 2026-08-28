@@ -443,7 +443,7 @@ body.hero-ready .scroll-hint{opacity:1}
 .section-head p{margin-top:16px;font-size:clamp(15.5px,1.5vw,18px);color:var(--ink-52);text-wrap:pretty}
 .section-head.center{margin-inline:auto;text-align:center}
 
-.grid{display:grid;gap:20px}
+.grid{display:grid;gap:20px;align-items:start}
 .grid-3{grid-template-columns:repeat(3,1fr)}
 .grid-2{grid-template-columns:repeat(2,1fr)}
 .grid-4{grid-template-columns:repeat(4,1fr)}

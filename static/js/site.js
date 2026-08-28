@@ -392,7 +392,15 @@
   function frame() {
     raf = 0;
     lastFrameAt = (window.performance || Date).now();
-    if (body.classList.contains('road-static')) { headerChrome(scrollY); return; }
+    if (body.classList.contains('road-static')) {
+      // the static fallback never runs the camera, so it has to flip the
+      // header itself: white-on-white otherwise, once past the dark hero
+      var fb = document.querySelector('.fb-hero');
+      var trip = fb ? fb.offsetHeight - 90 : 60;
+      body.classList.toggle('nav-light', scrollY > trip);
+      headerChrome(scrollY);
+      return;
+    }
 
     var top = scroller.offsetTop;
     var len = scroller.offsetHeight - vh;
