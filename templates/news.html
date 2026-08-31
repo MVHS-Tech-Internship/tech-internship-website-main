@@ -16,27 +16,37 @@
     <div class="press-strip rv">
       <span class="lbl">Featured in</span>
       <a class="outlet" href="https://www.washingtonpost.com/technology/2025/10/05/school-ai-homework-teens/"
-         target="_blank" rel="noopener">The Washington Post</a>
-      <span class="outlet soon">Your next mention goes here</span>
+         target="_blank" rel="noopener" aria-label="The Washington Post">
+        {# Drop the official masthead at static/images/wapo-logo.png to use it. #}
+        <img src="{{ url_for('static', filename='images/wapo-logo.png') }}" alt="The Washington Post"
+             class="outlet-logo" onerror="this.remove()">
+        <span class="outlet-word" aria-hidden="true">The Washington Post</span>
+      </a>
     </div>
 
-    <div class="press-feature rv" style="margin-top:clamp(32px,4vw,52px)">
-      <div>
+    <article class="press-feature rv" style="margin-top:clamp(32px,4vw,52px)">
+      <div class="press-shot">
+        {# Drop a screenshot at static/images/wapo-article.jpg to use it. #}
+        <img src="{{ url_for('static', filename='images/wapo-article.jpg') }}"
+             alt="The Washington Post article featuring Mountain View High School"
+             loading="lazy"
+             onerror="this.closest('.press-shot').classList.add('empty'); this.remove()">
+        <div class="shot-fallback">
+          <span>Article screenshot</span>
+          <em>static/images/wapo-article.jpg</em>
+        </div>
+      </div>
+
+      <div class="press-body">
         <div class="meta"><span class="src">The Washington Post</span><span>&middot;</span><span>October 5, 2025</span></div>
-        <h3>MVHS mentioned in The Washington Post</h3>
+        <h2>MVHS Mentioned in The Washington Post</h2>
         <p>The Washington Post highlighted our school in an article about how teens use AI for homework.</p>
         <div class="btn-row" style="display:flex;gap:10px;margin-top:24px;flex-wrap:wrap">
           <a href="https://www.washingtonpost.com/technology/2025/10/05/school-ai-homework-teens/"
              target="_blank" rel="noopener" class="btn btn--dark">Read the Article <span class="arw">&rarr;</span></a>
         </div>
       </div>
-      <div class="quote-slot">
-        <span class="hint">Pull quote</span>
-        <p>Add a short line from the article here, in quotation marks, with the
-           speaker's name. Left empty on purpose so nothing is put in the paper's
-           mouth.</p>
-      </div>
-    </div>
+    </article>
 
     <div class="section-head rv" style="margin-top:clamp(52px,7vw,84px)">
       <h2>More From Us</h2>
@@ -58,7 +68,7 @@
     </div>
 
     <div class="cta-band rv" style="margin-top:clamp(52px,7vw,84px)">
-      <h2>Covering us?</h2>
+      <h2>Covering Us?</h2>
       <p>Press and speaking enquiries are welcome. We are happy to talk about student-led technology and AI in schools.</p>
       <div class="btn-row">
         <a href="/contact" class="btn btn--solid">Contact Us <span class="arw">&rarr;</span></a>

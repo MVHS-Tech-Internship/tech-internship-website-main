@@ -575,49 +575,65 @@ body.hero-ready .scroll-hint{opacity:1}
 }
 .name-cloud span:hover{border-color:var(--yellow);background:var(--yellow-wash);transform:translateY(-2px)}
 
-/* press: outlet wordmarks, so the source reads at a glance */
+/* press: the outlet's own mark, so the source reads at a glance ---------
+   Both the masthead and the article shot are slots. Drop the real files in
+   and they take over; until then a labelled placeholder shows what is
+   missing rather than faking it. The Post blocks automated clients, so
+   neither asset can be fetched here - they have to be supplied.          */
 .press-strip{
-  display:flex;align-items:center;gap:clamp(22px,4vw,54px);flex-wrap:wrap;
+  display:flex;align-items:center;gap:clamp(18px,3vw,38px);flex-wrap:wrap;
   padding:26px 0 30px;border-block:1px solid var(--hairline);
 }
 .press-strip .lbl{
   font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--ink-38);margin-right:4px;
+  color:var(--ink-38);
 }
 .outlet{
-  font-size:clamp(19px,2.1vw,26px);font-weight:600;letter-spacing:-.03em;
-  color:var(--ink);text-decoration:none;opacity:.82;
-  transition:opacity .3s var(--ease-out),transform .3s var(--ease-out);
+  display:inline-flex;align-items:center;text-decoration:none;color:var(--ink);
+  transition:opacity .3s var(--ease-out),transform .3s var(--ease-out);opacity:.88;
 }
 .outlet:hover{opacity:1;transform:translateY(-1px)}
-.outlet.soon{color:var(--ink-38);font-weight:500;opacity:.6}
+.outlet-logo{height:clamp(22px,2.4vw,30px);width:auto;display:block}
+/* the typographic stand-in; the real masthead replaces it when present */
+.outlet-logo + .outlet-word{display:none}
+.outlet-word{
+  font-size:clamp(20px,2.2vw,27px);font-weight:600;letter-spacing:-.032em;
+}
 
 .press-feature{
-  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.86fr);
-  gap:clamp(26px,4vw,56px);align-items:center;
-  border:1px solid var(--hairline);border-radius:24px;
-  padding:clamp(28px,3.4vw,44px);background:var(--white);
+  display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
+  gap:clamp(24px,3.4vw,44px);align-items:center;
+  border:1px solid var(--hairline);border-radius:24px;overflow:hidden;
+  background:var(--white);
 }
+.press-shot{position:relative;aspect-ratio:4/3;background:var(--hairline-2);overflow:hidden}
+.press-shot img{width:100%;height:100%;object-fit:cover;object-position:top center;
+  position:relative;z-index:1}
+.shot-fallback{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:8px;text-align:center;padding:20px;
+  background:repeating-linear-gradient(-45deg,var(--hairline-2) 0 10px,#F6F4EE 10px 20px);
+}
+.shot-fallback span{
+  font-size:10.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--ink-38);background:rgba(255,255,255,.88);
+  padding:6px 12px;border-radius:999px;border:1px solid var(--hairline);
+}
+.shot-fallback em{font-style:normal;font-size:11.5px;color:var(--ink-38);opacity:.75}
+.press-body{padding:clamp(22px,2.6vw,34px) clamp(24px,2.8vw,38px) clamp(26px,3vw,38px) 0}
 .press-feature .meta{
-  display:flex;align-items:center;gap:10px;margin-bottom:16px;
+  display:flex;align-items:center;gap:10px;margin-bottom:14px;
   font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
   color:var(--ink-38);
 }
 .press-feature .meta .src{color:var(--yellow-deep)}
-.press-feature h3{font-size:clamp(22px,2.7vw,32px);letter-spacing:-.032em;
-  line-height:1.14;margin-bottom:12px}
-.press-feature p{color:var(--ink-52);font-size:15.5px}
-/* an empty pull-quote slot: fill it from the article, do not invent one */
-.quote-slot{
-  border-left:3px solid var(--yellow);padding:18px 22px;border-radius:0 14px 14px 0;
-  background:var(--yellow-wash);
+.press-feature h2{font-size:clamp(21px,2.5vw,30px);letter-spacing:-.032em;
+  line-height:1.16;margin-bottom:12px}
+.press-feature p{color:var(--ink-52);font-size:15.5px;margin:0}
+@media (max-width:900px){
+  .press-feature{grid-template-columns:1fr}
+  .press-body{padding:0 24px 26px}
 }
-.quote-slot .hint{
-  font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--yellow-deep);display:block;margin-bottom:8px;
-}
-.quote-slot p{color:var(--ink-52);font-size:15px;margin:0}
-@media (max-width:900px){.press-feature{grid-template-columns:1fr}}
 
 /* blog */
 .post-card{padding:0;overflow:hidden;display:flex;flex-direction:column}

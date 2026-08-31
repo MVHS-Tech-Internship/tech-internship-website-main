@@ -1,98 +1,179 @@
 [
-    {
-        "id": 1,
-        "title": "How AI is Transforming Student Learning at MVHS",
-        "excerpt": "We explore how artificial intelligence tools are being integrated into classrooms, the benefits we've observed, and the challenges we're working to address. This article shares real experiences from students and teachers using AI-powered study platforms.",
-        "author": "Sarah Chen",
-        "date": "January 15, 2026",
-        "read_time": "5 min read",
-        "categories": ["Education"],
-        "tags": ["Education", "AI", "Student Life"],
-        "featured": true,
-        "content": "<h3>The AI Evolution in MVHS Classrooms</h3><p>Artificial Intelligence is no longer a futuristic concept; it is an active, evolving tool within the MVHS learning environment. We are focused on integrating AI ethically and effectively, moving beyond simple novelty to genuine educational enhancement. Our approach centers on accelerating student mastery of foundational concepts, freeing up human instructors to focus on creativity, critical thinking, and personalized mentorship. AI tools are currently used across subjects from personalized math practice to generating instant feedback on introductory coding assignments.</p><h3>Personalized Learning Pathways</h3><p>One of the most profound benefits we've observed is the ability of AI platforms to adapt content difficulty in real-time. Unlike traditional software, these tools can identify exactly where a student’s knowledge gap lies and offer highly specific remediation or advanced challenges. This ensures that every student is consistently learning in their optimal zone, maximizing efficiency. Teachers are leveraging data from these platforms to group students for targeted instruction, transforming the classroom into a responsive, student-centric space.</p><h3>Addressing the Ethical Questions and Challenges</h3><p>Integrating AI comes with significant responsibility. Our MVHS Tech Internship addresses challenges head-on, particularly concerns regarding data privacy and the potential for algorithmic bias. We host regular workshops for students and staff on responsible AI usage, emphasizing that these tools are complements to, not replacements for, human effort and original thought. Furthermore, a recent survey among our students revealed that approximately 25% still feel morally opposed to using AI in academic work, highlighting the need for continuous, open dialogue about boundaries and ethical guidelines.</p><h3>The Future is Collaborative</h3><p>The successful integration of AI requires collaboration among students, teachers, administrators, and the wider community. By making AI usage transparent and focusing on tools that enhance core learning objectives, we are preparing MVHS students not just to use future technology, but to shape it. We encourage everyone to join the conversation and explore these transformative tools with a mindset of curiosity and caution.</p>"
-    },
-    {
-        "id": 2,
-        "title": "Building Community Through Tech Events",
-        "excerpt": "How our AI Parent Night used technology events to engage students, parents, and staff while building community and understanding of AI in education.",
-        "author": "Sean Lin",
-        "date": "September 24, 2025",
-        "read_time": "4 min read",
-        "categories": ["Student Life"],
-        "tags": ["Student Life", "Education", "AI", "Events"],
-        "featured": true,
-        "content": "<h3>The Planning Process</h3><p>AI Parent Night was an event designed to help parents learn more about how artificial intelligence is being used in education, how it can support student learning, and how it affects our future careers. Our goal was to make the topic of AI easier to understand and show how it connects to what students are doing in class. The first step was coming up with a plan. A few weeks before the event on September 24th, our group met after school to discuss what we should include. We wanted to make sure that our parents’ questions could be resolved, so we sent out survey forms for students and staff input, as well as a survey for parents about what questions they wanted answered. We split into multiple groups: setup, communication and guest coordination. Everybody had their own role, which really helped us stay organized.</p><h3>Contacting Guest Speakers</h3><p>Finding guest speakers was one of the trickiest parts. We wanted to invite people who could connect both parents and students, clearing any misconceptions and questions in the way. After sending a few emails, we were thrilled when Ly Nguyen, Sandra McGonagle, Alex Levich, and our principal Kip Glazer agreed to join. We chose them because each brought a different perspective ranging from district level leadership to classroom experience and industry insight. We organized a panel discussion featuring them, where each speaker shared their unique perspective on education, technology, and school leadership. Their insights helped parents better understand how AI impacts both teaching and learning.</p><h3>The Big Day</h3><p>The day of the event was busy, but exciting. We arrived early to set up the space, check the microphones, practice the presentation, and welcome in our parents. In no time, all the seats were full of parents, eager to learn something new. We presented our findings, showing what was beneath the project we had worked hard on for weeks. Such as the types of AI tools that students use and the benefits and drawbacks of utilizing AI. Something that stood out to us was the fact that a quarter of the students that took the survey were morally opposed to using AI. As we spoke, we could see the parents’ interests grow. Some nodded along, others took notes and asked thoughtful questions. </p><p>After our presentation, we transitioned into our guest speaker panel. The guest speakers followed up with their own insights, connecting perfectly to our mission statement and goals. They discussed topics such as where we should draw the line between positive and harmful uses of AI, and what it takes to build a successful career in this new era of artificial intelligence. Then, we followed with our student speaker panel, giving parents a direct look at how AI affects students’ real experiences, challenges, and hopes. When the event wrapped up, there was a real sense of pride in the room. All our preparation had paid off, and it felt amazing to see just how engaged everybody was.</p><h3>Reflections and Impact</h3><p>Looking back, the AI Parent Event taught us a lot about teamwork, communication, and the effort it takes to bring an idea to something real. We learned how to manage deadlines and stay calm under pressure. But most importantly, we saw how an event like this can strengthen our school community and inspire more students and parents to get involved with future projects. Additionally, parents left with a sense of clarity about AI in education, and several even reached out afterward asking if we could host another session. With the amount of interest and support we received, we’re even considering holding a second event during the second semester.</p>"
-    },
-    {
-        "id": 3,
-        "title": "Understanding AI Ethics in Education",
-        "excerpt": "Exploring the ethical considerations when implementing AI tools in educational settings and how students can engage thoughtfully with these technologies.",
-        "author": "Maria Garcia",
-        "date": "January 8, 2026",
-        "read_time": "4 min read",
-        "categories": ["AI"],
-        "tags": ["AI", "Education"],
-        "featured": false,
-        "content": "<h3>The AI Evolution in MVHS Classrooms</h3><p>Artificial Intelligence is no longer a futuristic concept; it is an active, evolving tool within the MVHS learning environment. We are focused on integrating AI ethically and effectively, moving beyond simple novelty to genuine educational enhancement. Our approach centers on accelerating student mastery of foundational concepts, freeing up human instructors to focus on creativity, critical thinking, and personalized mentorship. AI tools are currently used across subjects from personalized math practice to generating instant feedback on introductory coding assignments.</p><h3>Personalized Learning Pathways</h3><p>One of the most profound benefits we've observed is the ability of AI platforms to adapt content difficulty in real-time. Unlike traditional software, these tools can identify exactly where a student’s knowledge gap lies and offer highly specific remediation or advanced challenges. This ensures that every student is consistently learning in their optimal zone, maximizing efficiency. Teachers are leveraging data from these platforms to group students for targeted instruction, transforming the classroom into a responsive, student-centric space.</p><h3>Addressing the Ethical Questions and Challenges</h3><p>Integrating AI comes with significant responsibility. Our MVHS Tech Internship addresses challenges head-on, particularly concerns regarding data privacy and the potential for algorithmic bias. We host regular workshops for students and staff on responsible AI usage, emphasizing that these tools are complements to, not replacements for, human effort and original thought. Furthermore, a recent survey among our students revealed that approximately 25% still feel morally opposed to using AI in academic work, highlighting the need for continuous, open dialogue about boundaries and ethical guidelines.</p><h3>The Future is Collaborative</h3><p>The successful integration of AI requires collaboration among students, teachers, administrators, and the wider community. By making AI usage transparent and focusing on tools that enhance core learning objectives, we are preparing MVHS students not just to use future technology, but to shape it. We encourage everyone to join the conversation and explore these transformative tools with a mindset of curiosity and caution.</p>"
-    },
-    {
-        "id": 4,
-        "title": "A Day in the Life of a Tech Intern",
-        "excerpt": "Follow along as we document a typical day for our interns, from morning meetings to afternoon coding sessions and evening events.",
-        "author": "James Park",
-        "date": "January 5, 2026",
-        "read_time": "3 min read",
-        "categories": ["Student Life"],
-        "tags": ["Student Life"],
-        "featured": false,
-        "content": "<h3>The AI Evolution in MVHS Classrooms</h3><p>Artificial Intelligence is no longer a futuristic concept; it is an active, evolving tool within the MVHS learning environment. We are focused on integrating AI ethically and effectively, moving beyond simple novelty to genuine educational enhancement. Our approach centers on accelerating student mastery of foundational concepts, freeing up human instructors to focus on creativity, critical thinking, and personalized mentorship. AI tools are currently used across subjects from personalized math practice to generating instant feedback on introductory coding assignments.</p><h3>Personalized Learning Pathways</h3><p>One of the most profound benefits we've observed is the ability of AI platforms to adapt content difficulty in real-time. Unlike traditional software, these tools can identify exactly where a student’s knowledge gap lies and offer highly specific remediation or advanced challenges. This ensures that every student is consistently learning in their optimal zone, maximizing efficiency. Teachers are leveraging data from these platforms to group students for targeted instruction, transforming the classroom into a responsive, student-centric space.</p><h3>Addressing the Ethical Questions and Challenges</h3><p>Integrating AI comes with significant responsibility. Our MVHS Tech Internship addresses challenges head-on, particularly concerns regarding data privacy and the potential for algorithmic bias. We host regular workshops for students and staff on responsible AI usage, emphasizing that these tools are complements to, not replacements for, human effort and original thought. Furthermore, a recent survey among our students revealed that approximately 25% still feel morally opposed to using AI in academic work, highlighting the need for continuous, open dialogue about boundaries and ethical guidelines.</p><h3>The Future is Collaborative</h3><p>The successful integration of AI requires collaboration among students, teachers, administrators, and the wider community. By making AI usage transparent and focusing on tools that enhance core learning objectives, we are preparing MVHS students not just to use future technology, but to shape it. We encourage everyone to join the conversation and explore these transformative tools with a mindset of curiosity and caution.</p>"
-    },
-    {
-        "id": 5,
-        "title": "Workshop Recap: AI Tools for Students",
-        "excerpt": "Highlights from our recent workshop where students learned about practical AI applications for studying, writing, and research.",
-        "author": "Emma Thompson",
-        "date": "January 3, 2026",
-        "read_time": "5 min read",
-        "categories": ["Education"],
-        "tags": ["Education", "AI"],
-        "featured": false,
-        "content": "<h3>The AI Evolution in MVHS Classrooms</h3><p>Artificial Intelligence is no longer a futuristic concept; it is an active, evolving tool within the MVHS learning environment. We are focused on integrating AI ethically and effectively, moving beyond simple novelty to genuine educational enhancement. Our approach centers on accelerating student mastery of foundational concepts, freeing up human instructors to focus on creativity, critical thinking, and personalized mentorship. AI tools are currently used across subjects from personalized math practice to generating instant feedback on introductory coding assignments.</p><h3>Personalized Learning Pathways</h3><p>One of the most profound benefits we've observed is the ability of AI platforms to adapt content difficulty in real-time. Unlike traditional software, these tools can identify exactly where a student’s knowledge gap lies and offer highly specific remediation or advanced challenges. This ensures that every student is consistently learning in their optimal zone, maximizing efficiency. Teachers are leveraging data from these platforms to group students for targeted instruction, transforming the classroom into a responsive, student-centric space.</p><h3>Addressing the Ethical Questions and Challenges</h3><p>Integrating AI comes with significant responsibility. Our MVHS Tech Internship addresses challenges head-on, particularly concerns regarding data privacy and the potential for algorithmic bias. We host regular workshops for students and staff on responsible AI usage, emphasizing that these tools are complements to, not replacements for, human effort and original thought. Furthermore, a recent survey among our students revealed that approximately 25% still feel morally opposed to using AI in academic work, highlighting the need for continuous, open dialogue about boundaries and ethical guidelines.</p><h3>The Future is Collaborative</h3><p>The successful integration of AI requires collaboration among students, teachers, administrators, and the wider community. By making AI usage transparent and focusing on tools that enhance core learning objectives, we are preparing MVHS students not just to use future technology, but to shape it. We encourage everyone to join the conversation and explore these transformative tools with a mindset of curiosity and caution.</p>"
-    },
-    {
-        "id": 6,
-        "title": "Open Source Contributions from MVHS Students",
-        "excerpt": "Celebrating the open source projects our interns have contributed to and the impact they're making in the developer community.",
-        "author": "David Kim",
-        "date": "December 28, 2025",
-        "read_time": "6 min read",
-        "categories": ["Technology"],
-        "tags": ["Technology"],
-        "featured": false,
-        "content": "<h3>The AI Evolution in MVHS Classrooms</h3><p>Artificial Intelligence is no longer a futuristic concept; it is an active, evolving tool within the MVHS learning environment. We are focused on integrating AI ethically and effectively, moving beyond simple novelty to genuine educational enhancement. Our approach centers on accelerating student mastery of foundational concepts, freeing up human instructors to focus on creativity, critical thinking, and personalized mentorship. AI tools are currently used across subjects from personalized math practice to generating instant feedback on introductory coding assignments.</p><h3>Personalized Learning Pathways</h3><p>One of the most profound benefits we've observed is the ability of AI platforms to adapt content difficulty in real-time. Unlike traditional software, these tools can identify exactly where a student’s knowledge gap lies and offer highly specific remediation or advanced challenges. This ensures that every student is consistently learning in their optimal zone, maximizing efficiency. Teachers are leveraging data from these platforms to group students for targeted instruction, transforming the classroom into a responsive, student-centric space.</p><h3>Addressing the Ethical Questions and Challenges</h3><p>Integrating AI comes with significant responsibility. Our MVHS Tech Internship addresses challenges head-on, particularly concerns regarding data privacy and the potential for algorithmic bias. We host regular workshops for students and staff on responsible AI usage, emphasizing that these tools are complements to, not replacements for, human effort and original thought. Furthermore, a recent survey among our students revealed that approximately 25% still feel morally opposed to using AI in academic work, highlighting the need for continuous, open dialogue about boundaries and ethical guidelines.</p><h3>The Future is Collaborative</h3><p>The successful integration of AI requires collaboration among students, teachers, administrators, and the wider community. By making AI usage transparent and focusing on tools that enhance core learning objectives, we are preparing MVHS students not just to use future technology, but to shape it. We encourage everyone to join the conversation and explore these transformative tools with a mindset of curiosity and caution.</p>"
-    },
-    {
-        "id": 7,
-        "title": "Evaluating AI Study Tools: A Student Perspective",
-        "excerpt": "Our interns share their honest reviews of popular AI-powered study platforms, what works, what doesn't, and recommendations for students.",
-        "author": "Lisa Wang",
-        "date": "December 25, 2025",
-        "read_time": "8 min read",
-        "categories": ["AI"],
-        "tags": ["AI", "Education", "Student Life"],
-        "featured": false,
-        "content": "<h3>The AI Evolution in MVHS Classrooms</h3><p>Artificial Intelligence is no longer a futuristic concept; it is an active, evolving tool within the MVHS learning environment. We are focused on integrating AI ethically and effectively, moving beyond simple novelty to genuine educational enhancement. Our approach centers on accelerating student mastery of foundational concepts, freeing up human instructors to focus on creativity, critical thinking, and personalized mentorship. AI tools are currently used across subjects from personalized math practice to generating instant feedback on introductory coding assignments.</p><h3>Personalized Learning Pathways</h3><p>One of the most profound benefits we've observed is the ability of AI platforms to adapt content difficulty in real-time. Unlike traditional software, these tools can identify exactly where a student’s knowledge gap lies and offer highly specific remediation or advanced challenges. This ensures that every student is consistently learning in their optimal zone, maximizing efficiency. Teachers are leveraging data from these platforms to group students for targeted instruction, transforming the classroom into a responsive, student-centric space.</p><h3>Addressing the Ethical Questions and Challenges</h3><p>Integrating AI comes with significant responsibility. Our MVHS Tech Internship addresses challenges head-on, particularly concerns regarding data privacy and the potential for algorithmic bias. We host regular workshops for students and staff on responsible AI usage, emphasizing that these tools are complements to, not replacements for, human effort and original thought. Furthermore, a recent survey among our students revealed that approximately 25% still feel morally opposed to using AI in academic work, highlighting the need for continuous, open dialogue about boundaries and ethical guidelines.</p><h3>The Future is Collaborative</h3><p>The successful integration of AI requires collaboration among students, teachers, administrators, and the wider community. By making AI usage transparent and focusing on tools that enhance core learning objectives, we are preparing MVHS students not just to use future technology, but to shape it. We encourage everyone to join the conversation and explore these transformative tools with a mindset of curiosity and caution.</p>"
-    },
-    {
-        "id": 8,
-        "title": "Building Our First Student-Led Tech Support Platform",
-        "excerpt": "A behind-the-scenes look at how our interns designed and built a peer-to-peer tech support system. Learn about the development process, user testing, and the impact it's had on helping students solve technology challenges independently.",
-        "author": "Alex Rodriguez",
-        "date": "January 10, 2026",
-        "read_time": "7 min read",
-        "categories": ["Technology"],
-        "tags": ["Technology", "Student Life"],
-        "featured": false,
-        "content": "<h3>The AI Evolution in MVHS Classrooms</h3><p>Artificial Intelligence is no longer a futuristic concept; it is an active, evolving tool within the MVHS learning environment. We are focused on integrating AI ethically and effectively, moving beyond simple novelty to genuine educational enhancement. Our approach centers on accelerating student mastery of foundational concepts, freeing up human instructors to focus on creativity, critical thinking, and personalized mentorship. AI tools are currently used across subjects from personalized math practice to generating instant feedback on introductory coding assignments.</p><h3>Personalized Learning Pathways</h3><p>One of the most profound benefits we've observed is the ability of AI platforms to adapt content difficulty in real-time. Unlike traditional software, these tools can identify exactly where a student’s knowledge gap lies and offer highly specific remediation or advanced challenges. This ensures that every student is consistently learning in their optimal zone, maximizing efficiency. Teachers are leveraging data from these platforms to group students for targeted instruction, transforming the classroom into a responsive, student-centric space.</p><h3>Addressing the Ethical Questions and Challenges</h3><p>Integrating AI comes with significant responsibility. Our MVHS Tech Internship addresses challenges head-on, particularly concerns regarding data privacy and the potential for algorithmic bias. We host regular workshops for students and staff on responsible AI usage, emphasizing that these tools are complements to, not replacements for, human effort and original thought. Furthermore, a recent survey among our students revealed that approximately 25% still feel morally opposed to using AI in academic work, highlighting the need for continuous, open dialogue about boundaries and ethical guidelines.</p><h3>The Future is Collaborative</h3><p>The successful integration of AI requires collaboration among students, teachers, administrators, and the wider community. By making AI usage transparent and focusing on tools that enhance core learning objectives, we are preparing MVHS students not just to use future technology, but to shape it. We encourage everyone to join the conversation and explore these transformative tools with a mindset of curiosity and caution.</p>"
-    }
+  {
+    "id": 9,
+    "title": "Platform Evaluation: Testing Knowt and Bringing Student Feedback to Edtech",
+    "excerpt": "We gave interns free and premium access to Knowt, ran user diaries and focus groups, and presented our findings directly to the company's CEO.",
+    "author": "Caroline Yu",
+    "date": "August 31, 2026",
+    "read_time": "4 min read",
+    "categories": [
+      "Partnerships"
+    ],
+    "tags": [
+      "Knowt",
+      "AI",
+      "Education",
+      "Partnerships"
+    ],
+    "featured": true,
+    "content": "As students, we use educational technology almost daily, but we rarely get an opportunity to influence and change the programs we use. Through Tech Internship, we were able to do just that by having the chance to evaluate Knowt, an AI-based study platform that offers tools like flashcards, AI-generated notes, and homework help.\n\nWe began by giving a group of interns access to both the free and paid version of Knowt and asking them to incorporate it in their normal studying. Rather than having everyone test the same features, we wanted to see how students would naturally use Knowt across different subjects and difficulty levels. After each study session, participants completed user diaries reflecting on the tools they used, how useful they were, challenges they encountered, and how productive they felt. At the end of each week they also reflected on their overall experience with the platform.\n\nFollowing this, we met in small focus groups to have discussion about these experiences in greater depth. Our conversations focused on three main areas: student motivation, overall studying experience, and recommendations to improve the platform. We also compared Knowt with other educational tools like Quizlet and discussed their differences and what they wish could be implemented on Knowt.\n\nPartway through the project, we were given premium access to Knowt, allowing us to test more of its tools and features and compare the free and paid experiences. Students overall found the premium version more helpful because they could access the AI Notetaker and Homework Solver. Our testing also revealed areas where the platform could improve. We repeatedly discussed the difficulty of finding certain features, inconsistencies in formatting, and a need for a clearer user interface. Additionally we identified potential features that could be better expanded on, such as more personalization and better search functionality.\n\nArguably, the most exciting part of this project was not just conducting the focus groups, but having the opportunity to meet directly with Knowt's CEO and present our findings. We were able to share both what the students liked about the platform and what the students thought could improve.\n\nThis experience gave us a fresh perspective of educational technology. Instead of just being users, we were able to approach it in an evaluator perspective by testing, collecting feedback, and identifying patterns and trends across the experiences, ultimately turning them into deliverable recommendations and reporting it back to the people in charge of making decisions for the website. Most importantly, we were able to bring student voices directly in a conversation about how an educational platform could better serve the people that actually use it.\n\nThrough the Knowt project, we saw how valuable student feedback could be in shaping technology for education and how much can be learned when companies and students have the opportunity to communicate directly."
+  },
+  {
+    "id": 10,
+    "title": "How We Run Our Social Media",
+    "excerpt": "Maintaining an active feed all year takes real organisation. Here is the system behind our posting calendar, split across internship periods.",
+    "author": "Raya Aghazadeh",
+    "date": "August 31, 2026",
+    "read_time": "3 min read",
+    "categories": [
+      "Student Life"
+    ],
+    "tags": [
+      "Social Media",
+      "Student Life",
+      "Outreach"
+    ],
+    "featured": true,
+    "image": "blog-social-grid.jpg",
+    "image_alt": "A grid of posts from the MVHS Tech Internship Instagram account",
+    "content": "Having a strong presence on social media allows us to establish genuine partnerships, increase our reach, and demonstrate each day what our team is doing, but maintaining an active feed over the course of the school year requires a great deal of organisation. By posting regularly, we give potential collaborators, sponsors, and other student groups a proper insight into our activities, which shows that we are organised, enthusiastic, and capable of carrying out tasks. This consistency is what encourages external partners to want to work with us. Each time we collaborate on an event or mention the people we are working with, we gain direct access to their networks and thus attract a lot more attention to what we are developing while also linking us with people across campus.\n\nThere is a systematic approach behind all the posts which keeps the entire intern team on track and ensures that no one gets burnt out. In order to ensure that content is released smoothly each week, we have arranged our whole posting calendar by associating each internship period with a particular day of the week, so that each period can take full responsibility for its own series, which can be found on our Instagram.\n\nDividing the work by class period keeps our workflow completely balanced because each of our period teams owns their specific series from start to finish. Instead of one small group trying to handle five days of content, we all collaborate on our dedicated planning docs, upload video clips and photos to shared folders, and assign team members to draft captions and prep files for our assigned day. Getting organized behind the scenes this way keeps our social media strong and consistent all year long, helping us tell our story, celebrate our progress, and open up awesome new opportunities for our internship program."
+  },
+  {
+    "id": 1,
+    "title": "How AI is Transforming Student Learning at MVHS",
+    "excerpt": "We explore how artificial intelligence tools are being integrated into classrooms, the benefits we've observed, and the challenges we're working to address. This article shares real experiences from students and teachers using AI-powered study platforms.",
+    "author": "Sarah Chen",
+    "date": "January 15, 2026",
+    "read_time": "5 min read",
+    "categories": [
+      "Education"
+    ],
+    "tags": [
+      "Education",
+      "AI",
+      "Student Life"
+    ],
+    "featured": false,
+    "content": "<h3>The AI Evolution in MVHS Classrooms</h3><p>Artificial Intelligence is no longer a futuristic concept; it is an active, evolving tool within the MVHS learning environment. We are focused on integrating AI ethically and effectively, moving beyond simple novelty to genuine educational enhancement. Our approach centers on accelerating student mastery of foundational concepts, freeing up human instructors to focus on creativity, critical thinking, and personalized mentorship. AI tools are currently used across subjects from personalized math practice to generating instant feedback on introductory coding assignments.</p><h3>Personalized Learning Pathways</h3><p>One of the most profound benefits we've observed is the ability of AI platforms to adapt content difficulty in real-time. Unlike traditional software, these tools can identify exactly where a student’s knowledge gap lies and offer highly specific remediation or advanced challenges. This ensures that every student is consistently learning in their optimal zone, maximizing efficiency. Teachers are leveraging data from these platforms to group students for targeted instruction, transforming the classroom into a responsive, student-centric space.</p><h3>Addressing the Ethical Questions and Challenges</h3><p>Integrating AI comes with significant responsibility. Our MVHS Tech Internship addresses challenges head-on, particularly concerns regarding data privacy and the potential for algorithmic bias. We host regular workshops for students and staff on responsible AI usage, emphasizing that these tools are complements to, not replacements for, human effort and original thought. Furthermore, a recent survey among our students revealed that approximately 25% still feel morally opposed to using AI in academic work, highlighting the need for continuous, open dialogue about boundaries and ethical guidelines.</p><h3>The Future is Collaborative</h3><p>The successful integration of AI requires collaboration among students, teachers, administrators, and the wider community. By making AI usage transparent and focusing on tools that enhance core learning objectives, we are preparing MVHS students not just to use future technology, but to shape it. We encourage everyone to join the conversation and explore these transformative tools with a mindset of curiosity and caution.</p>"
+  },
+  {
+    "id": 2,
+    "title": "Building Community Through Tech Events",
+    "excerpt": "How our AI Parent Night used technology events to engage students, parents, and staff while building community and understanding of AI in education.",
+    "author": "Sean Lin",
+    "date": "September 24, 2025",
+    "read_time": "4 min read",
+    "categories": [
+      "Student Life"
+    ],
+    "tags": [
+      "Student Life",
+      "Education",
+      "AI",
+      "Events"
+    ],
+    "featured": false,
+    "content": "<h3>The Planning Process</h3><p>AI Parent Night was an event designed to help parents learn more about how artificial intelligence is being used in education, how it can support student learning, and how it affects our future careers. Our goal was to make the topic of AI easier to understand and show how it connects to what students are doing in class. The first step was coming up with a plan. A few weeks before the event on September 24th, our group met after school to discuss what we should include. We wanted to make sure that our parents’ questions could be resolved, so we sent out survey forms for students and staff input, as well as a survey for parents about what questions they wanted answered. We split into multiple groups: setup, communication and guest coordination. Everybody had their own role, which really helped us stay organized.</p><h3>Contacting Guest Speakers</h3><p>Finding guest speakers was one of the trickiest parts. We wanted to invite people who could connect both parents and students, clearing any misconceptions and questions in the way. After sending a few emails, we were thrilled when Ly Nguyen, Sandra McGonagle, Alex Levich, and our principal Kip Glazer agreed to join. We chose them because each brought a different perspective ranging from district level leadership to classroom experience and industry insight. We organized a panel discussion featuring them, where each speaker shared their unique perspective on education, technology, and school leadership. Their insights helped parents better understand how AI impacts both teaching and learning.</p><h3>The Big Day</h3><p>The day of the event was busy, but exciting. We arrived early to set up the space, check the microphones, practice the presentation, and welcome in our parents. In no time, all the seats were full of parents, eager to learn something new. We presented our findings, showing what was beneath the project we had worked hard on for weeks. Such as the types of AI tools that students use and the benefits and drawbacks of utilizing AI. Something that stood out to us was the fact that a quarter of the students that took the survey were morally opposed to using AI. As we spoke, we could see the parents’ interests grow. Some nodded along, others took notes and asked thoughtful questions. </p><p>After our presentation, we transitioned into our guest speaker panel. The guest speakers followed up with their own insights, connecting perfectly to our mission statement and goals. They discussed topics such as where we should draw the line between positive and harmful uses of AI, and what it takes to build a successful career in this new era of artificial intelligence. Then, we followed with our student speaker panel, giving parents a direct look at how AI affects students’ real experiences, challenges, and hopes. When the event wrapped up, there was a real sense of pride in the room. All our preparation had paid off, and it felt amazing to see just how engaged everybody was.</p><h3>Reflections and Impact</h3><p>Looking back, the AI Parent Event taught us a lot about teamwork, communication, and the effort it takes to bring an idea to something real. We learned how to manage deadlines and stay calm under pressure. But most importantly, we saw how an event like this can strengthen our school community and inspire more students and parents to get involved with future projects. Additionally, parents left with a sense of clarity about AI in education, and several even reached out afterward asking if we could host another session. With the amount of interest and support we received, we’re even considering holding a second event during the second semester.</p>"
+  },
+  {
+    "id": 3,
+    "title": "Understanding AI Ethics in Education",
+    "excerpt": "Exploring the ethical considerations when implementing AI tools in educational settings and how students can engage thoughtfully with these technologies.",
+    "author": "Maria Garcia",
+    "date": "January 8, 2026",
+    "read_time": "4 min read",
+    "categories": [
+      "AI"
+    ],
+    "tags": [
+      "AI",
+      "Education"
+    ],
+    "featured": false,
+    "content": "<h3>The AI Evolution in MVHS Classrooms</h3><p>Artificial Intelligence is no longer a futuristic concept; it is an active, evolving tool within the MVHS learning environment. We are focused on integrating AI ethically and effectively, moving beyond simple novelty to genuine educational enhancement. Our approach centers on accelerating student mastery of foundational concepts, freeing up human instructors to focus on creativity, critical thinking, and personalized mentorship. AI tools are currently used across subjects from personalized math practice to generating instant feedback on introductory coding assignments.</p><h3>Personalized Learning Pathways</h3><p>One of the most profound benefits we've observed is the ability of AI platforms to adapt content difficulty in real-time. Unlike traditional software, these tools can identify exactly where a student’s knowledge gap lies and offer highly specific remediation or advanced challenges. This ensures that every student is consistently learning in their optimal zone, maximizing efficiency. Teachers are leveraging data from these platforms to group students for targeted instruction, transforming the classroom into a responsive, student-centric space.</p><h3>Addressing the Ethical Questions and Challenges</h3><p>Integrating AI comes with significant responsibility. Our MVHS Tech Internship addresses challenges head-on, particularly concerns regarding data privacy and the potential for algorithmic bias. We host regular workshops for students and staff on responsible AI usage, emphasizing that these tools are complements to, not replacements for, human effort and original thought. Furthermore, a recent survey among our students revealed that approximately 25% still feel morally opposed to using AI in academic work, highlighting the need for continuous, open dialogue about boundaries and ethical guidelines.</p><h3>The Future is Collaborative</h3><p>The successful integration of AI requires collaboration among students, teachers, administrators, and the wider community. By making AI usage transparent and focusing on tools that enhance core learning objectives, we are preparing MVHS students not just to use future technology, but to shape it. We encourage everyone to join the conversation and explore these transformative tools with a mindset of curiosity and caution.</p>"
+  },
+  {
+    "id": 4,
+    "title": "A Day in the Life of a Tech Intern",
+    "excerpt": "Follow along as we document a typical day for our interns, from morning meetings to afternoon coding sessions and evening events.",
+    "author": "James Park",
+    "date": "January 5, 2026",
+    "read_time": "3 min read",
+    "categories": [
+      "Student Life"
+    ],
+    "tags": [
+      "Student Life"
+    ],
+    "featured": false,
+    "content": "<h3>The AI Evolution in MVHS Classrooms</h3><p>Artificial Intelligence is no longer a futuristic concept; it is an active, evolving tool within the MVHS learning environment. We are focused on integrating AI ethically and effectively, moving beyond simple novelty to genuine educational enhancement. Our approach centers on accelerating student mastery of foundational concepts, freeing up human instructors to focus on creativity, critical thinking, and personalized mentorship. AI tools are currently used across subjects from personalized math practice to generating instant feedback on introductory coding assignments.</p><h3>Personalized Learning Pathways</h3><p>One of the most profound benefits we've observed is the ability of AI platforms to adapt content difficulty in real-time. Unlike traditional software, these tools can identify exactly where a student’s knowledge gap lies and offer highly specific remediation or advanced challenges. This ensures that every student is consistently learning in their optimal zone, maximizing efficiency. Teachers are leveraging data from these platforms to group students for targeted instruction, transforming the classroom into a responsive, student-centric space.</p><h3>Addressing the Ethical Questions and Challenges</h3><p>Integrating AI comes with significant responsibility. Our MVHS Tech Internship addresses challenges head-on, particularly concerns regarding data privacy and the potential for algorithmic bias. We host regular workshops for students and staff on responsible AI usage, emphasizing that these tools are complements to, not replacements for, human effort and original thought. Furthermore, a recent survey among our students revealed that approximately 25% still feel morally opposed to using AI in academic work, highlighting the need for continuous, open dialogue about boundaries and ethical guidelines.</p><h3>The Future is Collaborative</h3><p>The successful integration of AI requires collaboration among students, teachers, administrators, and the wider community. By making AI usage transparent and focusing on tools that enhance core learning objectives, we are preparing MVHS students not just to use future technology, but to shape it. We encourage everyone to join the conversation and explore these transformative tools with a mindset of curiosity and caution.</p>"
+  },
+  {
+    "id": 5,
+    "title": "Workshop Recap: AI Tools for Students",
+    "excerpt": "Highlights from our recent workshop where students learned about practical AI applications for studying, writing, and research.",
+    "author": "Emma Thompson",
+    "date": "January 3, 2026",
+    "read_time": "5 min read",
+    "categories": [
+      "Education"
+    ],
+    "tags": [
+      "Education",
+      "AI"
+    ],
+    "featured": false,
+    "content": "<h3>The AI Evolution in MVHS Classrooms</h3><p>Artificial Intelligence is no longer a futuristic concept; it is an active, evolving tool within the MVHS learning environment. We are focused on integrating AI ethically and effectively, moving beyond simple novelty to genuine educational enhancement. Our approach centers on accelerating student mastery of foundational concepts, freeing up human instructors to focus on creativity, critical thinking, and personalized mentorship. AI tools are currently used across subjects from personalized math practice to generating instant feedback on introductory coding assignments.</p><h3>Personalized Learning Pathways</h3><p>One of the most profound benefits we've observed is the ability of AI platforms to adapt content difficulty in real-time. Unlike traditional software, these tools can identify exactly where a student’s knowledge gap lies and offer highly specific remediation or advanced challenges. This ensures that every student is consistently learning in their optimal zone, maximizing efficiency. Teachers are leveraging data from these platforms to group students for targeted instruction, transforming the classroom into a responsive, student-centric space.</p><h3>Addressing the Ethical Questions and Challenges</h3><p>Integrating AI comes with significant responsibility. Our MVHS Tech Internship addresses challenges head-on, particularly concerns regarding data privacy and the potential for algorithmic bias. We host regular workshops for students and staff on responsible AI usage, emphasizing that these tools are complements to, not replacements for, human effort and original thought. Furthermore, a recent survey among our students revealed that approximately 25% still feel morally opposed to using AI in academic work, highlighting the need for continuous, open dialogue about boundaries and ethical guidelines.</p><h3>The Future is Collaborative</h3><p>The successful integration of AI requires collaboration among students, teachers, administrators, and the wider community. By making AI usage transparent and focusing on tools that enhance core learning objectives, we are preparing MVHS students not just to use future technology, but to shape it. We encourage everyone to join the conversation and explore these transformative tools with a mindset of curiosity and caution.</p>"
+  },
+  {
+    "id": 6,
+    "title": "Open Source Contributions from MVHS Students",
+    "excerpt": "Celebrating the open source projects our interns have contributed to and the impact they're making in the developer community.",
+    "author": "David Kim",
+    "date": "December 28, 2025",
+    "read_time": "6 min read",
+    "categories": [
+      "Technology"
+    ],
+    "tags": [
+      "Technology"
+    ],
+    "featured": false,
+    "content": "<h3>The AI Evolution in MVHS Classrooms</h3><p>Artificial Intelligence is no longer a futuristic concept; it is an active, evolving tool within the MVHS learning environment. We are focused on integrating AI ethically and effectively, moving beyond simple novelty to genuine educational enhancement. Our approach centers on accelerating student mastery of foundational concepts, freeing up human instructors to focus on creativity, critical thinking, and personalized mentorship. AI tools are currently used across subjects from personalized math practice to generating instant feedback on introductory coding assignments.</p><h3>Personalized Learning Pathways</h3><p>One of the most profound benefits we've observed is the ability of AI platforms to adapt content difficulty in real-time. Unlike traditional software, these tools can identify exactly where a student’s knowledge gap lies and offer highly specific remediation or advanced challenges. This ensures that every student is consistently learning in their optimal zone, maximizing efficiency. Teachers are leveraging data from these platforms to group students for targeted instruction, transforming the classroom into a responsive, student-centric space.</p><h3>Addressing the Ethical Questions and Challenges</h3><p>Integrating AI comes with significant responsibility. Our MVHS Tech Internship addresses challenges head-on, particularly concerns regarding data privacy and the potential for algorithmic bias. We host regular workshops for students and staff on responsible AI usage, emphasizing that these tools are complements to, not replacements for, human effort and original thought. Furthermore, a recent survey among our students revealed that approximately 25% still feel morally opposed to using AI in academic work, highlighting the need for continuous, open dialogue about boundaries and ethical guidelines.</p><h3>The Future is Collaborative</h3><p>The successful integration of AI requires collaboration among students, teachers, administrators, and the wider community. By making AI usage transparent and focusing on tools that enhance core learning objectives, we are preparing MVHS students not just to use future technology, but to shape it. We encourage everyone to join the conversation and explore these transformative tools with a mindset of curiosity and caution.</p>"
+  },
+  {
+    "id": 7,
+    "title": "Evaluating AI Study Tools: A Student Perspective",
+    "excerpt": "Our interns share their honest reviews of popular AI-powered study platforms, what works, what doesn't, and recommendations for students.",
+    "author": "Lisa Wang",
+    "date": "December 25, 2025",
+    "read_time": "8 min read",
+    "categories": [
+      "AI"
+    ],
+    "tags": [
+      "AI",
+      "Education",
+      "Student Life"
+    ],
+    "featured": false,
+    "content": "<h3>The AI Evolution in MVHS Classrooms</h3><p>Artificial Intelligence is no longer a futuristic concept; it is an active, evolving tool within the MVHS learning environment. We are focused on integrating AI ethically and effectively, moving beyond simple novelty to genuine educational enhancement. Our approach centers on accelerating student mastery of foundational concepts, freeing up human instructors to focus on creativity, critical thinking, and personalized mentorship. AI tools are currently used across subjects from personalized math practice to generating instant feedback on introductory coding assignments.</p><h3>Personalized Learning Pathways</h3><p>One of the most profound benefits we've observed is the ability of AI platforms to adapt content difficulty in real-time. Unlike traditional software, these tools can identify exactly where a student’s knowledge gap lies and offer highly specific remediation or advanced challenges. This ensures that every student is consistently learning in their optimal zone, maximizing efficiency. Teachers are leveraging data from these platforms to group students for targeted instruction, transforming the classroom into a responsive, student-centric space.</p><h3>Addressing the Ethical Questions and Challenges</h3><p>Integrating AI comes with significant responsibility. Our MVHS Tech Internship addresses challenges head-on, particularly concerns regarding data privacy and the potential for algorithmic bias. We host regular workshops for students and staff on responsible AI usage, emphasizing that these tools are complements to, not replacements for, human effort and original thought. Furthermore, a recent survey among our students revealed that approximately 25% still feel morally opposed to using AI in academic work, highlighting the need for continuous, open dialogue about boundaries and ethical guidelines.</p><h3>The Future is Collaborative</h3><p>The successful integration of AI requires collaboration among students, teachers, administrators, and the wider community. By making AI usage transparent and focusing on tools that enhance core learning objectives, we are preparing MVHS students not just to use future technology, but to shape it. We encourage everyone to join the conversation and explore these transformative tools with a mindset of curiosity and caution.</p>"
+  },
+  {
+    "id": 8,
+    "title": "Building Our First Student-Led Tech Support Platform",
+    "excerpt": "A behind-the-scenes look at how our interns designed and built a peer-to-peer tech support system. Learn about the development process, user testing, and the impact it's had on helping students solve technology challenges independently.",
+    "author": "Alex Rodriguez",
+    "date": "January 10, 2026",
+    "read_time": "7 min read",
+    "categories": [
+      "Technology"
+    ],
+    "tags": [
+      "Technology",
+      "Student Life"
+    ],
+    "featured": false,
+    "content": "<h3>The AI Evolution in MVHS Classrooms</h3><p>Artificial Intelligence is no longer a futuristic concept; it is an active, evolving tool within the MVHS learning environment. We are focused on integrating AI ethically and effectively, moving beyond simple novelty to genuine educational enhancement. Our approach centers on accelerating student mastery of foundational concepts, freeing up human instructors to focus on creativity, critical thinking, and personalized mentorship. AI tools are currently used across subjects from personalized math practice to generating instant feedback on introductory coding assignments.</p><h3>Personalized Learning Pathways</h3><p>One of the most profound benefits we've observed is the ability of AI platforms to adapt content difficulty in real-time. Unlike traditional software, these tools can identify exactly where a student’s knowledge gap lies and offer highly specific remediation or advanced challenges. This ensures that every student is consistently learning in their optimal zone, maximizing efficiency. Teachers are leveraging data from these platforms to group students for targeted instruction, transforming the classroom into a responsive, student-centric space.</p><h3>Addressing the Ethical Questions and Challenges</h3><p>Integrating AI comes with significant responsibility. Our MVHS Tech Internship addresses challenges head-on, particularly concerns regarding data privacy and the potential for algorithmic bias. We host regular workshops for students and staff on responsible AI usage, emphasizing that these tools are complements to, not replacements for, human effort and original thought. Furthermore, a recent survey among our students revealed that approximately 25% still feel morally opposed to using AI in academic work, highlighting the need for continuous, open dialogue about boundaries and ethical guidelines.</p><h3>The Future is Collaborative</h3><p>The successful integration of AI requires collaboration among students, teachers, administrators, and the wider community. By making AI usage transparent and focusing on tools that enhance core learning objectives, we are preparing MVHS students not just to use future technology, but to shape it. We encourage everyone to join the conversation and explore these transformative tools with a mindset of curiosity and caution.</p>"
+  }
 ]

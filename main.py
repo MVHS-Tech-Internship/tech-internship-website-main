@@ -299,8 +299,13 @@ def load_posts():
 
 
 # --- IMPORTANT NOTE ---
-# The content for all posts except post 2 below is currently AI-generated.
-# To replace, update the "content" key for each corresponding post ID in the 'blog_data.json' file.
+# Posts 9 and 10 (Caroline Yu, Raya Aghazadeh) and post 2 (Sean Lin) are
+# written by interns. Posts 1 and 3-8 are still AI-generated placeholders and
+# should be replaced with real writing: update the "content" and "excerpt"
+# keys for those IDs in blog_data.json.
+#
+# Note that blog_data.json is read once at import, so the server must be
+# restarted for edits to it to take effect.
 posts = load_posts()
 
 @app.route("/blog")
