@@ -1,0 +1,169 @@
+MVHS TECH INTERNSHIP — WEBSITE CHECKLIST
+Last updated: 1 September 2026
+
+How to use: everything below is something the site is waiting on from you.
+Filenames in monospace go in  static/images/  and appear automatically once
+saved under that exact name. No code changes needed.
+
+
+================================================================================
+1. PHOTOS NEEDED  (17 slots, all currently showing a striped "Photo" box)
+================================================================================
+
+ROADMAP — home page  (5 slots)
+Save as, in static/images/ :
+
+☐  On-Campus Tech Support ......... roadmap-tech-support.jpg
+☐  Knowt Partnership .............. roadmap-knowt.jpg
+☐  AI Parent Night ................ roadmap-ai-parent-night.jpg
+☐  FETC ........................... roadmap-fetc.jpg
+☐  AI Philosophy Workshops ........ roadmap-ai-philosophy.jpg
+
+   Then add this line to that event in ROADMAP in main.py:
+        "image": "roadmap-knowt.jpg",
+   Best shape: landscape, roughly 16:9. Minimum 800px wide.
+
+
+ON-CAMPUS TECH SUPPORT page  (3 slots)
+☐  MVHS Tech Support Form
+☐  In-Person Tech Help
+☐  Teacher Support
+
+
+TECHNICAL PROJECTS page  (3 slots)
+☐  Tech Support Form System
+☐  AI Projects
+☐  Internal Tools
+
+
+COMMUNITY EVENTS page  (3 slots)
+☐  AI Philosophy Workshops
+☐  AI Parent Night
+☐  Student Tech Workshops
+
+
+BLOG  (3 slots)
+☐  Knowt platform evaluation post (Caroline Yu) — no photo yet
+☐  Any photo for the 6 remaining AI-placeholder posts
+✅ Social media post (Raya Aghazadeh) — using the Instagram grid from your PDF
+
+   To add: put the file in static/images/ and add to the post in
+   blog_data.json:
+        "image": "your-file.jpg",
+        "image_alt": "short description of the photo",
+
+
+================================================================================
+2. ROADMAP — EVENT NAMES AND DATES
+================================================================================
+
+Currently on the site:
+
+   Event                        Date shown           Status
+   ---------------------------  -------------------  ----------------------
+   On-Campus Tech Support       Ongoing              OK
+   Knowt Partnership            Ongoing              OK
+   AI Parent Night              September 24, 2026   Set this session
+   FETC 2026                    January 2026         NEEDS ATTENTION
+   AI Philosophy Workshops      Date TBA             Needs a date
+
+☐  FETC — the entry still reads "January 2026", which has already passed.
+   Decide one:
+      a) update to FETC 2027 with its date, or
+      b) remove it from the roadmap and move it to a past-events section.
+   Tell me which and I will change it.
+
+☐  AI Philosophy Workshops — give a date, or confirm it stays "Date TBA".
+
+☐  Any events missing from the roadmap? Send name + date and I will add them.
+   Write TBD for anything not yet decided; the site shows those as "Date TBA"
+   rather than inventing a date.
+
+
+================================================================================
+3. UPCOMING EVENTS SECTION (home page)
+================================================================================
+
+☐  This section currently shows FETC 2026 only, using the copy from the old
+   site. Same problem as above: the date has passed.
+   Decide what should be featured here for this school year.
+
+☐  Photo for whatever replaces it (see section 1).
+
+
+================================================================================
+4. BLOG CONTENT
+================================================================================
+
+☐  6 of 10 posts are still AI-generated placeholders and should be replaced
+   with real intern writing. These are IDs 1, 3, 4, 5, 6, 7, 8 in
+   blog_data.json. Send the writing and I will put it in.
+
+✅ Knowt platform evaluation — Caroline Yu (added from your PDF)
+✅ How We Run Our Social Media — Raya Aghazadeh (added from your PDF)
+✅ Building Community Through Tech Events — Sean Lin (already real)
+
+   Note: two typos were corrected in Caroline's piece — the title read
+   "Testing Know" (missing the t), and one paragraph ended "use it/."
+   Everything else is exactly as written.
+
+
+================================================================================
+5. WASHINGTON POST
+================================================================================
+
+✅ Article screenshot — installed
+✅ Headline corrected. The site had described it as being about "how teens use
+   AI for homework", which matches the URL but not the published piece. The
+   real headline is "This school district asked students to draft its AI
+   policy".
+
+☐  Official masthead logo — save as  wapo-logo.png  in static/images/
+   The site currently sets the name in type as a stand-in. To get the real
+   asset, email the Post's communications team and ask for brand assets for
+   an "as featured in" credit. Newsrooms handle this routinely.
+
+
+================================================================================
+6. THINGS THAT ARE BROKEN AND NEED YOUR ACCESS
+================================================================================
+
+☐  DONATION TOTALS ARE DEAD.
+   The Google service account behind the live donation figures no longer
+   exists — the API returns "invalid_grant: account not found". The page no
+   longer crashes, but it cannot show live totals until the service account
+   is recreated and credentials.json is replaced.
+
+☐  THE CONTACT FORM DOES NOT SEND EMAIL.
+   SMTP_USERNAME and SMTP_PASSWORD are not set, so nothing is emailed. The
+   form says "Message Sent" and saves every submission to
+   contact_submissions.csv so nothing is lost, but nobody is being notified.
+   Set both environment variables to fix.
+
+☐  SECURITY: credentials.json is committed to the public repository.
+   That service account should be rotated regardless of whether you fix the
+   donations integration.
+
+☐  requirements.txt is incomplete — a fresh install will not run without
+   additional packages.
+
+
+================================================================================
+7. TEAM PAGE
+================================================================================
+
+☐  Raya Aghazadeh wrote one of the new blog posts but is not listed on the
+   team page. Add her, or confirm she should not be listed.
+
+☐  Team photos: all current headshots are in place, but several are very
+   large files (one is 2.7MB). Worth compressing for load speed.
+
+
+================================================================================
+NOTES
+================================================================================
+
+- Site runs on port 8080, not 8000:   python main.py   then   localhost:8080
+- blog_data.json is read once at startup. After editing it, restart the
+  server or the changes will not appear.
+- All work is on the branch  revamp-2026 . The  main  branch is untouched.
