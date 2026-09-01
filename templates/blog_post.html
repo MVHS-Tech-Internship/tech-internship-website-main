@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block title %}{{ post.title }} | MVHS Tech Internship{% endblock %}
+{% block description %}{{ post.excerpt }}{% endblock %}
+
+{% block content %}
+<article>
+
+  <section class="page-hero post-hero">
+    <div class="shell">
+      <a class="back-link" href="/blogs"><span class="arw">&larr;</span> All posts</a>
+      <div class="post-meta-top">
+        {% for c in post.categories %}<span class="tag tag--dark">{{ c }}</span>{% endfor %}
+        <span>{{ post.date }}</span><span>&middot;</span><span>{{ post.read_time }}</span>
+      </div>
+      <h1>{{ post.title }}</h1>
+      <p class="byline">By {{ post.author }}</p>
+    </div>
+  </section>
+
+  <section class="section post-section">
+    <div class="shell">
+
+      <figure class="post-hero-figure">
+        {% if post.image %}
+          <img src="{{ url_for('static', filename='images/' ~ post.image) }}"
+               alt="{{ post.image_alt|default(post.title) }}">
+        {% else %}
+          <div class="photo-slot"><span>Photo</span></div>
+        {% endif %}
+      </figure>
+
+      <div class="prose">
+        {% for para in post.content.split('\n\n') %}
+          {% if para.strip() %}<p>{{ para.strip() }}</p>{% endif %}
+        {% endfor %}
+      </div>
+
+      {% if post.tags %}
+      <div class="post-tags">
+        {% for t in post.tags %}<span class="tag">{{ t }}</span>{% endfor %}
+      </div>
+      {% endif %}
+
+      <nav class="post-nav">
+        {% if prev_post %}
+          <a class="pn prev" href="/blogs/{{ prev_post.id }}">
+            <span class="lbl"><span class="arw">&larr;</span> Previous</span>
+            <span class="ttl">{{ prev_post.title }}</span>
+          </a>
+        {% else %}<span></span>{% endif %}
+        {% if next_post %}
+          <a class="pn next" href="/blogs/{{ next_post.id }}">
+            <span class="lbl">Next <span class="arw">&rarr;</span></span>
+            <span class="ttl">{{ next_post.title }}</span>
+          </a>
+        {% endif %}
+      </nav>
+
+      {% if related %}
+      <div class="section-head" style="margin-top:clamp(48px,6vw,76px)"><h2>Related Posts</h2></div>
+      <div class="grid grid-2">
+        {% for p in related %}
+        <a class="card card-link post-card" href="/blogs/{{ p.id }}">
+          <div class="post-figure">
+            {% if p.image %}
+              <img src="{{ url_for('static', filename='images/' ~ p.image) }}"
+                   alt="{{ p.image_alt|default(p.title) }}" loading="lazy">
+            {% else %}
+              <div class="photo-slot"><span>Photo</span></div>
+            {% endif %}
+          </div>
+          <div class="post">
+            <div class="meta">
+              {% for c in p.categories %}<span class="tag">{{ c }}</span>{% endfor %}
+              <span class="when">{{ p.date }}</span>
+            </div>
+            <h3>{{ p.title }}</h3>
+            <p>{{ p.excerpt }}</p>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+    </div>
+  </section>
+</article>
+{% endblock %}

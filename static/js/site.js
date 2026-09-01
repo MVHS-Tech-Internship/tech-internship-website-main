@@ -434,7 +434,7 @@
     body.classList.toggle('nav-light', p > 0.30);
 
     // roadmap chrome
-    if (note) note.classList.toggle('on', p > DESCEND_END + 0.04 && p < OPEN_END);
+    if (note) note.classList.toggle('on', p > DESCEND_END + 0.04 && p < CURVE_END - 0.03);
     if (hud)  hud.classList.toggle('on', p > TRAVEL_START - 0.03);
     if (prog) prog.classList.toggle('on', p > TRAVEL_START - 0.03);
 

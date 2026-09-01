@@ -35,7 +35,7 @@
       </div>
       <div class="grid grid-2 rv-stagger" style="margin-bottom:clamp(38px,5vw,60px)">
         {% for p in featured_posts %}
-        <article class="card post-card">
+        <a class="card post-card card-link" href="/blogs/{{ p.id }}">
           <div class="post-figure">
             {% if p.image %}
               <img src="{{ url_for('static', filename='images/' ~ p.image) }}"
@@ -53,7 +53,7 @@
             <p>{{ p.excerpt }}</p>
             <span class="when" style="margin-top:14px;display:block">By {{ p.author }}</span>
           </div>
-        </article>
+        </a>
         {% endfor %}
       </div>
     {% endif %}
@@ -64,7 +64,7 @@
       </div>
       <div class="grid grid-3 rv-stagger">
         {% for p in latest_posts %}
-        <article class="card post-card">
+        <a class="card post-card card-link" href="/blogs/{{ p.id }}">
           <div class="post-figure">
             {% if p.image %}
               <img src="{{ url_for('static', filename='images/' ~ p.image) }}"
@@ -82,7 +82,7 @@
             <p>{{ p.excerpt }}</p>
             <span class="when" style="margin-top:14px;display:block">By {{ p.author }}</span>
           </div>
-        </article>
+        </a>
         {% endfor %}
       </div>
     {% endif %}

@@ -88,13 +88,15 @@ ROADMAP = [
         "cta": "Our partners",
     },
     {
-        "date": "Date TBA",
-        "tba": True,
+        "date": "September 24, 2026",
+        "tba": False,
         "color": "#E8543F",
         "title": "AI Parent Night",
-        "blurb": "Details coming soon.",
+        "blurb": "An evening for families on how AI is being used in the "
+                 "classroom, run by our interns.",
         "href": "/focus/community-events",
         "cta": "Community events",
+        # "image": "ai-parent-night.jpg",   # <- drop a photo in static/images
     },
     {
         "date": "January 2026",
@@ -342,6 +344,33 @@ def blogs():
         latest_posts=latest_posts,
         query=query,
         subscribed_message=subscribed_message
+    )
+
+
+@app.route("/blogs/<int:post_id>")
+def blog_post(post_id):
+    """A single blog post."""
+    post = next((p for p in posts if p["id"] == post_id), None)
+    if post is None:
+        return render_template("blog_post_missing.html"), 404
+
+    # neighbours for the prev/next footer, in the order the listing shows them
+    idx = posts.index(post)
+    prev_post = posts[idx - 1] if idx > 0 else None
+    next_post = posts[idx + 1] if idx < len(posts) - 1 else None
+
+    # a couple of related posts by shared category
+    related = [
+        p for p in posts
+        if p["id"] != post_id and set(p.get("categories", [])) & set(post.get("categories", []))
+    ][:2]
+
+    return render_template(
+        "blog_post.html",
+        post=post,
+        prev_post=prev_post,
+        next_post=next_post,
+        related=related,
     )
 
 
