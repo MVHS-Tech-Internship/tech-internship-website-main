@@ -213,3 +213,4 @@ subscribers.csv
 # local backups taken during the 2026 revamp (originals are in git on main)
 templates_legacy_backup/
 static/css/style.legacy.css.bak
+.env*

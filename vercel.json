@@ -1,15 +1,15 @@
 {
-  "builds": [
-    {
-      "src": "main.py",
-      "use": "@vercel/python"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "main.py"
-    }
+  "framework": null,
+  "installCommand": "python3 -m venv /tmp/buildenv && /tmp/buildenv/bin/pip install -r requirements.txt",
+  "buildCommand": "/tmp/buildenv/bin/python build_static.py",
+  "outputDirectory": "dist",
+  "cleanUrls": true,
+  "redirects": [
+    { "source": "/about", "destination": "/about/overview", "permanent": true },
+    { "source": "/blog", "destination": "/blogs", "permanent": true },
+    { "source": "/about/team", "destination": "/tech-interns", "permanent": true },
+    { "source": "/meet-the-team", "destination": "/tech-interns", "permanent": true },
+    { "source": "/support", "destination": "/donations", "permanent": false },
+    { "source": "/impact", "destination": "/about/overview", "permanent": false }
   ]
 }
-
