@@ -20,7 +20,7 @@
   <section class="section post-section">
     <div class="shell">
 
-      <figure class="post-hero-figure">
+      <figure class="post-hero-figure{% if post.image_fit == 'contain' %} fit-contain{% endif %}">
         {% if post.image %}
           <img src="{{ url_for('static', filename='images/' ~ post.image) }}"
                alt="{{ post.image_alt|default(post.title) }}">
@@ -30,9 +30,15 @@
       </figure>
 
       <div class="prose">
-        {% for para in post.content.split('\n\n') %}
-          {% if para.strip() %}<p>{{ para.strip() }}</p>{% endif %}
-        {% endfor %}
+        {# Posts are either plain paragraphs split by blank lines, or (like
+           post 2) HTML written by our own team in blog_data.json. #}
+        {% if post.content.lstrip().startswith('<') %}
+          {{ post.content|safe }}
+        {% else %}
+          {% for para in post.content.split('\n\n') %}
+            {% if para.strip() %}<p>{{ para.strip() }}</p>{% endif %}
+          {% endfor %}
+        {% endif %}
       </div>
 
       {% if post.tags %}

@@ -18,7 +18,7 @@
         <div class="m-dot" style="--c:{{ m.color }}"></div>
         <div class="m-stem" style="--c:{{ m.color }}"></div>
         <div class="m-card">
-          <div class="m-figure">
+          <div class="m-figure{% if m.image_fit == 'contain' %} fit-contain{% endif %}">
             {% if m.image %}
               <img src="{{ url_for('static', filename='images/' ~ m.image) }}"
                    alt="{{ m.image_alt|default(m.title) }}" loading="lazy">
@@ -152,8 +152,8 @@
     <div class="section-head rv"><h2>Upcoming Events</h2></div>
     <div class="split">
       <div class="rv">
-        <span class="eyebrow eyebrow--gold">FETC 2026</span>
-        <p class="lede">The MVHS Tech Internship has been invited to speak at the Future of Education Technology Conference (FETC) in January 2026. Our team will deliver three sessions, sharing insights on student-led innovation, real-world implementation of AI tools, and practical frameworks for supporting technology adoption in schools and districts.</p>
+        <span class="eyebrow eyebrow--gold">FETC 2027 &middot; January 26&ndash;29, Orlando</span>
+        <p class="lede">The MVHS Tech Internship has been invited to speak at the Future of Education Technology Conference (FETC), January 26&ndash;29, 2027 in Orlando. Our team will deliver three sessions, sharing insights on student-led innovation, real-world implementation of AI tools, and practical frameworks for supporting technology adoption in schools and districts.</p>
         <p>FETC is one of the nation's largest and most influential ed-tech conferences, bringing together educators, industry leaders, and innovators from around the world. We're honored to represent student leadership on a national stage and contribute to shaping the future of educational technology.</p>
         <div class="btn-row">
           <a href="/donations" class="btn btn--dark">Support Us <span class="arw">&rarr;</span></a>

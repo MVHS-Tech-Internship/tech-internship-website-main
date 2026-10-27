@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block title %}Events | MVHS Tech Internship{% endblock %}
+{% block description %}Upcoming and past events from the MVHS Principal's Tech Internship: parent nights, workshops, and conferences.{% endblock %}
+
+{% macro event_card(e, wide=False) %}
+  {% set tag = 'a' if e.href else 'div' %}
+  <{{ tag }} class="card has-figure event-card{% if e.href %} card-link{% endif %}{% if wide %} event-card--wide{% endif %}"
+     {% if e.href %}href="{{ e.href }}"{% if e.external %} target="_blank" rel="noopener"{% endif %}{% endif %}>
+    <div class="card-figure{% if e.image_fit == 'contain' %} fit-contain{% endif %}">
+      {% if e.image %}
+        <img src="{{ url_for('static', filename='images/' ~ e.image) }}" alt="{{ e.image_alt|default(e.title) }}" loading="lazy">
+      {% else %}
+        <div class="photo-slot"><span>Photo</span></div>
+      {% endif %}
+    </div>
+    <div class="event-card-body">
+      <div class="event-meta">
+        <span class="kicker">{{ e.kicker }}</span><span>&middot;</span>
+        <span class="{{ 'tba' if e.date == 'Date TBA' }}">{{ e.date }}</span>
+      </div>
+      <h3>{{ e.title }}</h3>
+      <p>{{ e.blurb }}</p>
+      <p class="place"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> {{ e.place }}</p>
+      {% if e.href %}<span class="go">{{ e.cta }} <span class="arw">&rarr;</span></span>{% endif %}
+    </div>
+  </{{ tag }}>
+{% endmacro %}
+
+{% block content %}
+<section class="page-hero">
+  <div class="shell">
+    <span class="eyebrow">Events</span>
+    <h1>Where we <em>show up</em></h1>
+    <p>Parent nights, student workshops, and national conferences. Run by our interns for families, teachers, and students.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="shell">
+    <div class="section-head rv">
+      <span class="eyebrow eyebrow--gold">Coming up</span>
+      <h2>Upcoming <em>events</em></h2>
+    </div>
+    <div class="grid grid-2 rv-stagger">
+      {% for e in upcoming %}{{ event_card(e) }}{% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section section--paper">
+  <div class="shell">
+    <div class="section-head rv">
+      <span class="eyebrow eyebrow--gold">Recaps</span>
+      <h2>Past <em>events</em></h2>
+    </div>
+    {% for e in past if e.featured %}<div class="rv">{{ event_card(e, wide=True) }}</div>{% endfor %}
+    <div class="grid grid-2 rv-stagger" style="margin-top:20px">
+      {% for e in past if not e.featured %}{{ event_card(e) }}{% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="shell">
+    <div class="cta-band rv">
+      <h2>Want us at <em>your event?</em></h2>
+      <p>We run sessions for students, staff, families, and other schools.</p>
+      <div class="btn-row">
+        <a href="/contact" class="btn btn--solid">Get in Touch <span class="arw">&rarr;</span></a>
+        <a href="https://instagram.com/mvhs.tech" target="_blank" rel="noopener" class="btn">@mvhs.tech</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

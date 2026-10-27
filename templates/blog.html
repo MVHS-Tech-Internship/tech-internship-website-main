@@ -36,7 +36,7 @@
       <div class="grid grid-2 rv-stagger" style="margin-bottom:clamp(38px,5vw,60px)">
         {% for p in featured_posts %}
         <a class="card post-card card-link" href="/blogs/{{ p.id }}">
-          <div class="post-figure">
+          <div class="post-figure{% if p.image_fit == 'contain' %} fit-contain{% endif %}">
             {% if p.image %}
               <img src="{{ url_for('static', filename='images/' ~ p.image) }}"
                    alt="{{ p.image_alt|default(p.title) }}" loading="lazy">
@@ -65,7 +65,7 @@
       <div class="grid grid-3 rv-stagger">
         {% for p in latest_posts %}
         <a class="card post-card card-link" href="/blogs/{{ p.id }}">
-          <div class="post-figure">
+          <div class="post-figure{% if p.image_fit == 'contain' %} fit-contain{% endif %}">
             {% if p.image %}
               <img src="{{ url_for('static', filename='images/' ~ p.image) }}"
                    alt="{{ p.image_alt|default(p.title) }}" loading="lazy">

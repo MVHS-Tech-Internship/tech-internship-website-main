@@ -30,10 +30,11 @@
         </a>
         <div class="dropdown">
           <a href="/about/overview">Overview &amp; Mission</a>
-          <a href="/about/team">Our Team</a>
           <a href="/about/partnerships">Partnerships</a>
         </div>
       </div>
+      <a href="/tech-interns" class="nav-link {% if request.path.startswith('/tech-interns') %}active{% endif %}">Tech Interns</a>
+      <a href="/events" class="nav-link {% if request.path.startswith('/events') %}active{% endif %}">Events</a>
       <a href="/news" class="nav-link {% if request.path == '/news' %}active{% endif %}">News</a>
       <a href="/blogs" class="nav-link {% if request.path.startswith('/blog') %}active{% endif %}">Blog</a>
       <a href="/contact" class="nav-link {% if request.path.startswith('/contact') %}active{% endif %}">Contact</a>
@@ -49,8 +50,9 @@
 
 <nav class="mobile-nav" id="mobileNav">
   <a href="/about/overview">About Us</a>
-  <a href="/about/team">Our Team</a>
+  <a href="/tech-interns">Tech Interns</a>
   <a href="/about/partnerships">Partnerships</a>
+  <a href="/events">Events</a>
   <a href="/news">News</a>
   <a href="/blogs">Blog</a>
   <a href="/contact">Contact</a>
@@ -74,11 +76,12 @@
       <div class="foot-col">
         <h4>About</h4>
         <a href="/about/overview">Overview &amp; Mission</a>
-        <a href="/about/team">Our Team</a>
+        <a href="/tech-interns">Tech Interns</a>
         <a href="/about/partnerships">Partnerships</a>
       </div>
       <div class="foot-col">
         <h4>What We Do</h4>
+        <a href="/events">Events</a>
         <a href="/focus/community-events">Community Events</a>
         <a href="/focus/technical-projects">Technical Projects</a>
         <a href="/focus/tech-support">On-Campus Tech Support</a>

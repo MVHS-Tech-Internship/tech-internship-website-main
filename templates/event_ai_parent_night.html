@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+{% set img = 'images/events/ai-parent-night/' %}
+{% block title %}AI &amp; Education Parent Night | MVHS Tech Internship{% endblock %}
+{% block description %}On September 29, 2026, 65 parents joined the MVHS Principal's Tech Internship and four guest speakers to ask what AI means for our students.{% endblock %}
+
+{% block content %}
+<article class="event">
+
+  <section class="page-hero post-hero">
+    <div class="shell">
+      <a class="back-link" href="/events"><span class="arw">&larr;</span> All events</a>
+      <div class="post-meta-top">
+        <span class="tag tag--dark">Second annual</span>
+        <span>September 29, 2026</span><span>&middot;</span><span>Mountain View High School</span>
+      </div>
+      <h1>AI &amp; Education <em>Parent Night</em></h1>
+      <p>Our second annual evening for families, built around one question: what does AI mean for our students?</p>
+    </div>
+  </section>
+
+  <section class="section post-section">
+    <div class="shell">
+
+      <figure class="event-hero rv">
+        <img src="{{ url_for('static', filename=img ~ 'hero.jpg') }}"
+             alt="Julia Wilkowski, Isabelle Hau and Bob Fishtrom on stage in front of the panel slide">
+      </figure>
+
+      <div class="stats event-stats rv-stagger">
+        <div class="stat"><div class="n">65</div><div class="l">parents attended</div></div>
+        <div class="stat"><div class="n">148</div><div class="l">parents surveyed beforehand</div></div>
+        <div class="stat"><div class="n">74</div><div class="l">staff surveyed beforehand</div></div>
+        <div class="stat"><div class="n">4</div><div class="l">guest speakers</div></div>
+      </div>
+
+      <div class="prose event-prose rv">
+        <p>On September 29, the MVHS Principal's Tech Internship hosted its second annual AI and Education Parent Night. Sixty-five parents came to explore one question: what does AI mean for our students?</p>
+        <p>Before the night, our interns surveyed 148 parents and 74 staff members. Most parents wanted to know where the line falls between appropriate and inappropriate use of AI, and more than half of teachers said they already use AI to create assignments and activities. Four guest speakers took up those findings, and then parents brought their own questions to the panel.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section section--paper">
+    <div class="shell">
+      <div class="section-head rv">
+        <h2>Recap <em>video</em></h2>
+      </div>
+      <div class="event-video rv">
+        <video controls playsinline preload="none"
+               poster="{{ url_for('static', filename=img ~ 'recap-poster.jpg') }}">
+          <source src="{{ url_for('static', filename='video/ai-parent-night-recap.mp4') }}" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell">
+      <div class="section-head rv">
+        <span class="eyebrow eyebrow--gold">The panel</span>
+        <h2>Four perspectives on <em>AI in school</em></h2>
+        <p>From learning science and research to district IT and a classroom right here at Mountain View High.</p>
+      </div>
+      <div class="grid grid-4 speakers rv-stagger">
+        {% for s in event.speakers %}
+        <div class="speaker">
+          <div class="speaker-photo">
+            <img src="{{ url_for('static', filename=img ~ s.photo) }}" alt="{{ s.name }}" loading="lazy">
+          </div>
+          <h3>{{ s.name }}</h3>
+          <p class="role">{{ s.role }}</p>
+          <p class="org">{{ s.org }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--paper">
+    <div class="shell">
+      <div class="section-head rv">
+        <span class="eyebrow eyebrow--gold">Photos</span>
+        <h2>From the <em>night</em></h2>
+      </div>
+      <div class="event-gallery">
+        {% for g in event.gallery %}
+        <a class="eg-item rv" href="{{ url_for('static', filename=img ~ g.file ~ '.jpg') }}"
+           data-full="{{ url_for('static', filename=img ~ g.file ~ '.jpg') }}">
+          <img src="{{ url_for('static', filename=img ~ g.file ~ '-sm.jpg') }}" alt="{{ g.alt }}" loading="lazy">
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell">
+      <div class="cta-band rv">
+        <h2>Thank you to our speakers <em>and every family</em> who came out.</h2>
+        <p>Follow along for the next one.</p>
+        <div class="btn-row">
+          <a href="https://instagram.com/mvhs.tech" target="_blank" rel="noopener" class="btn btn--solid">@mvhs.tech on Instagram <span class="arw">&rarr;</span></a>
+          <a href="/events" class="btn">All events</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</article>
+
+<dialog class="lightbox" id="lightbox" aria-label="Photo">
+  <button class="lb-close" type="button" aria-label="Close">&times;</button>
+  <img alt="">
+</dialog>
+<script>
+(function () {
+  var dlg = document.getElementById('lightbox');
+  if (!dlg || !dlg.showModal) return;          // no <dialog>: links open the full image
+  var big = dlg.querySelector('img');
+  document.querySelectorAll('.eg-item').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      big.src = a.dataset.full;
+      big.alt = a.querySelector('img').alt;
+      dlg.showModal();
+    });
+  });
+  dlg.addEventListener('click', function () { dlg.close(); });
+})();
+</script>
+{% endblock %}

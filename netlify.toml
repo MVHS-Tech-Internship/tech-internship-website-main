@@ -16,6 +16,17 @@
   to = "/blogs"
   status = 301
 
+# Old team URLs -> the Tech Interns page.
+[[redirects]]
+  from = "/about/team"
+  to = "/tech-interns"
+  status = 301
+
+[[redirects]]
+  from = "/meet-the-team"
+  to = "/tech-interns"
+  status = 301
+
 # Templates that exist in templates/ but have no route in main.py.
 # They 404 on Flask too — pointed somewhere useful rather than left dead.
 [[redirects]]

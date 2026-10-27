@@ -20,11 +20,12 @@ import main as site
 DIST = "dist"
 
 # Every GET route in main.py -> output path under dist/.
-# Redirect routes (/about, /blog) are handled by netlify.toml instead.
+# Redirect routes (/about, /blog, /about/team, /meet-the-team) are handled by
+# netlify.toml instead. Individual blog posts are added in main().
 ROUTES = {
     "/": "index.html",
     "/about/overview": "about/overview/index.html",
-    "/about/team": "about/team/index.html",
+    "/tech-interns": "tech-interns/index.html",
     "/about/partnerships": "about/partnerships/index.html",
     "/news": "news/index.html",
     "/resources": "resources/index.html",
@@ -33,11 +34,12 @@ ROUTES = {
     "/donations": "donations/index.html",
     "/api/donation_data": "api/donation_data",
     "/merch": "merch/index.html",
-    "/meet-the-team": "meet-the-team/index.html",
     "/blogs": "blogs/index.html",
     "/focus/technical-projects": "focus/technical-projects/index.html",
     "/focus/community-events": "focus/community-events/index.html",
     "/focus/tech-support": "focus/tech-support/index.html",
+    "/events": "events/index.html",
+    "/events/ai-parent-night": "events/ai-parent-night/index.html",
 }
 
 
@@ -67,20 +69,26 @@ def netlifyify_forms(html):
     """
     # Contact form -> Netlify form named "contact"
     html = html.replace(
-        '<form action="/contact" method="POST" class="contact-form">',
+        '<form method="POST" action="/contact" class="card" style="padding:32px">',
         '<form name="contact" method="POST" data-netlify="true" '
-        'netlify-honeypot="bot-field" action="/contact/success" class="contact-form">\n'
+        'netlify-honeypot="bot-field" action="/contact/success" class="card" style="padding:32px">\n'
         '        <input type="hidden" name="form-name" value="contact">\n'
         '        <p hidden><label>Leave blank: <input name="bot-field"></label></p>',
     )
     # Newsletter form -> Netlify form named "subscribe"
     html = html.replace(
-        '<form class="subscribe-form" action="/subscribe" method="post">',
-        '<form class="subscribe-form" name="subscribe" method="POST" '
-        'data-netlify="true" netlify-honeypot="bot-field" action="/contact/success">\n'
-        '                <input type="hidden" name="form-name" value="subscribe">\n'
-        '                <p hidden><label>Leave blank: <input name="bot-field"></label></p>',
+        '<form method="POST" action="/subscribe" class="subscribe">',
+        '<form name="subscribe" method="POST" data-netlify="true" '
+        'netlify-honeypot="bot-field" action="/contact/success" class="subscribe">\n'
+        '        <input type="hidden" name="form-name" value="subscribe">\n'
+        '        <p hidden><label>Leave blank: <input name="bot-field"></label></p>',
     )
+    # If a template's form markup changes, the replace above silently stops
+    # matching and the form posts to a Flask route that doesn't exist here.
+    for dead in ('action="/contact"', 'action="/subscribe"'):
+        if dead in html:
+            raise SystemExit(f"netlifyify_forms: unconverted form ({dead}); "
+                             "update the markup it matches in build_static.py")
     return html
 
 
@@ -118,19 +126,31 @@ def main():
         shutil.rmtree(DIST)
     os.makedirs(DIST)
 
-    # Snapshot the live Sheets figures once, at build time.
-    print("Fetching donation data from Google Sheets...")
-    donation = retry_donation_data()
-    print(f"  goal={donation['goal']} total={donation['total']}")
+    routes = dict(ROUTES)
+    for p in site.posts:
+        routes[f"/blogs/{p['id']}"] = f"blogs/{p['id']}/index.html"
 
-    # Freeze the network call so the /donations render below reuses the
-    # snapshot instead of making three more API calls.
-    site.get_donation_data = lambda: donation
+    # Snapshot the live Sheets figures once, at build time. If the Sheets
+    # credentials are missing or dead, publish the page's "offline" state
+    # rather than failing the whole deploy.
+    print("Fetching donation data from Google Sheets...")
+    try:
+        donation = retry_donation_data()
+        print(f"  goal={donation['goal']} total={donation['total']}")
+        site.get_donation_data = lambda: donation
+    except Exception as exc:
+        print(f"  WARNING: donation totals unavailable ({exc}); "
+              "publishing /donations without live figures")
+        routes.pop("/api/donation_data")
+
+        def unavailable():
+            raise RuntimeError("donation data unavailable at build time")
+        site.get_donation_data = unavailable
 
     client = site.app.test_client()
     failures = []
 
-    for route, out in ROUTES.items():
+    for route, out in routes.items():
         resp = client.get(route)
         if resp.status_code != 200:
             failures.append((route, resp.status_code))
@@ -155,7 +175,7 @@ def main():
     if failures:
         raise SystemExit(f"\nBuild failed, {len(failures)} route(s) not 200: {failures}")
 
-    print(f"\nBuilt {len(ROUTES)} routes into {DIST}/")
+    print(f"\nBuilt {len(routes)} routes into {DIST}/")
 
 
 if __name__ == "__main__":

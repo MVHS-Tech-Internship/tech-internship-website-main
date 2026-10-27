@@ -16,6 +16,9 @@
       "Partnerships"
     ],
     "featured": true,
+    "image": "knowt-logo.png",
+    "image_alt": "Knowt logo",
+    "image_fit": "contain",
     "content": "As students, we use educational technology almost daily, but we rarely get an opportunity to influence and change the programs we use. Through Tech Internship, we were able to do just that by having the chance to evaluate Knowt, an AI-based study platform that offers tools like flashcards, AI-generated notes, and homework help.\n\nWe began by giving a group of interns access to both the free and paid version of Knowt and asking them to incorporate it in their normal studying. Rather than having everyone test the same features, we wanted to see how students would naturally use Knowt across different subjects and difficulty levels. After each study session, participants completed user diaries reflecting on the tools they used, how useful they were, challenges they encountered, and how productive they felt. At the end of each week they also reflected on their overall experience with the platform.\n\nFollowing this, we met in small focus groups to have discussion about these experiences in greater depth. Our conversations focused on three main areas: student motivation, overall studying experience, and recommendations to improve the platform. We also compared Knowt with other educational tools like Quizlet and discussed their differences and what they wish could be implemented on Knowt.\n\nPartway through the project, we were given premium access to Knowt, allowing us to test more of its tools and features and compare the free and paid experiences. Students overall found the premium version more helpful because they could access the AI Notetaker and Homework Solver. Our testing also revealed areas where the platform could improve. We repeatedly discussed the difficulty of finding certain features, inconsistencies in formatting, and a need for a clearer user interface. Additionally we identified potential features that could be better expanded on, such as more personalization and better search functionality.\n\nArguably, the most exciting part of this project was not just conducting the focus groups, but having the opportunity to meet directly with Knowt's CEO and present our findings. We were able to share both what the students liked about the platform and what the students thought could improve.\n\nThis experience gave us a fresh perspective of educational technology. Instead of just being users, we were able to approach it in an evaluator perspective by testing, collecting feedback, and identifying patterns and trends across the experiences, ultimately turning them into deliverable recommendations and reporting it back to the people in charge of making decisions for the website. Most importantly, we were able to bring student voices directly in a conversation about how an educational platform could better serve the people that actually use it.\n\nThrough the Knowt project, we saw how valuable student feedback could be in shaping technology for education and how much can be learned when companies and students have the opportunity to communicate directly."
   },
   {
@@ -40,6 +43,7 @@
   },
   {
     "id": 1,
+    "draft": true,
     "title": "How AI is Transforming Student Learning at MVHS",
     "excerpt": "We explore how artificial intelligence tools are being integrated into classrooms, the benefits we've observed, and the challenges we're working to address. This article shares real experiences from students and teachers using AI-powered study platforms.",
     "author": "Sarah Chen",
@@ -62,6 +66,8 @@
     "excerpt": "How our AI Parent Night used technology events to engage students, parents, and staff while building community and understanding of AI in education.",
     "author": "Sean Lin",
     "date": "September 24, 2025",
+    "image": "ai-parent-night-2025.jpg",
+    "image_alt": "Panelists and student moderators at the 2025 AI Parent Night",
     "read_time": "4 min read",
     "categories": [
       "Student Life"
@@ -77,6 +83,7 @@
   },
   {
     "id": 3,
+    "draft": true,
     "title": "Understanding AI Ethics in Education",
     "excerpt": "Exploring the ethical considerations when implementing AI tools in educational settings and how students can engage thoughtfully with these technologies.",
     "author": "Maria Garcia",
@@ -94,6 +101,7 @@
   },
   {
     "id": 4,
+    "draft": true,
     "title": "A Day in the Life of a Tech Intern",
     "excerpt": "Follow along as we document a typical day for our interns, from morning meetings to afternoon coding sessions and evening events.",
     "author": "James Park",
@@ -110,6 +118,7 @@
   },
   {
     "id": 5,
+    "draft": true,
     "title": "Workshop Recap: AI Tools for Students",
     "excerpt": "Highlights from our recent workshop where students learned about practical AI applications for studying, writing, and research.",
     "author": "Emma Thompson",
@@ -127,6 +136,7 @@
   },
   {
     "id": 6,
+    "draft": true,
     "title": "Open Source Contributions from MVHS Students",
     "excerpt": "Celebrating the open source projects our interns have contributed to and the impact they're making in the developer community.",
     "author": "David Kim",
@@ -143,6 +153,7 @@
   },
   {
     "id": 7,
+    "draft": true,
     "title": "Evaluating AI Study Tools: A Student Perspective",
     "excerpt": "Our interns share their honest reviews of popular AI-powered study platforms, what works, what doesn't, and recommendations for students.",
     "author": "Lisa Wang",
@@ -161,6 +172,7 @@
   },
   {
     "id": 8,
+    "draft": true,
     "title": "Building Our First Student-Led Tech Support Platform",
     "excerpt": "A behind-the-scenes look at how our interns designed and built a peer-to-peer tech support system. Learn about the development process, user testing, and the impact it's had on helping students solve technology challenges independently.",
     "author": "Alex Rodriguez",

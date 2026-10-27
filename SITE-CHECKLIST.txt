@@ -1,5 +1,44 @@
 MVHS TECH INTERNSHIP — WEBSITE CHECKLIST
-Last updated: 1 September 2026
+Last updated: 23 September 2026
+
+
+================================================================================
+0. PUBLICATION REVIEW — 23 September 2026
+================================================================================
+
+DONE THIS PASS
+✅ New Tech Interns page at /tech-interns (top-level nav): E-Board (6),
+   Principal, then all 18 tech interns. Names, years and photos live in
+   EBOARD / PRINCIPAL / INTERNS in main.py. /about/team and /meet-the-team
+   now redirect there; the placeholder meet_the_team page is gone.
+✅ Smooth page-to-page transitions (fade, header stays put). Chrome, Edge,
+   Safari 18.2+. Firefox navigates normally. Off for reduced-motion users.
+✅ Headshots re-saved to static/images/team/ at 50-100KB (were up to 2.7MB).
+✅ Netlify build no longer fails when the donation service account is dead.
+✅ Netlify build now publishes the individual blog post pages (they 404'd).
+✅ Contact + newsletter forms now convert to Netlify Forms (the conversion
+   had silently stopped matching after the redesign, so both would have
+   posted to pages that don't exist).
+✅ The 7 AI-placeholder blog posts with invented bylines (Sarah Chen, Maria
+   Garcia, ...) are hidden via "draft": true in blog_data.json. The blog now
+   shows only the 3 real intern posts.
+
+BEFORE GOING LIVE — NEEDS YOU
+☐  E-Board: 4 of the 6 are listed as Class of 2026, who have graduated.
+   Confirm the current 2026-27 e-board, and their titles (President, VP...)
+   if you want titles shown instead of "E-Board".
+☐  Raya Aghazadeh: add to the interns list, or confirm she is not an intern.
+☐  Principal photo is only 250px wide and looks soft on phones/retina.
+   Send a larger one (600px+).
+☐  Intern headshots (optional): the page uses initials until photos exist.
+☐  Pick ONE host. netlify.toml (static build) is the tested path.
+   vercel.json runs Flask live, where the newsletter form will crash (it
+   writes subscribers.csv to a read-only disk). Delete whichever you don't use.
+✅ AI Parent Night: re-dated to 29 September 2026 (per the recap script)
+   and given a recap page at /events/ai-parent-night.
+☐  FETC 2026 (January) has already passed and still needs updating.
+☐  Contact form on Netlify: turn on email notifications in the Netlify
+   dashboard (Forms -> Notifications) or submissions sit unread there.
 
 How to use: everything below is something the site is waiting on from you.
 Filenames in monospace go in  static/images/  and appear automatically once
@@ -15,7 +54,7 @@ Save as, in static/images/ :
 
 ☐  On-Campus Tech Support ......... roadmap-tech-support.jpg
 ☐  Knowt Partnership .............. roadmap-knowt.jpg
-☐  AI Parent Night ................ roadmap-ai-parent-night.jpg
+✅ AI Parent Night ................ events/ai-parent-night/hero.jpg
 ☐  FETC ........................... roadmap-fetc.jpg
 ☐  AI Philosophy Workshops ........ roadmap-ai-philosophy.jpg
 
@@ -38,7 +77,7 @@ TECHNICAL PROJECTS page  (3 slots)
 
 COMMUNITY EVENTS page  (3 slots)
 ☐  AI Philosophy Workshops
-☐  AI Parent Night
+✅ AI Parent Night (event photos, links to /events/ai-parent-night)
 ☐  Student Tech Workshops
 
 
@@ -63,7 +102,7 @@ Currently on the site:
    ---------------------------  -------------------  ----------------------
    On-Campus Tech Support       Ongoing              OK
    Knowt Partnership            Ongoing              OK
-   AI Parent Night              September 24, 2026   Set this session
+   AI & Ed. Parent Night        September 29, 2026   Done, links to recap page
    FETC 2026                    January 2026         NEEDS ATTENTION
    AI Philosophy Workshops      Date TBA             Needs a date
 
@@ -152,11 +191,7 @@ Currently on the site:
 7. TEAM PAGE
 ================================================================================
 
-☐  Raya Aghazadeh wrote one of the new blog posts but is not listed on the
-   team page. Add her, or confirm she should not be listed.
-
-☐  Team photos: all current headshots are in place, but several are very
-   large files (one is 2.7MB). Worth compressing for load speed.
+   (See section 0 for the current team-page items.)
 
 
 ================================================================================

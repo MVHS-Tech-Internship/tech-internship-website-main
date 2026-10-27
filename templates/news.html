@@ -25,16 +25,9 @@
     </div>
 
     <article class="press-feature rv" style="margin-top:clamp(32px,4vw,52px)">
-      <div class="press-shot">
-        {# Drop a screenshot at static/images/wapo-article.jpg to use it. #}
-        <img src="{{ url_for('static', filename='images/wapo-article.jpg') }}"
-             alt="The Washington Post article featuring Mountain View High School"
-             loading="lazy"
-             onerror="this.closest('.press-shot').classList.add('empty'); this.remove()">
-        <div class="shot-fallback">
-          <span>Article screenshot</span>
-          <em>static/images/wapo-article.jpg</em>
-        </div>
+      <div class="press-shot press-shot--logo">
+        <img src="{{ url_for('static', filename='images/wapo-logo.png') }}"
+             alt="The Washington Post" loading="lazy">
       </div>
 
       <div class="press-body">

@@ -76,6 +76,8 @@ ROADMAP = [
                  "internal support processes.",
         "href": "/focus/tech-support",
         "cta": "How it works",
+        "image": "tech-support.jpg",
+        "image_alt": "Tech interns working together on laptops at a table on campus",
     },
     {
         "date": "Ongoing",
@@ -86,23 +88,30 @@ ROADMAP = [
                  "and share structured feedback directly with Knowt.",
         "href": "/about/partnerships",
         "cta": "Our partners",
+        "image": "knowt-logo.png",
+        "image_alt": "Knowt logo",
+        "image_fit": "contain",
     },
     {
-        "date": "September 24, 2026",
+        "date": "September 29, 2026",
         "tba": False,
         "color": "#E8543F",
-        "title": "AI Parent Night",
-        "blurb": "An evening for families on how AI is being used in the "
-                 "classroom, run by our interns.",
-        "href": "/focus/community-events",
-        "cta": "Community events",
-        # "image": "ai-parent-night.jpg",   # <- drop a photo in static/images
+        "title": "AI & Education Parent Night",
+        "blurb": "65 parents, four guest speakers, and one question: what "
+                 "does AI mean for our students?",
+        "href": "/events/ai-parent-night",
+        "cta": "See the recap",
+        "image": "events/ai-parent-night/hero.jpg",
+        "image_alt": "Panelists on stage at AI & Education Parent Night",
     },
     {
-        "date": "January 2026",
+        "date": "January 26-29, 2027",
         "tba": False,
         "color": "#F2A93B",
-        "title": "FETC 2026",
+        "title": "FETC 2027",
+        "image": "fetc-logo.jpg",
+        "image_alt": "FETC logo",
+        "image_fit": "contain",
         "blurb": "Three sessions at the Future of Education Technology "
                  "Conference on student-led innovation and AI in schools.",
         "href": "https://www.fetc.org/",
@@ -140,10 +149,51 @@ def about_overview():
     return render_template('about_overview.html')
 
 
+# ---------------------------------------------------------------------------
+# TEAM - drives /tech-interns.
+#
+# Photos live in static/images/team/. An intern with no "photo" key gets an
+# initials tile; to add one, save <first-last>.jpg there (portrait, ~720px
+# tall) and add "photo": "<first-last>.jpg" to their entry.
+# ---------------------------------------------------------------------------
+PRINCIPAL = {
+    "name": "Kip Glazer, Ed.D.",
+    "role": "Principal, Mountain View High School",
+    "photo": "kip-glazer.jpg",
+    "linkedin": "https://www.linkedin.com/in/kip-glazer-09a26933/",
+}
+
+# 2026-27 e-board, in the order of the e-board slide. "linkedin" is optional.
+EBOARD = [
+    {"name": "Cinty Lin", "year": "2027", "photo": "cinty-lin.jpg"},
+    {"name": "Jayan Nair", "year": "2028", "photo": "jayan-nair.jpg"},
+    {"name": "Myra Jain", "year": "2028", "photo": "myra-jain.jpg",
+     "linkedin": "https://www.linkedin.com/in/myra-jain2010/"},
+    {"name": "Yash Maheshwari", "year": "2027", "photo": "yash-maheshwari.jpg",
+     "linkedin": "https://www.linkedin.com/in/yashmaheshwari2009/"},
+    {"name": "Keshav Pillutla", "year": "2027", "photo": "keshav-pillutla.jpg"},
+    {"name": "Emma Teng", "year": "2027", "photo": "emma-teng.jpg"},
+]
+
+# 2026-27 interns not on the e-board, by last name.
+INTERNS = [{"name": n} for n in [
+    "Raya Aghazadeh", "Mihika Bobbarjung", "Alec Corcoran", "Manuel Diuk",
+    "Emma Fei", "Ilan Gerber", "Rishi Jindal", "Colby Liu", "Caroline Yu",
+    "Nathalie Zhang",
+]]
+
+
+@app.route('/tech-interns')
+def tech_interns():
+    """Tech Interns Page - e-board, principal, interns"""
+    return render_template('team.html', principal=PRINCIPAL,
+                           eboard=EBOARD, interns=INTERNS)
+
+
 @app.route('/about/team')
 def about_team():
-    """Our Team Page"""
-    return render_template('about_team.html')
+    """Old team URL"""
+    return redirect(url_for('tech_interns'), code=301)
 
 
 @app.route('/about/partnerships')
@@ -285,8 +335,8 @@ def merch():
 
 @app.route('/meet-the-team')
 def meet_the_team():
-    """Meet the Team Page"""
-    return render_template('meet_the_team.html')
+    """Old team URL"""
+    return redirect(url_for('tech_interns'), code=301)
 
 def load_posts():
     try:
@@ -302,13 +352,14 @@ def load_posts():
 
 # --- IMPORTANT NOTE ---
 # Posts 9 and 10 (Caroline Yu, Raya Aghazadeh) and post 2 (Sean Lin) are
-# written by interns. Posts 1 and 3-8 are still AI-generated placeholders and
-# should be replaced with real writing: update the "content" and "excerpt"
-# keys for those IDs in blog_data.json.
+# written by interns. Posts 1 and 3-8 are AI-generated placeholders under
+# invented bylines, so they carry "draft": true and are not published. To
+# publish one, replace its "content", "excerpt" and "author" with real
+# writing and delete its "draft" key.
 #
 # Note that blog_data.json is read once at import, so the server must be
 # restarted for edits to it to take effect.
-posts = load_posts()
+posts = [p for p in load_posts() if not p.get("draft")]
 
 @app.route("/blog")
 def blog():
@@ -404,6 +455,101 @@ def focus_technical_projects():
 def focus_community_events():
     """Community Events Focus Page"""
     return render_template('focus_community_events.html')
+
+
+# ---------------------------------------------------------------------------
+# EVENTS - drives /events. Newest first within each list. Same rule as the
+# roadmap: never invent a date; use "Date TBA" until one is announced.
+# ---------------------------------------------------------------------------
+EVENTS_UPCOMING = [
+    {
+        "title": "FETC 2027",
+        "kicker": "Conference",
+        "date": "January 26-29, 2027",
+        "place": "Orlando, Florida",
+        "blurb": "The Future of Education Technology Conference. Our team will "
+                 "deliver three sessions on student-led innovation, real-world "
+                 "use of AI tools, and supporting technology adoption in schools.",
+        "image": "fetc-logo.jpg", "image_alt": "FETC logo", "image_fit": "contain",
+        "href": "https://www.fetc.org/", "external": True, "cta": "Visit FETC",
+    },
+    {
+        "title": "AI Philosophy Workshops",
+        "kicker": "Workshop series",
+        "date": "Date TBA",
+        "place": "Mountain View High School",
+        "blurb": "Student-run sessions on the ethics and limits of the AI tools "
+                 "everyone is already using. Details coming soon.",
+    },
+]
+EVENTS_PAST = [
+    {
+        "title": "AI & Education Parent Night",
+        "kicker": "Second annual",
+        "date": "September 29, 2026",
+        "place": "Mountain View High School",
+        "blurb": "65 parents, four guest speakers from Google, Stanford, MVLA and "
+                 "MVHS, and one question: what does AI mean for our students?",
+        "image": "events/ai-parent-night/hero.jpg",
+        "image_alt": "Panelists on stage at AI & Education Parent Night",
+        "href": "/events/ai-parent-night", "cta": "See the full recap",
+        "featured": True,
+    },
+    {
+        "title": "AI Parent Night",
+        "kicker": "First annual",
+        "date": "September 24, 2025",
+        "place": "Mountain View High School",
+        "blurb": "Our first evening for families on how AI is used in the "
+                 "classroom, with a panel of district and school leaders.",
+        "image": "ai-parent-night-2025.jpg",
+        "image_alt": "Panelists and student moderators at the 2025 AI Parent Night",
+        "href": "/blogs/2", "cta": "Read Sean Lin's recap",
+    },
+]
+
+
+@app.route('/events')
+def events():
+    """Events: upcoming and past"""
+    return render_template('events.html', upcoming=EVENTS_UPCOMING, past=EVENTS_PAST)
+
+
+# ---------------------------------------------------------------------------
+# AI & EDUCATION PARENT NIGHT (Sept 29, 2026) - drives /events/ai-parent-night.
+# Copy is condensed from the interns' recap-video script. Photos are in
+# static/images/events/ai-parent-night/, the recap video in static/video/.
+# Speaker order matches the panel slide shown at the event.
+# ---------------------------------------------------------------------------
+AI_PARENT_NIGHT = {
+    "speakers": [
+        {"name": "Julia Wilkowski", "role": "Head of Learning Science",
+         "org": "Google", "photo": "speaker-wilkowski.jpg"},
+        {"name": "Isabelle Hau", "role": "Executive Director",
+         "org": "Stanford Accelerator for Learning", "photo": "speaker-hau.jpg"},
+        {"name": "Bob Fishtrom", "role": "Director of IT Services",
+         "org": "MVLA School District", "photo": "speaker-fishtrom.jpg"},
+        {"name": "Abigail Dennison", "role": "Teacher",
+         "org": "Mountain View High School", "photo": "speaker-dennison.jpg"},
+    ],
+    "gallery": [
+        {"file": "panel-wide", "alt": "The full panel on stage in front of a room of parents", "wide": True},
+        {"file": "julia-wilkowski", "alt": "Julia Wilkowski of Google answering a question"},
+        {"file": "isabelle-hau", "alt": "Isabelle Hau of the Stanford Accelerator for Learning speaking, seen from the audience"},
+        {"file": "intern-speaking", "alt": "A tech intern speaking to the room"},
+        {"file": "abigail-dennison", "alt": "Abigail Dennison, an MVHS teacher, speaking on the panel"},
+        {"file": "interns-intro", "alt": "Tech interns at the front of the room as the panel begins"},
+        {"file": "audience", "alt": "Students in the audience listening to the panel"},
+        {"file": "intern-presenting", "alt": "A tech intern presenting survey results"},
+        {"file": "after-the-panel", "alt": "Speakers together after the event"},
+    ],
+}
+
+
+@app.route('/events/ai-parent-night')
+def event_ai_parent_night():
+    """AI & Education Parent Night recap"""
+    return render_template('event_ai_parent_night.html', event=AI_PARENT_NIGHT)
 
 
 @app.route('/focus/tech-support')

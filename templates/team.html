@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %}Tech Interns | MVHS Tech Internship{% endblock %}
+{% block description %}Meet the executive board, principal, and tech interns behind the MVHS Tech Internship at Mountain View High School.{% endblock %}
+{% block content %}
+
+<section class="page-hero">
+  <div class="shell">
+    <span class="eyebrow">The people behind it</span>
+    <h1>Tech <em>Interns</em></h1>
+    <p>{{ eboard|length + interns|length }} students at Mountain View High School, led by a {{ eboard|length }}-person executive board with Principal Kip Glazer.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="shell">
+    <div class="section-head team-head rv">
+      <span class="eyebrow">Executive Board</span>
+      <h2>E-Board</h2>
+    </div>
+    <div class="people people--board rv-stagger">
+      {% for m in eboard %}
+      <div class="person">
+        <div class="ph"><img src="{{ url_for('static', filename='images/team/' ~ m.photo) }}" alt="{{ m.name }}" loading="lazy" decoding="async"></div>
+        <h3>{{ m.name }}</h3>
+        <div class="role">E-Board &middot; Class of {{ m.year }}</div>
+        {% if m.linkedin %}<a href="{{ m.linkedin }}" target="_blank" rel="noopener">LinkedIn →</a>{% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section section--paper">
+  <div class="shell">
+    <div class="principal rv">
+      <div class="ph"><img src="{{ url_for('static', filename='images/team/' ~ principal.photo) }}" alt="{{ principal.name }}" loading="lazy" decoding="async"></div>
+      <div>
+        <span class="eyebrow">Principal</span>
+        <h2>{{ principal.name }}</h2>
+        <p class="role">{{ principal.role }}</p>
+        <a class="btn btn--dark btn--sm" href="{{ principal.linkedin }}" target="_blank" rel="noopener">LinkedIn <span class="arw">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="shell">
+    <div class="section-head team-head rv">
+      <span class="eyebrow">{{ interns|length }} interns</span>
+      <h2>Tech <em>Interns</em></h2>
+      <p>The interns who power our events, projects, and on-campus tech support.</p>
+    </div>
+    <div class="interns rv-stagger">
+      {% for m in interns %}
+      <div class="intern" style="--i:{{ loop.index0 }}">
+        {% if m.photo %}
+        <img class="av" src="{{ url_for('static', filename='images/team/' ~ m.photo) }}" alt="" loading="lazy" decoding="async">
+        {% else %}
+        <span class="av" aria-hidden="true">{{ m.name.split()|map('first')|join }}</span>
+        {% endif %}
+        <span class="nm">{{ m.name }}</span>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section section--paper">
+  <div class="shell">
+    <div class="cta-band rv">
+      <h2>Want to <em>join</em> the team?</h2>
+      <p>Reach out to learn how MVHS students get involved with the internship.</p>
+      <div class="btn-row">
+        <a class="btn btn--solid" href="/contact">Get in touch <span class="arw">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
